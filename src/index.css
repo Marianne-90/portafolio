@@ -278,7 +278,41 @@ label{
   padding: 5px 0;
   width: 100%;
 }
+#skills{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
+#skills .skillsContainer{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+
+#skills .skillsContainer .container{
+  background-color: #e3eefb;
+  color: #354757;
+  padding: 20px;
+  max-width: 45%;
+  min-width: 250px;
+  border-radius: 5px;
+}
+
+#skills .skillsContainer .container:hover{
+  box-shadow: -1px 6.5px 15px rgba(208, 211, 214, 0.75);
+  cursor: pointer;
+}
+
+#skills .skillsContainer .container p{
+  font-size: 15px;
+}
 .inner-text{
    display: flex;
   justify-content: center;
@@ -643,6 +677,15 @@ input{
   }
   
   .portafolio-item{width: 80%; margin-top: 10px;}
+
+  #skills .skillsContainer .container{
+    background-color: #e3eefb;
+    color: #354757;
+    padding: 20px;
+    max-width: 100%;
+    min-width: 250px;
+    border-radius: 5px;
+  }
 }
 
 @media screen and (max-width: 950px){
