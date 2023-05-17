@@ -1,30 +1,50 @@
 import "./App.css";
+import { NavBar } from "./components/NavBar";
+import fresa from "./img/fresa.ico"
+import React, { useState, useEffect, useRef  } from 'react';
+
 
 function App() {
+
+  const [isNavbarFixed, setIsNavbarFixed] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      if (scrollPosition >= containerRef.current.offsetTop) {
+        setIsNavbarFixed(true);
+      } else {
+        setIsNavbarFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
   return (
     <>
-      <section className="photo" id="inicio">
-        <div className="nav" id="sticker">
-          <label for="toggle">&#9776</label>
-          <input type="checkbox" id="toggle" />
-          <div className="menu">
-            <h5 className="logo">LOGO</h5>
-            <a href="#inicio">inicio</a>
-            <a href="#servicio">servicios</a>
-            <a href="#trabajo">trabajo</a>
-            <a href="#contacto">contacto</a>
-          </div>
-        </div>
+      <NavBar state={isNavbarFixed}/>
+      <section className="photo" id="home">
         <div className="photo-text">
-          <h4 data-ix="skype">genialidea</h4>
+          <h4 id="portafolio"><small> My Portafolio </small></h4>
+          <h4 id="name">Marianne Garrido Minutti</h4>
           <p data-ix="subtitle-hero-up">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores,
-            quasi laboriosam architecto voluptatibus et, asperiores.
+            I am a proactive and enthusiastic professional with a passion for
+            innovation and teamwork. I thrive on big challenges and have a
+            proven ability to solve problems in creative and efficient ways.
           </p>
+          <img src={fresa} alt="fresa" />
         </div>
         <div className="overlay"></div>
       </section>
-      <section className="content">
+      <section className="content"  ref={containerRef}>
         <div className="grand-title" id="servicio">
           <h4 data-ix="slowfade-scroll-bigs">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse,
@@ -165,7 +185,7 @@ function App() {
           <form action="enviar.php" method="post">
             <ul className="flex-outer">
               <li>
-                <label for="nombre">Nombre</label>
+                <label htmlFor="nombre">Nombre</label>
                 <input
                   type="text"
                   name="nombre"
@@ -175,7 +195,7 @@ function App() {
                 />
               </li>
               <li>
-                <label for="correo">Correo</label>
+                <label htmlFor="correo">Correo</label>
                 <input
                   type="email"
                   name="correo"
@@ -185,7 +205,7 @@ function App() {
                 />
               </li>
               <li>
-                <label for="fono">Teléfono</label>
+                <label htmlFor="fono">Teléfono</label>
                 <input
                   type="text"
                   name="telefono"
@@ -195,7 +215,7 @@ function App() {
                 />
               </li>
               <li>
-                <label for="mensaje">Mensaje</label>
+                <label htmlFor="mensaje">Mensaje</label>
                 <textarea
                   rows="6"
                   name="mensaje"
