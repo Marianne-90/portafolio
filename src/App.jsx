@@ -1,8 +1,9 @@
 import "./App.css";
 import { Education } from "./components/Education";
+import { Home } from "./components/Home";
 import { NavBar } from "./components/NavBar";
+import { Proyects } from "./components/Proyects";
 import { Skills } from "./components/Skills";
-import fresa from "./img/fresa.ico";
 import React, { useState, useEffect, useRef } from "react";
 
 function App() {
@@ -30,24 +31,11 @@ function App() {
   return (
     <>
       <NavBar state={isNavbarFixed} />
-      <section className="photo" id="home">
-        <div className="photo-text">
-          <h4 id="portafolio">
-            <small> My Portafolio </small>
-          </h4>
-          <h4 id="name">Marianne Garrido Minutti</h4>
-          <p data-ix="subtitle-hero-up">
-            I am a proactive and enthusiastic professional with a passion for
-            innovation and teamwork. I thrive on big challenges and have a
-            proven ability to solve problems in creative and efficient ways.
-          </p>
-          <img src={fresa} alt="fresa" />
-        </div>
-        <div className="overlay"></div>
-      </section>
+      <Home/>
       <section className="content" ref={containerRef}>
         <Education />
         <Skills/>
+        <Proyects/>
         <div className="inner-content">
           <div className="boxy"></div>
           <div className="boxy">
@@ -92,53 +80,7 @@ function App() {
           </div>
         </div>
 
-        <section className="portafolio" id="trabajo">
-          <h4 data-ix="slowfade-scroll-bigs">Trabajos</h4>
-          <div className="portafolio-container">
-            <section className="portafolio-item">
-              <img
-                src="https://unsplash.it/400/430?image=490"
-                alt=""
-                className="portafolio-img"
-              />
-              <section className="portafolio-text">
-                <h5>genialidea</h5>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Ducimus doloremque, error nostrum tempora sapiente corporis.
-                </p>
-              </section>
-            </section>
-            <section className="portafolio-item">
-              <img
-                src="https://unsplash.it/400/430?image=490"
-                alt=""
-                className="portafolio-img"
-              />
-              <section className="portafolio-text">
-                <h5>genialidea.</h5>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Ducimus doloremque, error nostrum tempora sapiente corporis.
-                </p>
-              </section>
-            </section>
-            <section className="portafolio-item">
-              <img
-                src="https://unsplash.it/400/430?image=490"
-                alt=""
-                className="portafolio-img"
-              />
-              <section className="portafolio-text">
-                <h5>genialidea</h5>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Ducimus doloremque, error nostrum tempora sapiente corporis.
-                </p>
-              </section>
-            </section>
-          </div>
-        </section>
+
       </section>
       <div className="footer" id="contacto">
         <h4 data-ix="slowfade-scroll-bigs">Contacto</h4>
