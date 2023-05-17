@@ -1,11 +1,11 @@
 import "./App.css";
+import { Education } from "./components/Education";
 import { NavBar } from "./components/NavBar";
-import fresa from "./img/fresa.ico"
-import React, { useState, useEffect, useRef  } from 'react';
-
+import { Skills } from "./components/Skills";
+import fresa from "./img/fresa.ico";
+import React, { useState, useEffect, useRef } from "react";
 
 function App() {
-
   const [isNavbarFixed, setIsNavbarFixed] = useState(false);
   const containerRef = useRef(null);
 
@@ -13,27 +13,28 @@ function App() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
 
-      if (scrollPosition >= containerRef.current.offsetTop) {
+      if (scrollPosition >= (containerRef.current.offsetTop - 100)) {
         setIsNavbarFixed(true);
       } else {
         setIsNavbarFixed(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-
   return (
     <>
-      <NavBar state={isNavbarFixed}/>
+      <NavBar state={isNavbarFixed} />
       <section className="photo" id="home">
         <div className="photo-text">
-          <h4 id="portafolio"><small> My Portafolio </small></h4>
+          <h4 id="portafolio">
+            <small> My Portafolio </small>
+          </h4>
           <h4 id="name">Marianne Garrido Minutti</h4>
           <p data-ix="subtitle-hero-up">
             I am a proactive and enthusiastic professional with a passion for
@@ -44,49 +45,9 @@ function App() {
         </div>
         <div className="overlay"></div>
       </section>
-      <section className="content"  ref={containerRef}>
-        <div className="grand-title" id="servicio">
-          <h4 data-ix="slowfade-scroll-bigs">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse,
-            repellendus!
-          </h4>
-        </div>
-        <div className="text">
-          <div className="inner-text">
-            <h3 data-ix="slowfade-scroll-bigs">genialidea</h3>
-            <i className="ic ion-fork"></i>
-            <div className="text-box">
-              <h5 data-ix="slowfade-scroll-bigs">genialidea</h5>
-              <p data-ix="slowfade-scroll-bigs">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias,
-                modi!
-              </p>
-            </div>
-          </div>
-          <div className="inner-text">
-            <h3 data-ix="slowfade-scroll-bigs">genialidea</h3>
-            <i className="ic ion-knife"></i>
-            <div className="text-box">
-              <h5 data-ix="slowfade-scroll-bigs">genialidea</h5>
-              <p data-ix="slowfade-scroll-bigs">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias,
-                modi!
-              </p>
-            </div>
-          </div>
-          <div className="inner-text">
-            <h3 data-ix="slowfade-scroll-bigs">genialidea</h3>
-            <i className="ic ion-spoon"></i>
-            <div className="text-box">
-              <h5 data-ix="slowfade-scroll-bigs">genialidea</h5>
-              <p data-ix="slowfade-scroll-bigs">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias,
-                modi!
-              </p>
-            </div>
-          </div>
-        </div>
-
+      <section className="content" ref={containerRef}>
+        <Education />
+        <Skills/>
         <div className="inner-content">
           <div className="boxy"></div>
           <div className="boxy">

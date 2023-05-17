@@ -203,7 +203,7 @@ label{
   font-size: 30px;
   font-weight: 400;
   letter-spacing: 1.2px;
-  margin: 30px;
+  margin: 10px;
   color: #354757;
 }
 
@@ -212,7 +212,7 @@ label{
   display: block; 
   width: 5%;
   height: 3px;
-  margin: 25px auto;
+  margin: 10px auto;
   border: 0;
   background: #E58859;
 }
@@ -222,9 +222,61 @@ label{
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: -10px;
-  position: relative;
+  flex-wrap: wrap;
+  /* margin-top: -10px;
+  position: relative; */
   z-index: 999;
+}
+
+#education{
+  border: #D7DADE 1px solid;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#education #education-container{
+  color: #6D85A8;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  background-color: #e3eefb;
+  padding: 50px;
+  border-radius: 5px;
+}
+
+#education #education-container:hover{
+  box-shadow: -1px 6.5px 15px rgba(208, 211, 214, 0.75);
+  cursor: pointer;
+}
+
+
+#education #lenguaje{
+  margin: 40px 0 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  color: red;
+  color: #6D85A8;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#education #lenguaje:hover{
+  box-shadow: -1px 6.5px 15px rgba(208, 211, 214, 0.75);
+  cursor: pointer;
+}
+
+#education #relevant-certification{
+  color: #E58859 ;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  margin: 30px;
+  border: #E58859 1px solid;
+  padding: 5px 0;
+  width: 100%;
 }
 
 .inner-text{
@@ -655,6 +707,10 @@ input{
   #slider{margin-left: -55px;}
   .photo-text h4{font-size: 45px;}
   .inner-text{width: 80%;}
+
+  #education #education-container{
+    padding: 20px;
+  }
 
 }
 
