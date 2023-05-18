@@ -1,6 +1,7 @@
-import { useState } from "react";
+
 import { AiOutlineBulb } from "react-icons/ai";
-import { Albis, Faurecia, FreeLancer, Interceramic } from "./work/index";
+import { WorkButton } from "./WorkButton";
+
 
 const Jobs = [
   {
@@ -16,7 +17,7 @@ const Jobs = [
   },
 
   {
-    year: "2020 –2021",
+    year: "2020-2021",
     company: "Interceramic",
     charge: "E-COMMERCE AND MARKETING DIGITAL",
     description: [
@@ -30,12 +31,20 @@ const Jobs = [
   },
 
   {
-    year: "2017 – 2020",
-    company: "FreeLancer ",
+    year: "2017-2020",
+    company: "FreeLancer",
     charge: "MARKETING AND PUBLICITY",
     description: [
       "As a freelancer, I specialized in marketing and publicity, with a focus on planning, content design, and creation of advertising campaigns. I managed social media accounts and designed business images, logos, and print advertising in small, medium, and large formats.",
       "During this time, I worked with more than 9 companies, including Colegio Le Bret. At the school, I not only contributed to their website by programming segments and modifying details such as links and content, but also played a key role in the successful launch of their enrollment campaign. Thanks to our efforts, we exceeded the predicted enrollment target by an impressive 150%.",
+    ],
+  },
+  {
+    year: "2019-2020",
+    company: "Faurecia Planta Premium",
+    charge: "PROFESSIONAL INTERNSHIPS - DIGITAL COMMUNICATION",
+    description: [
+   " Updated the 20-minute animated video for new employees, standardized welcome and birthday formats, streamlined the process to publicize birthdays, updated collages for tours and visits, covered events, designed printed and digital dissemination and recruitment formats."
     ],
   },
 ];
@@ -66,8 +75,7 @@ export const Work = () => {
                   </li>
                 ))}
               </ul>
-              <button>View More</button>
-              <Albis />
+                  <WorkButton job={job.company}/>
             </div>
             <div className="box"></div>
           </div>
