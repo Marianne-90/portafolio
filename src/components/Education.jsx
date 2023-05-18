@@ -23,7 +23,7 @@ export const Education = () => {
   ];
   return (
     <section id="education">
-      <div className="grand-title" id="skills">
+      <div className="grand-title">
         <h4>EDUCATION</h4>
       </div>
       <div id="education-container">

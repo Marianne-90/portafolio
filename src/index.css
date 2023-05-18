@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,900');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600,700,900');
 
 body{
   margin: 0;
@@ -539,6 +539,78 @@ font-size: 20px;
   transform: rotate(-5deg) scale(1.15);
 }
 
+#work{
+  margin-top: 50px;
+  border-top:#D7DADE 1px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-direction: column;
+}
+
+#work .josbContainer{
+  margin:0 10px 0 10px;
+  border-left: #E58859 5px solid;
+}
+
+#work .josbContainer .job .containerJob{
+  padding-left: 20px;
+}
+
+#work .josbContainer .box{
+  width: 20px;
+  height: 20px;
+  background-color: #E58859;
+}
+
+#work .josbContainer .job .containerJob .yc{
+  display: flex;
+gap: 10px;
+align-items: center;
+}
+
+#work .josbContainer .job .containerJob .yc .year{
+ color: #E58859;
+ font-size: 20px;
+ margin: 0;
+ font-weight: 700;
+}
+#work .josbContainer .job .containerJob .yc .company{
+color: #299FFF;
+font-weight: 600;
+font-style: italic;
+}
+
+#work .josbContainer .job .containerJob .charge{
+  color: #354757;
+  font-weight: 700;
+  }
+
+  #work .josbContainer .job .containerJob .description{
+    list-style: none;
+    color: #354757;
+    padding: 5px;
+  }
+  #work .josbContainer .job .containerJob .description li{
+   display: flex;
+   margin-bottom: 10px;
+  }
+
+  #work .josbContainer .job .containerJob button{
+   border: none;
+   margin-bottom: 20px;
+   background-color: #E58859;
+   color: white;
+   text-transform: uppercase;
+   padding: 5px 20px;
+   cursor: pointer;
+   border-radius: 20px;
+   font-weight: 700;
+   }
+
+   #work .josbContainer .job .containerJob button:hover{
+    background-color: #299FFF;
+   }
 /*FOOTER*/
 .footer{
   display: flex;
