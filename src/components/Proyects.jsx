@@ -3,6 +3,9 @@ import gifApp from "../img/giftApp.jpg";
 import strudelHome from "../img/strudelHome.jpg";
 import strudelAdmin from "../img/strudelAdmin.jpg";
 import pythonFinal from "../img/pythonFinal.jpg";
+import hooksApp from "../img/hooksApp.jpg";
+import crudPhp from "../img/crudphp.jpg";
+import { AiFillGithub } from "react-icons/ai";
 
 const proyects = [
   {
@@ -42,21 +45,15 @@ const proyects = [
   },
   {
     title: "Hooks App",
-    image: HookApp,
+    image: hooksApp,
     description: "A compilation of the different hooks offered by React.js and how they work with examples and exercises",
     url: "https://github.com/Marianne-90/Hooks-App",
   },
   {
-    title: "",
-    image: journalApp,
-    description: "",
-    url: "https://github.com/Marianne-90/JournalApp",
-  },
-  {
-    title: "",
-    image: journalApp,
-    description: "",
-    url: "https://github.com/Marianne-90/JournalApp",
+    title: "CRUD using classes and routing",
+    image: crudPhp,
+    description: "A simple PHP application using classes and routing",
+    url: "https://github.com/Marianne-90/api-usando-clases-y-enrutamiento",
   },
 ];
 
@@ -80,13 +77,14 @@ export const Proyects = () => {
                 <h5>{proyect.title}</h5>
                 <p>{proyect.description}</p>
                 <a href={proyect.url} target="blank">
-                  Visit Proyect
+                  View Proyect
                 </a>
               </section>
             </section>
           ))}
         </div>
       </section>
+      <a href="https://github.com/Marianne-90" id="github-button" target="blank"><AiFillGithub/> Visit my GitHub</a>
     </section>
   );
 };
