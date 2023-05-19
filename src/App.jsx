@@ -43,49 +43,7 @@ function App() {
         <Proyects />
         <Work />
         <Contact />
-        <div className="inner-content">
-          <div className="boxy"></div>
-          <div className="boxy">
-            <div id="slider">
-              <figure>
-                <ul>
-                  <li>
-                    <h4>Lorem ipsum 1</h4>
-                    <img src="https://unsplash.it/80?image=823" alt="" />
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Eligendi, perspiciatis.
-                    </p>
-                  </li>
-                  <li>
-                    <h4>Lorem ipsum 2</h4>
-                    <img src="https://unsplash.it/80?image=823" alt="" />
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Repellat, fugiat!
-                    </p>
-                  </li>
-                  <li>
-                    <h4>Lorem ipsum 3</h4>
-                    <img src="https://unsplash.it/80?image=823" alt="" />
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Officiis, nemo!
-                    </p>
-                  </li>
-                  <li>
-                    <h4>Lorem ipsum 4</h4>
-                    <img src="https://unsplash.it/80?image=823" alt="" />
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Quibusdam, consequatur.
-                    </p>
-                  </li>
-                </ul>
-              </figure>
-            </div>
-          </div>
-        </div>
+
       </section>
     </>
   );

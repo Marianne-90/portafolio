@@ -1,10 +1,15 @@
-import staub from "../../img/jobs/staub.jpg";
-import zwilling from "../../img/jobs/zwilling.jpg";
-import steiner from "../../img/jobs/steiner.jpg";
-import kuch from "../../img/jobs/kuch.jpg";
-import swiss from "../../img/jobs/swiss.jpg";
-import lider from "../../img/jobs/melilider.jpg";
-import score from "../../img/jobs/meliinprov.jpg";
+import staub from "../../img/jobs/albis/staub.jpg";
+import zwilling from "../../img/jobs/albis/zwilling.jpg";
+import steiner from "../../img/jobs/albis/steiner.jpg";
+import kuch from "../../img/jobs/albis/kuch.jpg";
+import swiss from "../../img/jobs/albis/swiss.jpg";
+import lider from "../../img/jobs/albis/melilider.jpg";
+import score from "../../img/jobs/albis/meliinprov.jpg";
+import zilldesc from "../../img/jobs/albis/zilldesc.jpg";
+import zilldesc1 from "../../img/jobs/albis/zilldesc1.jpg";
+import zilldesc2 from "../../img/jobs/albis/zilldesc2.jpg";
+import zilldesc3 from "../../img/jobs/albis/zilldesc3.jpg";
+import zillpub1 from "../../img/jobs/albis/zillpub1.gif";
 
 import { AiFillCloud, AiFillTrophy } from "react-icons/ai";
 
@@ -86,6 +91,49 @@ export const Albis = () => {
         </div>
         <div className="img">
           <img src={score} alt="score" />
+        </div>
+      </section>
+      <section className="mkt">
+        <h2>
+          I also played a key role in assisting with the marketing strategy at
+          the Zwilling Store.!
+        </h2>
+        <div className="inner-content">
+          <div className="boxy">
+          </div>
+          <div className="boxy">
+            <div id="slider">
+              <figure>
+                <ul>
+                  <li>
+                    <div className="img">
+                        <img src={zilldesc}/>
+                    </div>
+                  </li>
+                  <li>
+                  <div className="img">
+                        <img src={zilldesc1}/>
+                    </div>
+                  </li>
+                  <li>
+                  <div className="img">
+                        <img src={zilldesc2}/>
+                    </div>
+                  </li>
+                  <li>
+                  <div className="img">
+                        <img src={zilldesc3}/>
+                    </div>
+                  </li>
+                  <li>
+                  <div className="img">
+                        <img src={zillpub1}/>
+                    </div>
+                  </li>
+                </ul>
+              </figure>
+            </div>
+          </div>
         </div>
       </section>
     </div>
