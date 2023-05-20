@@ -856,7 +856,7 @@ overflow: hidden;
   height: 100%;
   cursor: pointer;
 }
-.interceramic #ventanaModal {
+ #ventanaModal {
   position: fixed;
   z-index: 999;
   top: 0;
@@ -871,17 +871,156 @@ overflow: hidden;
 
 }
 
-.interceramic #imagenEnModal {
+ #imagenEnModal {
   display: block;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
 
-.interceramic .cerrar:hover {
-  color: #ccc;
+
+.freelance #title{
+  color: #df6c4f;
+  font-size: 20px;
+  text-align: center;
 }
 
+
+.freelance > section {
+  margin-top: 10px;
+  border-top: #d7dade 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.freelance img:hover{
+  cursor: pointer;
+}
+
+/* .freelance .colegio img{
+  width: 100px;
+} */
+
+.freelance #mainTitle{
+  color: #299fff;
+  text-transform: uppercase;
+}
+
+.freelance .colegio h3 {
+  color: #df6c4f;
+  text-transform: uppercase;
+}
+.freelance #mainDescription{
+  margin: 0;
+  padding: 10px 5%;
+  color: white; 
+  background-color: #60a9f1;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.freelance .colegio .gif img, .freelance .ciencia .logo img{
+width: 100%;
+max-width: 400px;
+margin-top: 30px;
+border-radius: 10px;
+}
+
+.freelance .colegio .billboard {
+  display: flex;
+  gap: 10px;
+}
+
+
+.freelance .colegio .billboard .img  img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.freelance .flyers img{
+  width: 100%;
+}
+
+.freelance .ciencia .flyer{
+display: flex;
+gap: 10px;
+}
+
+.freelance .ciencia .flyer .img img{
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.freelance .pizza .gallery {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+gap: 10px;
+margin: 10px 0;
+}
+
+.freelance .pizza .gallery .img{
+width: 100%;
+max-width: 300px;
+overflow: hidden;
+}
+.freelance .pizza .gallery .img img{
+width: 100%;
+border-radius: 20px;
+} 
+
+.freelance .carni .gallery{
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.freelance .carni .img img {
+  border-radius: 10px;
+  max-width: 300px;
+width: 100%;
+}
+
+.freelance .adalo .galery{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap:10px;
+  margin-top: 10px;
+}
+
+.freelance .adalo .galery .img img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+}
+.freelance #download{
+  text-decoration: none;
+  background-color: #df6c4f;
+  width: 100%;
+  text-align: center;
+  padding: 10px 5px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 30px 0;
+  border-radius: 30px;
+}
+
+.freelance #download:hover{
+  background-color: #299fff;
+}
 @media screen and (max-width: 650px) {
   #work .Albis .score .conteinerS {
     flex-direction: column;

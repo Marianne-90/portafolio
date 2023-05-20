@@ -14,8 +14,8 @@ import mail5 from "../../img/jobs/inter/mail5.jpeg";
 const images = [mail, mail1, mail2, mail3, mail4, mail5];
 
 export const Interceramic = () => {
-  const [imagenModalVisible, setImagenModalVisible] = useState(true);
-  const [imagenEnModal, setImagenEnModal] = useState(mail);
+  const [imagenModalVisible, setImagenModalVisible] = useState(false);
+  const [imagenEnModal, setImagenEnModal] = useState();
 
   const mostrarImagen = (imagenSrc) => {
     setImagenModalVisible(true);
