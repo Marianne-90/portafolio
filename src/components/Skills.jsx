@@ -1,5 +1,6 @@
 import { AiFillCheckCircle } from "react-icons/ai";
-
+import { useState } from "react";
+import ScrollTrigger from "react-scroll-trigger";
 
 const hardSkills = [
   "Ecommerce Platforms",
@@ -19,23 +20,35 @@ const softSkills = [
 ];
 
 export const Skills = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleAnimation = () => {
+    setIsVisible(true);
+  };
+
   return (
     <section id="skills">
       <div className="grand-title">
         <h4 data-ix="slowfade-scroll-bigs">SKILLS</h4>
       </div>
+        <ScrollTrigger onEnter={handleAnimation}>
       <div className="skillsContainer">
-        <div className="container">
-          {hardSkills.map((skill) => (
-            <p key={skill}><AiFillCheckCircle /> {skill}</p>
-          ))}
-        </div>
-        <div className="container">
-          {softSkills.map((skill) => (
-            <p key={skill}><AiFillCheckCircle /> {skill}</p>
-          ))}
-        </div>
+          <div className={isVisible ? "container  slide-top-text" : "container"}>
+            {hardSkills.map((skill) => (
+              <p key={skill}>
+                <AiFillCheckCircle /> {skill}
+              </p>
+            ))}
+          </div>
+          <div className={isVisible ? "container  slide-bottom-text" : "container"}>
+            {softSkills.map((skill) => (
+              <p key={skill}>
+                <AiFillCheckCircle /> {skill}
+              </p>
+            ))}
+          </div>
       </div>
+        </ScrollTrigger>
     </section>
   );
 };

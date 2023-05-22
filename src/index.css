@@ -2,6 +2,8 @@
 
 * {
   box-sizing: border-box;
+  overflow-x: hidden;
+  
 }
 body {
   margin: 0;
@@ -72,7 +74,7 @@ nav span {
   animation-name: strike;
   animation-duration: 1s;
   animation-timing-function: ease;
-  animation-iteration-count: infinite;
+  animation-iteration-count: both;
 }
 
 .menu h5 {
@@ -297,6 +299,7 @@ label {
   gap: 10px;
   padding: 0 20px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 #skills .skillsContainer .container {
@@ -601,6 +604,10 @@ label {
 #work .josbContainer .job .containerJob .description li {
   display: flex;
   margin-bottom: 10px;
+}
+
+#work .josbContainer .job .containerJob .description li i{
+min-width: 25px;
 }
 
 #work .josbContainer .job .containerJob button {
@@ -1027,6 +1034,22 @@ width: 100%;
   }
 }
 
+.faurecia{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-top: #d7dade 1px solid;
+}
+
+.faurecia h2{
+  color: #df6c4f;
+}
+
+.faurecia video{
+  width: 100%;
+}
+
 /*FOOTER*/
 .footer {
   display: flex;
@@ -1126,6 +1149,7 @@ width: 100%;
   padding: 10px 50px;
   text-transform: uppercase;
   transition: all 0.25s ease 0s;
+  cursor: pointer;
 }
 
 .flex-outer li button:hover,
@@ -1325,6 +1349,8 @@ input {
 
 }
 
+/* ANIMACIONES */
+
 @keyframes slider {
   0% {
     left: 0;
@@ -1368,4 +1394,129 @@ input {
   }
 }
 
+.slide-top-text {
+	-webkit-animation: slide-top-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
 
+ @-webkit-keyframes slide-top-text {
+  0% {
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes slide-top-text {
+  0% {
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+.slide-bottom-text {
+	-webkit-animation: slide-bottom-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-bottom-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+ @-webkit-keyframes slide-bottom-text {
+  0% {
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes slide-bottom-text {
+  0% {
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+.slide-left{
+	-webkit-animation: slide-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+.slide-right{
+	-webkit-animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(100px);
+            transform: translateX(100px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(100px);
+            transform: translateX(100px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+.opacity {
+  -webkit-animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+          animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes slide-fwd-center {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-fwd-center {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

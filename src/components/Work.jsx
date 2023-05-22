@@ -1,6 +1,4 @@
-
-import { AiOutlineBulb } from "react-icons/ai";
-import { WorkButton } from "./WorkButton";
+import { WorkMap } from "./WorkMap";
 
 
 const Jobs = [
@@ -58,27 +56,7 @@ export const Work = () => {
       <div className="josbContainer">
         <div className="box"></div>
         {Jobs.map((job) => (
-          <div className="job" key={job.company}>
-            <div className="containerJob">
-              <div className="yc">
-                <p className="year">{job.year}</p>
-                <p className="company">{job.company}</p>
-              </div>
-              <div className="charge">{job.charge}:</div>
-              <ul className="description">
-                {job.description.map((des, index) => (
-                  <li key={index}>
-                    <i>
-                      <AiOutlineBulb size={15} />
-                    </i>
-                    {des}
-                  </li>
-                ))}
-              </ul>
-                  <WorkButton job={job.company}/>
-            </div>
-            <div className="box"></div>
-          </div>
+          <WorkMap {...job} key={job.company}/>
         ))}
       </div>
     </section>

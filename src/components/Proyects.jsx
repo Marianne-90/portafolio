@@ -6,6 +6,8 @@ import pythonFinal from "../img/pythonFinal.jpg";
 import hooksApp from "../img/hooksApp.jpg";
 import crudPhp from "../img/crudphp.jpg";
 import { AiFillGithub } from "react-icons/ai";
+import { useState } from "react";
+import ScrollTrigger from "react-scroll-trigger";
 
 const proyects = [
   {
@@ -40,13 +42,15 @@ const proyects = [
   {
     title: "100 days of Python final challenge",
     image: pythonFinal,
-    description: "The final 100 day Python challenge, this application will scrape in to an alarm clock page and if there are lower prices will send an email with the price difference, url of the article and an image of the alarm clock",
+    description:
+      "The final 100 day Python challenge, this application will scrape in to an alarm clock page and if there are lower prices will send an email with the price difference, url of the article and an image of the alarm clock",
     url: "https://replit.com/@MarianneGarrido/Day-100-100-Days-challenge?v=1",
   },
   {
     title: "Hooks App",
     image: hooksApp,
-    description: "A compilation of the different hooks offered by React.js and how they work with examples and exercises",
+    description:
+      "A compilation of the different hooks offered by React.js and how they work with examples and exercises",
     url: "https://github.com/Marianne-90/Hooks-App",
   },
   {
@@ -58,6 +62,12 @@ const proyects = [
 ];
 
 export const Proyects = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleAnimation = () => {
+    setIsVisible(true);
+  };
+
   return (
     <section id="proyects">
       <div className="grand-title">
@@ -65,26 +75,36 @@ export const Proyects = () => {
       </div>
 
       <section className="portafolio" id="trabajo">
+          <ScrollTrigger onEnter={handleAnimation}>
         <div className="portafolio-container">
-          {proyects.map((proyect) => (
-            <section className="portafolio-item" key={proyect.title}>
-              <img
-                src={proyect.image}
-                alt={proyect.title}
-                className="portafolio-img"
-              />
-              <section className="portafolio-text">
-                <h5>{proyect.title}</h5>
-                <p>{proyect.description}</p>
-                <a href={proyect.url} target="blank">
-                  View Proyect
-                </a>
+            {proyects.map((proyect) => (
+              <section 
+              className={isVisible ? " portafolio-item opacity" : "portafolio-item"}
+              key={proyect.title}>
+                <img
+                  src={proyect.image}
+                  alt={proyect.title}
+                  className="portafolio-img"
+                />
+                <section className="portafolio-text">
+                  <h5>{proyect.title}</h5>
+                  <p>{proyect.description}</p>
+                  <a href={proyect.url} target="blank">
+                    View Proyect
+                  </a>
+                </section>
               </section>
-            </section>
-          ))}
+            ))}
         </div>
+          </ScrollTrigger>
       </section>
-      <a href="https://github.com/Marianne-90" id="github-button" target="blank"><AiFillGithub/> Visit my GitHub</a>
+      <a
+        href="https://github.com/Marianne-90"
+        id="github-button"
+        target="blank"
+      >
+        <AiFillGithub /> Visit my GitHub
+      </a>
     </section>
   );
 };

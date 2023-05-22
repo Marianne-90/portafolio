@@ -169,14 +169,14 @@ export const FreeLancer = () => {
             <img
               src={car1}
               alt="Carnicería Lider"
-              onClick={() => mostrarImagen(SalTab2)}
+              onClick={() => mostrarImagen(car1)}
             />
           </div>
           <div className="img">
             <img
               src={car2}
               alt="Carnicería Líder"
-              onClick={() => mostrarImagen(SalTab2)}
+              onClick={() => mostrarImagen(car2)}
             />
           </div>
         </div>
@@ -196,21 +196,21 @@ export const FreeLancer = () => {
         <div className="img">
             <img
               src={adalo1}
-              alt="Carnicería Lider"
+              alt="Adalo"
               onClick={() => mostrarImagen(adalo1)}
             />
           </div>
           <div className="img">
             <img
               src={adalo2}
-              alt="Carnicería Lider"
+              alt="Adalo"
               onClick={() => mostrarImagen(adalo2)}
             />
           </div>
           <div className="img">
             <img
               src={adalo3}
-              alt="Carnicería Lider"
+              alt="Adalo"
               onClick={() => mostrarImagen(adalo3)}
             />
           </div>
