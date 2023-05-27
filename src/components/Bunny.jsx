@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import fresa from "./img/fresa.png";
+import fresa from "../img/bunny/fresa.png";
 import conejoDurmiendo from "../img/bunny/durmiendo.gif";
 import conejoDespierto from "../img/bunny/despierto.gif";
 import conejoComiendo from "../img/bunny/conejoComiendo.gif";
@@ -67,7 +67,6 @@ export const Bunny = () => {
 
   const conejoCorriendo = (strawberryPosition) => {
     return new Promise((resolve) => {
-      const bunnyWidth = bunnyRef.current.offsetWidth;
       let bunnyPosition = bunnyState.left;
       let distance = strawberryPosition - bunnyPosition;
       let bunny = { ...bunnyState };
@@ -183,8 +182,26 @@ export const Bunny = () => {
     };
   }, []);
 
+  //*! dormir conejo en caso de que pasen 10 segundos 
+
+  useEffect(() => {
+    if (bunnyState.img === bunnyImages.conejoDespierto) {
+      const timeoutId = setTimeout(() => {
+        setBunyState({
+            ...bunnyState, img: bunnyImages.conejoDurmiendo,
+          });
+      }, 10000);
+  
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [bunnyState.img]);
+  
+
   return (
     <section className="bunny">
+        <h2>WOW! YOU'VE FOUND MR. GREY!! <br/> <small>Try clicking in his garden to feed him</small></h2>
       <div ref={divRef} className="conteiner" onClick={handleClick}>
         <div
           className="fresa"
