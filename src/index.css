@@ -939,12 +939,16 @@ border-radius: 10px;
   gap: 10px;
 }
 
+.freelance .colegio .billboard .img {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
 
 .freelance .colegio .billboard .img  img{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
 }
 
 .freelance .flyers img{
@@ -1057,6 +1061,7 @@ width: 100%;
   flex-direction: column;
   min-height: 500px;
   width: 100%;
+  overflow: hidden;
 }
 
 .footer h4 {
@@ -1085,6 +1090,10 @@ width: 100%;
 
 .container * {
   box-sizing: border-box;
+}
+
+.footer #content{
+  width: 100%;
 }
 
 .flex-outer,
@@ -1314,6 +1323,60 @@ input {
   }
 }
 
+
+.bunny *{
+  margin: 0;
+  top: 0;
+  box-sizing: border-box;
+}
+
+.bunny{
+  background-color: rgb(0, 0, 0);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bunny .conteiner{
+  background-color: rgb(255, 255, 255);
+  background-image: url("./img/bunny/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  width: 100%;
+  height: 300px;
+position: relative;
+overflow: hidden;
+}
+
+.bunny .conteiner .fresa{
+  width: 60px;
+  height: 60px;
+  position: absolute;
+}
+
+.bunny .conteiner .fresa img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.bunny .conteiner .conejo{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  z-index: 1;
+}
+
+.bunny .conteiner .conejo img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 @media screen and (max-width: 500px) {
   #slider {
     margin-left: -55px;
@@ -1395,8 +1458,8 @@ input {
 }
 
 .slide-top-text {
-	-webkit-animation: slide-top-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-top-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-webkit-animation: slide-top-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+	        animation: slide-top-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
 }
 
  @-webkit-keyframes slide-top-text {
@@ -1421,8 +1484,8 @@ input {
 }
 
 .slide-bottom-text {
-	-webkit-animation: slide-bottom-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-bottom-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-webkit-animation: slide-bottom-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+	        animation: slide-bottom-text 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
 }
 
  @-webkit-keyframes slide-bottom-text {
@@ -1447,8 +1510,8 @@ input {
 }
 
 .slide-left{
-	-webkit-animation: slide-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-webkit-animation: slide-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+	        animation: slide-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
 }
 
 @-webkit-keyframes slide-left {
@@ -1473,8 +1536,8 @@ input {
 }
 
 .slide-right{
-	-webkit-animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-webkit-animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+	        animation: slide-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
 }
 
 @-webkit-keyframes slide-right {
@@ -1499,8 +1562,8 @@ input {
 }
 
 .opacity {
-  -webkit-animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-          animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
+          animation: slide-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s both;
 }
 
 @-webkit-keyframes slide-fwd-center {
@@ -1520,3 +1583,31 @@ input {
     opacity: 1;
   }
 }
+
+
+::-webkit-scrollbar-thumb {
+  background-color: #e74c3c;
+  border-radius: 10px;
+}
+
+/* Para Firefox */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #e74c3c #f1c40f;
+}
+
+/* Para scrollbar personalizado en Firefox */
+::-moz-scrollbar {
+  width: 10px;
+}
+
+::-moz-scrollbar-thumb {
+  background-color: #e74c3c;
+  border-radius: 10px;
+}
+
+::-moz-scrollbar-track {
+  background-color: #f1c40f;
+  border-radius: 10px;
+}
+

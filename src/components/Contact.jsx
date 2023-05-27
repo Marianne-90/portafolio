@@ -1,8 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import ScrollTrigger from "react-scroll-trigger";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
 
 export const Contact = () => {
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleAnimation = () => {
+    setIsVisible(true);
+  };
+
+
+
   useEffect(() => {
     emailjs.init("76U7XUpGlXyVp9a4A");
   }, []);
@@ -46,9 +56,10 @@ export const Contact = () => {
   };
 
   return (
-    <div className="footer" id="contacto">
-      <h4 data-ix="slowfade-scroll-bigs">Contact</h4>
-      <div className="container">
+      <ScrollTrigger onEnter={handleAnimation}>
+    <div className="footer" id="contact">
+      <h4 data-ix="slowfade-scroll-bigs" className={isVisible ? " slide-top-text" : ""}>Contact</h4>
+      <div className={isVisible ? "container  slide-top-text" : "container"}>
         <form action="enviar.php" method="post" onSubmit={handleSubmit}>
           <ul className="flex-outer">
             <li>
@@ -101,5 +112,6 @@ export const Contact = () => {
         </form>
       </div>
     </div>
+      </ScrollTrigger>
   );
 };

@@ -28,12 +28,13 @@ export const Skills = () => {
 
   return (
     <section id="skills">
+        <ScrollTrigger onEnter={handleAnimation}>
       <div className="grand-title">
         <h4 data-ix="slowfade-scroll-bigs">SKILLS</h4>
       </div>
-        <ScrollTrigger onEnter={handleAnimation}>
       <div className="skillsContainer">
           <div className={isVisible ? "container  slide-top-text" : "container"}>
+            <h4>HARD SKILLS</h4>
             {hardSkills.map((skill) => (
               <p key={skill}>
                 <AiFillCheckCircle /> {skill}
@@ -41,6 +42,7 @@ export const Skills = () => {
             ))}
           </div>
           <div className={isVisible ? "container  slide-bottom-text" : "container"}>
+          <h4>SOFT SKILLS</h4>
             {softSkills.map((skill) => (
               <p key={skill}>
                 <AiFillCheckCircle /> {skill}
