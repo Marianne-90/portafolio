@@ -7,6 +7,7 @@ import {
   Skills,
   Work,
   Contact,
+  Bunny,
 } from "./components/index";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -42,8 +43,8 @@ function App() {
         <Skills />
         <Proyects />
         <Work />
+        <Bunny/>
         <Contact />
-
       </section>
     </>
   );
