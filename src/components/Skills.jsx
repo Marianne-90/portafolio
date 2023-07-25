@@ -6,13 +6,14 @@ const skillsData = [
   {
     name: "Specific Developer Skills",
     skills: [
-      "Object-Oriented Programming (OOP) -Classes and objects to create modular and maintainable code.",
+      "Object-Oriented Programming (OOP) - Classes and objects to create modular and maintainable code.",
       "JSON (JavaScript Object Notation) - Able to handle and manipulate data in JSON format, commonly used for data interchange between applications.",
       "Database Management - Familiarity with handling databases, performing CRUD",
       "API Handling - Competent in working with APIs to interact with external services and retrieve data.",
-      "REST APIs - I'm able to designing and implementate RESTful APIs",
+      "REST APIs - I'm able to design and implementate RESTful APIs",
       "Front-End Technologies - Proficiency in HTML, CSS, and JavaScript (Vanilla, React.js), enabling the creation of user interfaces and interactions.",
       "Back-End Development - Knowledge of server-side programming languages (PHP, Phyton)",
+      "FileZilla - Proficient in using FileZilla for file transfer and management",
       "Version Control - Experience using version control systems like Git to manage code changes collaboratively",
       "Responsive Design - Knowledge of designing websites and applications that adapt to different screen sizes and devices.",
       "Basic Security Practices - Awareness of common security vulnerabilities and the implementation of basic security measures.",
@@ -58,6 +59,25 @@ export const Skills = () => {
     setIsVisible(true);
   };
 
+  const boldeText = ( text ) => {
+    const parts = text.split(" - ");
+
+    if (parts.length === 2) {
+      // El texto contiene un guion ("-"), aplicamos formato en negrita.
+      const boldPart = parts[0];
+      const normalPart = parts[1];
+
+      return (
+        <span>
+          <strong>{boldPart}</strong> - {normalPart}
+        </span>
+      );
+    } else {
+      // El texto no contiene un guion ("-"), se muestra sin formato adicional.
+      return <span>{text}</span>;
+    }
+  };
+
   return (
     <section id="skills">
       <ScrollTrigger onEnter={handleAnimation}>
@@ -66,17 +86,19 @@ export const Skills = () => {
         </div>
         <div className="skillsContainer">
           {skillsData.map((data, index) => {
-            {
-              console.log(data);
-            }
             return (
-              <div className={classNameGenerator(index)}>
+              <div className={classNameGenerator(index)} key={index}>
                 <h4>{data.name}</h4>
-                {data.skills.map((skill) => (
-                  <p key={skill}>
-                    <AiFillCheckCircle /> {skill}
-                  </p>
-                ))}
+                {data.skills.map((skill, index) => {
+                  return (
+                    <p key={index}>
+                      <span>
+                        <AiFillCheckCircle />
+                      </span>
+                       {boldeText(skill)}
+                    </p>
+                  );
+                })}
               </div>
             );
           })}

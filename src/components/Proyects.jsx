@@ -1,15 +1,41 @@
-import journalApp from "../img/journalApp.png";
-import gifApp from "../img/giftApp.jpg";
-import strudelHome from "../img/strudelHome.jpg";
-import strudelAdmin from "../img/strudelAdmin.jpg";
-import pythonFinal from "../img/pythonFinal.jpg";
-import hooksApp from "../img/hooksApp.jpg";
-import crudPhp from "../img/crudphp.jpg";
+import journalApp from "../img/proyects/journalApp.png";
+import gifApp from "../img/proyects/giftApp.jpg";
+import strudelHome from "../img/proyects/strudelHome.jpg";
+import strudelAdmin from "../img/proyects/strudelAdmin.jpg";
+import pythonFinal from "../img/proyects/pythonFinal.jpg";
+import hooksApp from "../img/proyects/hooksApp.jpg";
+import crudPhp from "../img/proyects/crudphp.jpg";
+import pokegame from "../img/proyects/pokegame.jpg";
+import ninjaGame from "../img/proyects/ninjaGame.jpg";
+import solaz from "../img/proyects/solaz.jpg";
+
+
 import { AiFillGithub } from "react-icons/ai";
 import { useState } from "react";
 import ScrollTrigger from "react-scroll-trigger";
 
 const proyects = [
+  {
+    title: "Blog Admin Panel",
+    image: solaz,
+    description:
+      "Built with React.js, this bilingual admin panel empowers users to create, manipulate, and organize blogs in English and Spanish. Connected to a PHP and MySQL CRUD API, it also facilitates .xlsx file downloads.",
+    url: "https://github.com/Marianne-90/admin",
+  },
+  {
+    title: "Ninja Game",
+    image: ninjaGame,
+    description:
+      "This JavaScript vanilla fighting game features two skillful ninjas engaged in epic combat until a decisive victor emerges. The game is a testament to my proficiency in managing classes, functions, constructors, and class inheritance",
+    url: "https://figth-game.netlify.app/",
+  },
+  {
+    title: "Poke Game",
+    image: pokegame,
+    description:
+      "Pokemon-inspired game, crafted with vanilla JavaScript, showcases a deep dive into object-oriented programming (OOP) principles, class hierarchies, constructors, and functions. By leveraging the power of the HTML canvas",
+    url: "https://pokegamemarianne.netlify.app/",
+  },
   {
     title: "Strudel Web",
     image: strudelHome,
