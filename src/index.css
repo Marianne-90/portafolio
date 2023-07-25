@@ -159,6 +159,7 @@ label {
 }
 
 .overlay {
+  pointer-events: none;
   position: absolute;
   z-index: 1;
   width: 100%;
@@ -171,6 +172,24 @@ label {
 .photo-text #portafolio {
   font-size: 20px;
   color: #d7dade;
+}
+
+.photo-text button {
+  background-color: #3B82F6;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.photo-text button:hover {
+  background-color: #4d90fc;
 }
 
 .photo-text img {
@@ -283,6 +302,11 @@ label {
   background-color: #e0f2fe;
   padding: 50px;
   border-radius: 5px;
+}
+
+#education #education-container p {
+padding: 0;
+margin: 0;
 }
 
 #education #education-container:hover {
@@ -1271,6 +1295,24 @@ label {
 
 input {
   font-family: "Raleway", sans-serif;
+}
+
+.contactInfo {
+  background-color: #3f3f3f;
+  width: 100%;
+  padding: 20px 0 100px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.contactInfo a {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 950px) {

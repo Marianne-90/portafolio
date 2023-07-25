@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import ScrollTrigger from "react-scroll-trigger";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
+import { data } from "../data/data.js";
+import { AiFillLinkedin } from "react-icons/ai";
+import { AiFillPhone } from "react-icons/ai";
+import { AiFillMail } from "react-icons/ai";
 
 export const Contact = () => {
 
   const [isVisible, setIsVisible] = useState(false);
+  const { contact } = data;
+  const {phone, mail, linkedIn} = contact;
 
   const handleAnimation = () => {
     setIsVisible(true);
   };
-
-
 
   useEffect(() => {
     emailjs.init("76U7XUpGlXyVp9a4A");
@@ -54,6 +58,12 @@ export const Contact = () => {
 
     event.target.reset();
   };
+
+
+    const formattedPhoneNumber = phone.replace(
+      /^(\+\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/,
+      '$1 $2-$3-$4-$5-$6'
+    );
 
   return (
       <ScrollTrigger onEnter={handleAnimation}>
@@ -110,6 +120,11 @@ export const Contact = () => {
             </li>
           </ul>
         </form>
+      </div>
+      <div className="contactInfo">
+        <a href={`tel:${phone}`}><AiFillPhone/>{formattedPhoneNumber}</a>
+        <a href={`mailto:${mail}`}><AiFillMail/>{mail}</a>
+        <a href={linkedIn.src} target="blank"><AiFillLinkedin/>{linkedIn.name}</a>
       </div>
     </div>
       </ScrollTrigger>
