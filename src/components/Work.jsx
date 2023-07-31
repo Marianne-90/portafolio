@@ -9,7 +9,7 @@ export const Work = () => {
   return (
     <section id="work">
       <div className="grand-title">
-        <h4 data-ix="slowfade-scroll-bigs">WORK EXPERIENCE!</h4>
+        <h4 data-ix="slowfade-scroll-bigs">WORK EXPERIENCE</h4>
       </div>
       <div className="josbContainer">
         <div className="box"></div>

@@ -41,7 +41,7 @@ export const Skills = () => {
   };
 
   return (
-    <section id="skills">
+    <section id="skills"> 
       <ScrollTrigger onEnter={handleAnimation}>
         <div className="grand-title">
           <h4 data-ix="slowfade-scroll-bigs">SKILLS</h4>

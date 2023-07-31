@@ -27,13 +27,13 @@ export const data = {
         title: "VTEX",
         subtitle: "E-commerce advanced executive program",
         description:
-          "  Comprehensive e-commerce education covering strategy, online store management, digital marketing, UX, logistics, data analytics, and performance measurement. Delivered through online lectures, case studies, and group discussions. Equipped with expertise in driving digital commerce success and business growth.",
+          " Comprehensive e-commerce education covering strategy, online store management, digital marketing, UX, logistics, data analytics, and performance measurement. Delivered through online lectures, case studies, and group discussions. Equipped with expertise in driving digital commerce success and business growth.",
       },
       {
         title: "GOOGLE",
         subtitle: "Data Analysis Professional Certificate",
         description:
-          " Comprehensive knowledge and practical skills in data analysis, visualization, and interpretation. Proficient in utilizing Google Analytics, Google Sheets, and other data analysis tools to extract actionable insights, optimize business performance, and drive informed decision-making.",
+          "Comprehensive knowledge and practical skills in data analysis, visualization, and interpretation. Proficient in utilizing Google Analytics, Google Sheets, and other data analysis tools to extract actionable insights, optimize business performance, and drive informed decision-making.",
       },
       {
         title: "UDEMY",
@@ -52,7 +52,7 @@ export const data = {
         "Object-Oriented Programming (OOP) - Classes and objects to create modular and maintainable code.",
         "JSON (JavaScript Object Notation) - Able to handle and manipulate data in JSON format, commonly used for data interchange between applications.",
         "Database Management - Familiarity with handling databases, performing CRUD",
-        "API Handling - Competent in working with APIs to interact with external services and retrieve data.",
+        " API Handling - Competent in working with APIs to interact with external services and retrieve data.",
         "REST APIs - I'm able to design and implementate RESTful APIs",
         "Front-End Technologies - Proficiency in HTML, CSS, and JavaScript (Vanilla, React.js), enabling the creation of user interfaces and interactions.",
         "Back-End Development - Knowledge of server-side programming languages (PHP, Phyton)",
@@ -77,12 +77,11 @@ export const data = {
     {
       name: "SoftSkills",
       skills: [
-        "Ecommerce Platforms",
-        "SEO and DA",
-        "Web Developer JR (JS, React, Next, PHP, Python, Mysql, sql, Html, CSS)",
-        "Adobe Suite (Advanced)",
-        "Google Ads",
-        "Social Media (Advanced)",
+        "Adaptability",
+        "Collaboration and Teamwork",
+        "Communication Skills",
+        "Problem-Solving Skills",
+        "Time Management and Organization",
       ],
     },
   ],
@@ -200,16 +199,18 @@ export const data = {
       company: "Faurecia Planta Premium",
       charge: "PROFESSIONAL INTERNSHIPS - DIGITAL COMMUNICATION",
       description: [
-     " Updated the 20-minute animated video for new employees, standardized welcome and birthday formats, streamlined the process to publicize birthdays, updated collages for tours and visits, covered events, designed printed and digital dissemination and recruitment formats."
+     "Updated the 20-minute animated video for new employees, standardized welcome and birthday formats, streamlined the process to publicize birthdays, updated collages for tours and visits, covered events, designed printed and digital dissemination and recruitment formats."
       ],
     },
   ],
   contact:{
     phone:"+522211576525",
     mail:"marianne.garridom@gmail.com",
+    portafolio:"https://portafolio.strudelrestaurante.com/",
+    role:"Full Stack Jr",
     linkedIn:{
         name:"Marianne Garrido",
         src:"https://www.linkedin.com/in/marianne-garrido-a83a6a19b/",
-    }
+    }  
   }
 };
