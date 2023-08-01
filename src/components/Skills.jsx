@@ -1,10 +1,14 @@
 import { AiFillCheckCircle } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { data } from "../data/data.js";
-
 import ScrollTrigger from "react-scroll-trigger";
+import { bunnyData } from "../data/bunnyData.js";
+import { BunnyAnimation } from "./BunnyAnimation.jsx";
 
 const { skillsData } = data;
+
+  //LA ANIMACIÓN DEL CONEJO
+  const { studyBunny } = bunnyData;
 
 export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,7 +25,7 @@ export const Skills = () => {
     setIsVisible(true);
   };
 
-  const boldeText = ( text ) => {
+  const boldeText = (text) => {
     const parts = text.split(" - ");
 
     if (parts.length === 2) {
@@ -40,8 +44,12 @@ export const Skills = () => {
     }
   };
 
+
+
   return (
-    <section id="skills"> 
+    <section id="skills">
+      <BunnyAnimation width={100} height={100} data={studyBunny} speed={20}/>
+
       <ScrollTrigger onEnter={handleAnimation}>
         <div className="grand-title">
           <h4 data-ix="slowfade-scroll-bigs">SKILLS</h4>
@@ -57,7 +65,7 @@ export const Skills = () => {
                       <span>
                         <AiFillCheckCircle />
                       </span>
-                       {boldeText(skill)}
+                      {boldeText(skill)}
                     </p>
                   );
                 })}

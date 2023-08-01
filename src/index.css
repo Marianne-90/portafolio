@@ -360,6 +360,13 @@ label {
   flex-direction: column;
 }
 
+#skills .grand-title{
+height: 30px!important;
+min-height: 50px;
+overflow-y: hidden;
+}
+
+
 #skills .skillsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
