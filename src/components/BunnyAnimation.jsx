@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { Sprite } from "../classes/sprite.js";
+import { Sprite } from "../classes/Sprite.js";
 export const BunnyAnimation = ({width, height, data, speed}) => {
 
   //LA ANIMACIÓN DEL CONEJO
