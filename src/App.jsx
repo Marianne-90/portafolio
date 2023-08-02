@@ -1,4 +1,5 @@
 import "./App.css";
+import { Game } from "./components/game/Game";
 import {
   Education,
   Home,
@@ -9,7 +10,7 @@ import {
   Contact,
   Bunny,
 } from "./components/index";
-import { Base } from "./img/game/base";
+
 
 import React, { useState, useEffect, useRef } from "react";
 
@@ -45,7 +46,7 @@ function App() {
         <Proyects />
         <Work />
         <Bunny/>
-        <Base/>
+        <Game/>
         <Contact />
       </section>
     </>

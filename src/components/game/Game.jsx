@@ -1,7 +1,7 @@
 import { gameData } from "../../data/gameData";
 import { randomFramesGenerator } from "./tools/background";
 
-export const Base = () => {
+export const Game = () => {
   const { background } = gameData;
 
 //  const framesProbabilidades = []

@@ -1,4 +1,4 @@
-import background from "../img/bunny/sprites/programerBunny.png";
+import background from "../img/bunny/sprites/background/backGround.png";
 
 export const gameData = {
   background: {
