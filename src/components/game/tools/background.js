@@ -1,8 +1,4 @@
-import { gameData } from "../../../data/gameData";
-import { Sprite } from "../../../classes/Sprite";
-
-const { background } = gameData;
-const initialFrame = new Sprite(background.initialFrame);
+import { initialFrame } from "./sprites";
 
 export const initCanvas = (canvasWidth, canvasHeight, canvasRef) => {
   if (canvasRef.current) {
@@ -38,6 +34,8 @@ export function randomFramesGenerator(frames) {
 
 export function backGroundAnimation({ c, canvasWidth, xPosition }) {
   let initialFrameWidth = initialFrame.image.width * initialFrame.scale;
-  initialFrame.position.x = canvasWidth/2 - initialFrameWidth/2 + xPosition;
+  initialFrame.position.x =
+    canvasWidth / 2 - initialFrameWidth / 2 + xPosition.current;
+
   initialFrame.update(c);
 }

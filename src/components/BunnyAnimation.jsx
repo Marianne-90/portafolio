@@ -24,19 +24,24 @@ export const BunnyAnimation = ({width, height, data, speed}) => {
     };
 
     const c = initCanvas();
+    let animationId;
     //Dibujar conejo
     if (c) {
       c.fillStyle = "blue";
       const canvas = canvasRef.current;
 
       function animate() {
-        requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
         c.fillStyle = "white";
         c.fillRect(0, 0, canvas.width, canvas.height);
         bunny.update(c);
       }
 
       animate();
+    }
+
+    return () => {
+      cancelAnimationFrame(animationId); // esto es para evitar epilepcia en el conejo porque se sigue llamando a la función
     }
   }, []);
 

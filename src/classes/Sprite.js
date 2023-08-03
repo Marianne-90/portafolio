@@ -7,16 +7,23 @@ export class Sprite {
     offset = { x: 0, y: 0 },
   }) {
     this.position = position;
+
     this.image = new Image();
     this.image.src = imageSrc;
+
+    this.image.onload = () => {
+      this.width = this.image.width / this.framesMax;
+      this.height = this.image.height;
+    };
+
+
     this.scale = scale;
     this.framesMax = framesMax;
     this.frameCurrent = 0;
     this.framesElapsed = 0;
     this.framesHold = 10;
     this.offset = offset;
-    this.width = this.image.width;
-    this.height = this.image.height;
+ 
   }
 
   draw(c) {
