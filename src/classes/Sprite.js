@@ -15,6 +15,8 @@ export class Sprite {
     this.framesElapsed = 0;
     this.framesHold = 10;
     this.offset = offset;
+    this.width = this.image.width;
+    this.height = this.image.height;
   }
 
   draw(c) {

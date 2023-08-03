@@ -1,14 +1,18 @@
 import background from "../img/bunny/sprites/background/backGround.png";
+import initialFrame from "../img/bunny/sprites/background/mainFrame.png";
 
 export const gameData = {
   background: {
-    position: {
-      x: 0,
-      y: 0,
-    },
     imageSrc: background,
-    scale: 1,
-    framesMax: 19,
+    initialFrame: {
+      position: {
+        x: 0,
+        y: 0,
+      },
+      imageSrc: initialFrame,
+      scale: .5,
+      framesMax: 1,
+    },
     frames: [
       {
         name: "flor-naranja",

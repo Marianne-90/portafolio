@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600,700,900");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 /* Para Firefox */
 body {
@@ -174,8 +175,7 @@ label {
   color: #d7dade;
 }
 
-
-.photo-text .button{
+.photo-text .button {
   z-index: 2;
 }
 .photo-text button {
@@ -360,12 +360,11 @@ label {
   flex-direction: column;
 }
 
-#skills .grand-title{
-height: 30px!important;
-min-height: 50px;
-overflow-y: hidden;
+#skills .grand-title {
+  height: 30px !important;
+  min-height: 50px;
+  overflow-y: hidden;
 }
-
 
 #skills .skillsContainer {
   display: grid;
@@ -1491,6 +1490,75 @@ input {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+.gameContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.gameContainer .bunnyGame {
+  width: calc(100% - 30px);
+  height: 300px;
+  overflow: hidden;
+}
+
+.gameContainer .leftRight{
+  width: 100%;
+  padding: 0 15px;
+}
+
+.gameContainer .leftRight button{
+  width: 50%;
+  border: none;
+  padding: 15px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  background-color:#FDE68A;
+  color: #4B5563;
+  border: #4B5563 1px solid ;
+}
+
+.gameContainer .leftRight button:nth-child(2){
+  width: 50%;
+  border: none;
+  padding: 15px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  background-color:#FDBA74;
+  color: #4B5563;
+  border: #4B5563 1px solid ;
+  /* border-left: #4B5563 1px solid ;
+  border-top: #4B5563 1px solid ; */
+}
+
+.gameContainer > button {
+  border: #4B5563 1px solid ;
+  width: calc(100% - 30px);
+  padding: 15px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #84CC16;
+  color: #4B5563
+}
+
+
+
+.gameContainer .leftRight button:hover{
+  background-color:#edd882;
+}
+
+.gameContainer .leftRight button:nth-child(2):hover{
+  background-color:#f3b470;
+}
+
+.gameContainer > button:hover {
+  background-color: #7cc015;
 }
 
 @media screen and (max-width: 500px) {

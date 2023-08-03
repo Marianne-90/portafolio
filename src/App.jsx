@@ -45,7 +45,7 @@ function App() {
         <Skills />
         <Proyects />
         <Work />
-        <Bunny/>
+        {/* <Bunny/> */}
         <Game/>
         <Contact />
       </section>

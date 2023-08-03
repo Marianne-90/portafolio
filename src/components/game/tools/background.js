@@ -1,12 +1,27 @@
 import { gameData } from "../../../data/gameData";
+import { Sprite } from "../../../classes/Sprite";
 
-export function randomFramesGenerator() {
-  const { background } = gameData;
+const { background } = gameData;
+const initialFrame = new Sprite(background.initialFrame);
 
+export const initCanvas = (canvasWidth, canvasHeight, canvasRef) => {
+  if (canvasRef.current) {
+    const canvas = canvasRef.current;
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    const context = canvas.getContext("2d");
+
+    return context; // Retorna el contexto 2D
+  }
+  return null;
+};
+
+export function randomFramesGenerator(frames) {
   const framesProbabilidades = [];
 
-  for (let i = 0; i < background.frames.length; i++) {
-    let element = background.frames[i];
+  for (let i = 0; i < frames.length; i++) {
+    let element = frames[i];
     let posibility = element.frequency;
 
     while (posibility > 0) {
@@ -18,5 +33,11 @@ export function randomFramesGenerator() {
   //*! calcula un numero aleatorio entre 0 y la suma de todas las probabilidades
   const randomNum = Math.floor(Math.random() * framesProbabilidades.length);
   const randomFrame = framesProbabilidades[randomNum];
-  return randomFrame
+  return randomFrame;
+}
+
+export function backGroundAnimation({ c, canvasWidth, xPosition }) {
+  let initialFrameWidth = initialFrame.image.width * initialFrame.scale;
+  initialFrame.position.x = canvasWidth/2 - initialFrameWidth/2 + xPosition;
+  initialFrame.update(c);
 }
