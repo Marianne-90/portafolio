@@ -1,5 +1,6 @@
 export class Sprite {
   constructor({
+    velocity = { x: 0, y: 0 },
     position,
     imageSrc,
     scale = 1,
@@ -7,6 +8,7 @@ export class Sprite {
     offset = { x: 0, y: 0 },
   }) {
     this.position = position;
+    this.velocity = velocity;
 
     this.image = new Image();
     this.image.src = imageSrc;
@@ -23,6 +25,7 @@ export class Sprite {
     this.framesElapsed = 0;
     this.framesHold = 10;
     this.offset = offset;
+
  
   }
 
@@ -61,6 +64,10 @@ export class Sprite {
   }
 
   update(c) {
+
+    this.position.x += this.velocity.x;
+    this.position.y += this.velocity.y;
+
     this.draw(c);
     this.animateFrames();
   }

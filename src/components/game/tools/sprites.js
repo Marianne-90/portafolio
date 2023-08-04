@@ -5,4 +5,4 @@ import { Character } from "../../../classes/Character";
 const { background, bunny } = gameData;
 
 export const initialFrame = new Sprite(background.initialFrame);
-export const bunnySprite = new Character(bunny.general);
+export const bunnySprite = new Character(bunny);

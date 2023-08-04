@@ -1,4 +1,7 @@
 import { bunnySprite } from "./sprites";
+import { gameData } from "../../../data/gameData";
+
+const { bunny } = gameData;
 
 export function bunnyAnimation({
   c,
@@ -14,20 +17,7 @@ export function bunnyAnimation({
   bunnySprite.position.x = canvasWidth / 2 - initialBunnyWidth / 2;
   bunnySprite.position.y = canvasHeight - initialBunnyHeight - pasto;
 
-  switch (keyPressed) {
-    case null:
-      bunnySprite.framesHold = 30;
-      break;
-    case 'left':
-      bunnySprite.framesHold = 30;
-      break;
-    case 'right':
-      bunnySprite.framesHold = 30;
-      break;
-
-    default:
-      break;
-  }
+  bunnySprite.switchSpride(keyPressed.current);
 
   bunnySprite.update(c);
 }

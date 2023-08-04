@@ -15,6 +15,10 @@ export const gameData = {
         x: 0,
         y: 0,
       },
+      velocity: {
+        x: 0,
+        y: 0,
+      },
       imageSrc: initialFrame,
       scale: 1,
       framesMax: 1,
@@ -98,42 +102,50 @@ export const gameData = {
       },
     ],
   },
-  bunny:{
-    general:{
-      position: {
-        x: 0,
-        y: 0,
-      },
-      imageSrc: neutro,
-      scale: .33,
-      framesMax: 12,
-      animate:true,
+  bunny: {
+    position: {
+      x: 0,
+      y: 0,
     },
+    velocity: {
+      x: 0,
+      y: 10,
+    },
+    imageSrc: neutro,
+    scale: 0.33,
+    framesMax: 12,
+    animate: true,
     sprites: {
       fall: {
-        src: caer,
-        frames: 5
+        imageSrc: caer,
+        framesMax: 5,
+        framesHold: 30,
       },
       rigth: {
-        src: derecha,
-        frames: 6
+        imageSrc: derecha,
+        framesMax: 6,
+        framesHold: 5,
       },
       left: {
-        src: izquierda,
-        frames: 5
+        imageSrc: izquierda,
+        framesMax: 6,
+        framesHold: 5,
       },
       sleep: {
-        src: durmiendo,
-        frames: 2
+        imageSrc: durmiendo,
+        framesMax: 2,
+        framesHold: 30,
       },
       neutro: {
-        src: neutro,
-        frames: 12
+        imageSrc: neutro,
+        framesMax: 12,
+        framesHold: 30,
       },
       jump: {
-        src: salto,
-        frames: 3
+        imageSrc: salto,
+        framesMax: 3,
+        framesHold: 30,
       },
     },
-  }
+  },
 };

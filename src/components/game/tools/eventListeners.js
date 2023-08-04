@@ -13,7 +13,7 @@ export const handleMoveLeftTouchStart = (xPosition, keyPressed) => {
   
   export const handleMoveRightTouchStart = (xPosition, keyPressed) => {
     return setInterval(() => {
-      keyPressed.current = "right";
+      keyPressed.current = "rigth";
       xPosition.current -= 5;
     }, 70);
   };
