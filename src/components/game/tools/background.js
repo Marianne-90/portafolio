@@ -1,4 +1,8 @@
-import { initialFrame } from "./sprites";
+import { map } from "./sprites";
+import { gameData } from "../../../data/gameData";
+
+
+const { background } = gameData;
 
 export const initCanvas = (canvasWidth, canvasHeight, canvasRef) => {
   if (canvasRef.current) {
@@ -32,11 +36,27 @@ export function randomFramesGenerator(frames) {
   return randomFrame;
 }
 
-export function backGroundAnimation({ c, canvasWidth, xPosition }) {
-  let initialFrameWidth = initialFrame.image.width * initialFrame.scale;
+let backgroungLeft = [];
+let backgroungRight = ['hola'];
 
-  initialFrame.position.x =
+
+
+export function backGroundAnimation({ c, canvasWidth, xPosition }) {
+  let initialFrameWidth = map.image.width * map.scale;
+  map.position.x =
     canvasWidth / 2 - initialFrameWidth / 2 + xPosition.current;
 
-  initialFrame.update(c);
+  let anchoDeUnFrame = map.imageMap.width/map.framesData.framesTotal;
+
+  if(map.position.x - (backgroungLeft.length * anchoDeUnFrame) >= 0){
+    backgroungLeft.push(randomFramesGenerator(background.frames))
+  }
+  if(map.position.x + initialFrameWidth + (backgroungRight.length * anchoDeUnFrame) >= 0){
+    backgroungRight.push(randomFramesGenerator(background.frames))
+  }
+
+  map.spritesLeft = backgroungLeft;
+  map.spritesRigth = backgroungRight;
+
+  map.update(c);
 }

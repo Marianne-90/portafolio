@@ -9,16 +9,18 @@ import durmiendo from "../img/bunny/sprites/bunny/durmiendo.png";
 
 export const gameData = {
   background: {
-    imageSrc: background,
-    initialFrame: {
+    general: {
       position: {
         x: 0,
         y: 0,
       },
-      impulse: 0,
       imageSrc: initialFrame,
       scale: 1,
       framesMax: 1,
+      framesData:{
+        imageSrc: background,
+        framesTotal:0, //*! hasta abajo se le asigna el valor de frames
+      },
     },
     frames: [
       {
@@ -143,3 +145,6 @@ export const gameData = {
     },
   },
 };
+
+
+gameData.background.general.framesData.framesTotal = gameData.background.frames.length

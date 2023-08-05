@@ -18,7 +18,7 @@ export function bunnyAnimation({
   bunnySprite.switchSpride(keyPressed.current);
 
   if(keyPressed.current === "jump"){
-    bunnySprite.jump(-15);
+    bunnySprite.jump(-6);
     keyPressed.current = "neutro"
   }
 

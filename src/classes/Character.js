@@ -56,7 +56,7 @@ export class Character extends Sprite {
 
     this.base = 30;
 
-    this.gravity = 0.7;
+    this.gravity = 0.1;
     this.impulse = 0; // Valor inicial del impulso
     this.jumpStrength = -20; //
 

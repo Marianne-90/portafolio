@@ -25,7 +25,7 @@ export class Sprite {
     this.framesElapsed = 0;
     this.framesHold = 10;
     this.offset = offset;
-    this.gravity = 0.7;
+    this.gravity = 0.3;
     this.base = 37;
 
     this.animate = animate;
