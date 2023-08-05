@@ -29,7 +29,7 @@ export const Game = () => {
   // const fondosGenerados = Array.from({ length: cantidadFrames }, seleccionarElementoConProbabilidades);
 
   const handleJump = () => {
-    keyPressed.current = "up";
+    keyPressed.current = "jump";
   };
 
   useEffect(() => {
@@ -44,12 +44,14 @@ export const Game = () => {
       const canvas = canvasRef.current;
 
       function animate() {
+
+        
+
         animationId = requestAnimationFrame(animate);
         c.fillRect(0, 0, canvasWidth, canvas.height);
+
         backGroundAnimation({ c, canvasWidth, xPosition });
-  
-        
-        bunnyAnimation({ c, canvasWidth, canvasHeight, keyPressed, pasto });
+        bunnyAnimation({ c, canvasWidth, canvasHeight, keyPressed});
       }
 
       animate();

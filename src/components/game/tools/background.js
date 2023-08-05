@@ -34,7 +34,7 @@ export function randomFramesGenerator(frames) {
 
 export function backGroundAnimation({ c, canvasWidth, xPosition }) {
   let initialFrameWidth = initialFrame.image.width * initialFrame.scale;
-  
+
   initialFrame.position.x =
     canvasWidth / 2 - initialFrameWidth / 2 + xPosition.current;
 
