@@ -6,6 +6,7 @@ export class Sprite {
     scale = 1,
     framesMax = 1,
     offset = { x: 0, y: 0 },
+    animate = true,
   }) {
     this.position = position;
     this.impulse = impulse;
@@ -24,8 +25,10 @@ export class Sprite {
     this.framesElapsed = 0;
     this.framesHold = 10;
     this.offset = offset;
-    this.gravity = .7
-    this.base = 37
+    this.gravity = 0.7;
+    this.base = 37;
+
+    this.animate = animate;
   }
 
   draw(c) {
@@ -50,14 +53,16 @@ export class Sprite {
   }
 
   animateFrames() {
-    this.framesElapsed++;
-    //*! cada que esto se lopee se va a aladir un número si un número es dividiendo de framehold entonces se ejecuta la función y de esta manera se alenta el proceso y se ve mejor la animación
+    if (this.animate === true) {
+      this.framesElapsed++;
+      //*! cada que esto se lopee se va a aladir un número si un número es dividiendo de framehold entonces se ejecuta la función y de esta manera se alenta el proceso y se ve mejor la animación
 
-    if (this.framesElapsed % this.framesHold === 0) {
-      if (this.frameCurrent < this.framesMax - 1) {
-        this.frameCurrent++;
-      } else {
-        this.frameCurrent = 0;
+      if (this.framesElapsed % this.framesHold === 0) {
+        if (this.frameCurrent < this.framesMax - 1) {
+          this.frameCurrent++;
+        } else {
+          this.frameCurrent = 0;
+        }
       }
     }
   }

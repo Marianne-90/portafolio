@@ -113,7 +113,7 @@ export const gameData = {
       fall: {
         imageSrc: caer,
         framesMax: 5,
-        framesHold: 30,
+        framesHold: 4,
       },
       rigth: {
         imageSrc: derecha,

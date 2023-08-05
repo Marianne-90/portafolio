@@ -23,6 +23,7 @@ export class Character extends Sprite {
       scale,
       framesMax,
       offset,
+      animate,
     });
 
     this.image = new Image();
@@ -52,7 +53,7 @@ export class Character extends Sprite {
     this.framesHold = 10;
     this.sprites = sprites;
     this.dead = false;
-    this.animate = animate;
+
     this.base = 30;
 
     this.gravity = 0.7;
@@ -68,22 +69,36 @@ export class Character extends Sprite {
   }
 
   switchSpride(sprite) {
-    if (this.image === this.sprites.jump.image && this.jumpStrength <= 0) {
-      // if (this.framesElapsed % this.framesHold === 0) {
-      //   this.spritesElapsed++;
-      // }
 
-      // if (this.spritesElapsed < this.sprites.jump.framesMax) {
-      //   return;
-      // } else {
-      //   this.spritesElapsed = 0;
-      // }
+    if (this.image === this.sprites.jump.image && this.jumpStrength <= 0) {
+      if (this.framesElapsed % this.framesHold === 0) {
+        this.spritesElapsed++;
+      }
+
       if (this.frameCurrent === this.sprites.jump.framesMax - 1) {
-        console.log(this.frameCurrent);
         this.animate = false;
+        this.spritesElapsed = 0
       }
       return;
-    } else {
+    } else if(this.impulse!==0){
+
+      this.animate = false;
+
+      this.framesMax = this.sprites["fall"].framesMax;
+      this.image = this.sprites["fall"].image;
+      this.framesHold = this.sprites["fall"].framesHold;
+      this.frameCurrent = 0
+
+      return;
+    } else if(this.impulse === 0 && this.image === this.sprites.fall.image){
+      this.animate = true;
+      if (this.framesElapsed % this.framesHold === 0) {
+        this.spritesElapsed++;
+      }
+      if(this.spritesElapsed < this.framesMax){
+        return
+      }
+    }else{
       this.spritesElapsed = 0;
     }
 
