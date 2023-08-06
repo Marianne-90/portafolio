@@ -1,7 +1,6 @@
 import { map } from "./sprites";
 import { gameData } from "../../../data/gameData";
 
-
 const { background } = gameData;
 
 export const initCanvas = (canvasWidth, canvasHeight, canvasRef) => {
@@ -37,26 +36,72 @@ export function randomFramesGenerator(frames) {
 }
 
 let backgroungLeft = [];
-let backgroungRight = ['hola'];
 
+let largoDelFramento = 0;
+let inicioDelFragmento = 0;
 
+let backgroungLeftFragment = [];
+
+let backgroungRight = [];
+
+//
+let medidorDeFrames = 0;
 
 export function backGroundAnimation({ c, canvasWidth, xPosition }) {
   let initialFrameWidth = map.image.width * map.scale;
-  map.position.x =
-    canvasWidth / 2 - initialFrameWidth / 2 + xPosition.current;
+  map.position.x = canvasWidth / 2 - initialFrameWidth / 2 + xPosition.current;
+  let anchoDeUnFrame = map.imageMap.width / map.framesData.framesTotal; //*! esta ci
 
-  let anchoDeUnFrame = map.imageMap.width/map.framesData.framesTotal;
+  largoDelFramento = Math.ceil(canvasWidth / anchoDeUnFrame);
 
-  if(map.position.x - (backgroungLeft.length * anchoDeUnFrame) >= 0){
-    backgroungLeft.push(randomFramesGenerator(background.frames))
+  // let lastBackgroungLeftFragmentIndex =
+  //   backgroungLeftFragment.length > 0 ? backgroungLeftFragment.length - 1 : 0;
+
+  let caltulateInitialFragnet = 0
+
+  //*! esto es para optimizar la carga del mapa y que no se estén cargando todos los frames al mismo tiempo
+
+
+  if( anchoDeUnFrame !== 0 ){
+
+    let caltulateLastFragment = Math.ceil(map.position.x / anchoDeUnFrame);
+  
+    caltulateInitialFragnet =
+      caltulateLastFragment - largoDelFramento - 1 < 0 //*! este uno lo recupero abajo es para que no se vea la carga
+        ? 0
+        : caltulateLastFragment - largoDelFramento -1;
+  
+    console.log("x ", caltulateInitialFragnet);
+  } 
+
+  backgroungLeftFragment = backgroungLeft.slice(
+    caltulateInitialFragnet,
+    caltulateInitialFragnet + largoDelFramento + 1 //*! aquí lo recupero
+  );
+
+
+  if (map.position.x - backgroungLeft.length * anchoDeUnFrame >= 0) {
+    let element = {
+      ...randomFramesGenerator(background.frames),
+      position: backgroungLeft.length,
+    };
+
+    backgroungLeft.push(element);
   }
-  if(map.position.x + initialFrameWidth + (backgroungRight.length * anchoDeUnFrame) >= 0){
-    backgroungRight.push(randomFramesGenerator(background.frames))
+
+
+
+  if (
+    map.position.x +
+      initialFrameWidth +
+      backgroungRight.length * anchoDeUnFrame >=
+    0
+  ) {
+    backgroungRight.push(randomFramesGenerator(background.frames));
   }
 
-  map.spritesLeft = backgroungLeft;
+  map.spritesLeft = backgroungLeftFragment;
   map.spritesRigth = backgroungRight;
 
-  map.update(c);
+  map.update(c, canvasWidth);
 }

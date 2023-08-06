@@ -30,7 +30,9 @@ export class Map extends Sprite {
   }
 
 
-  draw(c) {
+  
+
+  draw(c, canvasWidth) {
     c.drawImage(
       this.image,
       //   crop information
@@ -50,54 +52,53 @@ export class Map extends Sprite {
       this.image.height * this.scale
     );
 
+    if (this.spritesLeft.length > 0 && this.position.x > 0) {
+      for (let i = 0; i < this.spritesLeft.length; i++) {
+        c.drawImage(
+          this.imageMap,
+          //   crop information
+          this.spritesLeft[i].index *
+            (this.imageMap.width / this.framesData.framesTotal),
+          0,
+          this.imageMap.width / this.framesData.framesTotal,
+          this.imageMap.height,
 
-    if(this.spritesLeft.length > 0 ){
-        for (let i = 0; i < this.spritesLeft.length; i++) {
-            c.drawImage(
-                this.imageMap,
-                //   crop information
-                this.spritesLeft[i].index * (this.imageMap.width / this.framesData.framesTotal),
-                0,
-                this.imageMap.width / this.framesData.framesTotal,
-                this.imageMap.height,
-          
-                // end of crop information
-                //*! el ofset es para achicar el aire a la hora de cortar por ejemplo si quieres que solo se dibuje la imagen y quitar el aire
-                //*! lo que hace por así decirlo es mover los puntos de referencia a la hora de posicionar pero no corta la imagen
-                this.position.x - this.image.width/2 - (i * (this.imageMap.width / this.framesData.framesTotal)),
-                this.position.y - this.offset.y,
-          
-                // tamaño de la imagen
-                (this.imageMap.width / this.framesData.framesTotal) * this.scale,
-                this.imageMap.height * this.scale
-              );
-        }
+          // end of crop information
+          this.position.x -
+            this.image.width / 2 -
+            this.spritesLeft[i].position * (this.imageMap.width / this.framesData.framesTotal),
+          this.position.y - this.offset.y,
+
+          // tamaño de la imagen
+          (this.imageMap.width / this.framesData.framesTotal) * this.scale,
+          this.imageMap.height * this.scale
+        );
+      }
     }
 
-    if(this.spritesRigth.length > 0 ){
-        for (let i = 0; i < this.spritesRigth.length; i++) {
-            c.drawImage(
-                this.imageMap,
-                //   crop information
-                this.spritesRigth[i].index * (this.imageMap.width / this.framesData.framesTotal),
-                0,
-                this.imageMap.width / this.framesData.framesTotal,
-                this.imageMap.height,
-          
-                // end of crop information
-                //*! el ofset es para achicar el aire a la hora de cortar por ejemplo si quieres que solo se dibuje la imagen y quitar el aire
-                //*! lo que hace por así decirlo es mover los puntos de referencia a la hora de posicionar pero no corta la imagen
-                this.position.x + this.image.width/2 + (i * (this.imageMap.width / this.framesData.framesTotal)),
-                this.position.y - this.offset.y,
-          
-                // tamaño de la imagen
-                (this.imageMap.width / this.framesData.framesTotal) * this.scale,
-                this.imageMap.height * this.scale
-              );
-        }
-    }
-        
+    if (this.spritesRigth.length > 0) {
+      for (let i = 0; i < this.spritesRigth.length; i++) {
+        c.drawImage(
+          this.imageMap,
+          //   crop information
+          this.spritesRigth[i].index *
+            (this.imageMap.width / this.framesData.framesTotal),
+          0,
+          this.imageMap.width / this.framesData.framesTotal,
+          this.imageMap.height,
 
+          // end of crop information
+          this.position.x +
+            this.image.width +
+            i * (this.imageMap.width / this.framesData.framesTotal),
+          this.position.y - this.offset.y,
+
+          // tamaño de la imagen
+          (this.imageMap.width / this.framesData.framesTotal) * this.scale,
+          this.imageMap.height * this.scale
+        );
+      }
+    }
   }
 
   test() {

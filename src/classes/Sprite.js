@@ -67,8 +67,8 @@ export class Sprite {
     }
   }
 
-  update(c) {
-    this.draw(c);
+  update(c, canvasWidth) {
+    this.draw(c, canvasWidth);
     this.animateFrames();
   }
 }

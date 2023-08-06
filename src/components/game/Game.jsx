@@ -30,6 +30,23 @@ export const Game = () => {
 
   const handleJump = () => {
     keyPressed.current = "jump";
+
+
+const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const position = 8;
+const elementsToPrint = 3;
+
+// Aseguramos que la posición inicial sea válida
+let startIndex = Math.max(position - elementsToPrint + 1, 0);
+
+// Imprimimos los elementos en orden inverso, desde la posición inicial hacia atrás
+for (let i = position; i >= startIndex; i--) {
+  // console.log(array[i]);
+}
+
+console.log(startIndex);
+
+
   };
 
   useEffect(() => {
