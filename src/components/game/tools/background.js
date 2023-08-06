@@ -36,49 +36,39 @@ export function randomFramesGenerator(frames) {
 }
 
 let backgroungLeft = [];
-
 let largoDelFramento = 0;
-let inicioDelFragmento = 0;
-
 let backgroungLeftFragment = [];
-
 let backgroungRight = [];
-
-//
-let medidorDeFrames = 0;
 
 export function backGroundAnimation({ c, canvasWidth, xPosition }) {
   let initialFrameWidth = map.image.width * map.scale;
   map.position.x = canvasWidth / 2 - initialFrameWidth / 2 + xPosition.current;
-  let anchoDeUnFrame = map.imageMap.width / map.framesData.framesTotal; //*! esta ci
+  let anchoDeUnFrame = map.imageMap.width / map.framesData.framesTotal; //*! no entiendo poqué pero esta cosa se desgobierna si le pones initialFrameWidth, no lo hagas es obvio pero no lo hagas
 
   largoDelFramento = Math.ceil(canvasWidth / anchoDeUnFrame);
 
-  // let lastBackgroungLeftFragmentIndex =
-  //   backgroungLeftFragment.length > 0 ? backgroungLeftFragment.length - 1 : 0;
-
-  let caltulateInitialFragnet = 0
+  let caltulateInitialFragnet = 0;
 
   //*! esto es para optimizar la carga del mapa y que no se estén cargando todos los frames al mismo tiempo
+  //*? tenemos que ver que anchoDeUnFrame sea mayor a 0 o sea que acabe de cargar si no las fórmulas no funcionan
+  if (anchoDeUnFrame !== 0) {
+    let caltulateLastFragment = Math.ceil(map.position.x / anchoDeUnFrame); //*? la distancia de x la dividimos entre el ancho de un frame y redondeamos para arriba
 
-
-  if( anchoDeUnFrame !== 0 ){
-
-    let caltulateLastFragment = Math.ceil(map.position.x / anchoDeUnFrame);
-  
     caltulateInitialFragnet =
       caltulateLastFragment - largoDelFramento - 1 < 0 //*! este uno lo recupero abajo es para que no se vea la carga
         ? 0
-        : caltulateLastFragment - largoDelFramento -1;
-  
-    console.log("x ", caltulateInitialFragnet);
-  } 
+        : caltulateLastFragment - largoDelFramento - 1;
 
+    console.log("x ", caltulateInitialFragnet);
+  }
+
+  //*? se hace el slice correpondiente y se va actualizando
   backgroungLeftFragment = backgroungLeft.slice(
     caltulateInitialFragnet,
     caltulateInitialFragnet + largoDelFramento + 1 //*! aquí lo recupero
   );
 
+  //*? esto genera los frames aleatorios pertinentes y los mantiene conforme crece
 
   if (map.position.x - backgroungLeft.length * anchoDeUnFrame >= 0) {
     let element = {
@@ -89,7 +79,7 @@ export function backGroundAnimation({ c, canvasWidth, xPosition }) {
     backgroungLeft.push(element);
   }
 
-
+  //*? lo mismo para la izquierda, pero no aplico la fragmentación pues solo lo voy a dibujar hasta que tope el home y luego ya no va a avanzar
 
   if (
     map.position.x +
