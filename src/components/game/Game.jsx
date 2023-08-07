@@ -1,13 +1,13 @@
 import { useRef, useEffect, useState } from "react";
 import { backGroundAnimation, initCanvas } from "./tools/background";
 import { bunnyAnimation } from "./tools/bunny";
+import { fruitAnimation, randomFruitGenerator } from "./tools/fruit";
 import {
   handleMoveLeftTouchStart,
   handleMoveRightTouchStart,
 } from "./tools/eventListeners";
 import { bunnySprite } from "./tools/sprites";
 import { gameData } from "../../data/gameData";
-
 
 export const Game = () => {
   const canvasRef = useRef(null);
@@ -46,10 +46,18 @@ export const Game = () => {
 
         backGroundAnimation({ c, canvasWidth, xPosition });
         bunnyAnimation({ c, canvasWidth, canvasHeight, keyPressed });
+        fruitAnimation({ c, canvasWidth, canvasHeight, keyPressed, xPosition });
       }
 
       animate();
     }
+
+    //*? GENERADOR DE FRUTAS ALEATORIAS
+
+
+    const fruitTimer = setInterval(() => {
+      randomFruitGenerator();
+    }, Math.floor(Math.random() * 7000) + 5000);
 
     //*? -------- MOVIMIENTOS ---------
     //*! EL SET INTERVAL SE QUEDA AQUÍ PORQUE SI LO PASAS COMO FUNCIÓN NO SE ANEXA BIEN EL ID Y SE HACE UN DESASTRE
@@ -150,6 +158,9 @@ export const Game = () => {
     window.addEventListener("resize", handleResize); // Agregar un listener para cambios de tamaño de pantalla
 
     return () => {
+
+      clearInterval(fruitTimer);
+
       //LIMPIAR RESIZE
       window.removeEventListener("resize", handleResize);
 
@@ -193,41 +204,35 @@ export const Game = () => {
     const bunnyLifes = [];
 
     for (let i = 0; i < health; i++) {
-      bunnyLifes.push(<img key={i} src={controllers.bunny}/>);
+      bunnyLifes.push(<img key={i} src={controllers.bunny} />);
     }
     return bunnyLifes;
   };
 
-
   const bunnyFood = () => {
-
-    const food = bunnySprite.food
+    const food = bunnySprite.food;
     const bunnyfood = [];
 
     for (const key in food) {
       if (food.hasOwnProperty.call(food, key)) {
         const amount = food[key];
         const element = key;
-        bunnyfood.push(<div key={key} className="element"><img src={controllers.fruit[element]}/><span>{amount}</span></div>);
+        bunnyfood.push(
+          <div key={key} className="element">
+            <img src={controllers.fruit[element]} />
+            <span>{amount}</span>
+          </div>
+        );
       }
     }
 
     return bunnyfood;
-
-  }
+  };
   return (
     <div className="gameContainer">
       <div className="controladores">
-        <div className="comida">
-          {
-            bunnyFood()
-          }
-        </div>
-        <div className="vida">
-          {
-            bunnyLife()
-          }
-        </div>
+        <div className="comida">{bunnyFood()}</div>
+        <div className="vida">{bunnyLife()}</div>
       </div>
       <div ref={containerRef} className="bunnyGame">
         <canvas ref={canvasRef}> </canvas>
