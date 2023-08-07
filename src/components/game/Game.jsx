@@ -1,52 +1,28 @@
-import { gameData } from "../../data/gameData";
 import { useRef, useEffect, useState } from "react";
-import {
-  randomFramesGenerator,
-  backGroundAnimation,
-  initCanvas,
-} from "./tools/background";
+import { backGroundAnimation, initCanvas } from "./tools/background";
 import { bunnyAnimation } from "./tools/bunny";
 import {
   handleMoveLeftTouchStart,
   handleMoveRightTouchStart,
 } from "./tools/eventListeners";
+import { bunnySprite } from "./tools/sprites";
 
 export const Game = () => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const moveLeftButtonRef = useRef(null);
   const moveRightButtonRef = useRef(null);
+  const jumpButtonRef = useRef(null);
 
   let canvasWidth = 0;
   let canvasHeight = 0;
   let xPosition = useRef(0);
   let keyPressed = useRef("neutro");
-  let pasto = 25;
   let animationId;
 
-  // console.log("frame :", randomFramesGenerator(background.frames));
-
-  // const fondosGenerados = Array.from({ length: cantidadFrames }, seleccionarElementoConProbabilidades);
-
   const handleJump = () => {
+    if (bunnySprite.impulse !== 0) return;
     keyPressed.current = "jump";
-
-
-const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-const position = 8;
-const elementsToPrint = 3;
-
-// Aseguramos que la posición inicial sea válida
-let startIndex = Math.max(position - elementsToPrint + 1, 0);
-
-// Imprimimos los elementos en orden inverso, desde la posición inicial hacia atrás
-for (let i = position; i >= startIndex; i--) {
-  // console.log(array[i]);
-}
-
-console.log(startIndex);
-
-
   };
 
   useEffect(() => {
@@ -61,19 +37,15 @@ console.log(startIndex);
       const canvas = canvasRef.current;
 
       function animate() {
-
-        
-
         animationId = requestAnimationFrame(animate);
         c.fillRect(0, 0, canvasWidth, canvas.height);
 
         backGroundAnimation({ c, canvasWidth, xPosition });
-        bunnyAnimation({ c, canvasWidth, canvasHeight, keyPressed});
+        bunnyAnimation({ c, canvasWidth, canvasHeight, keyPressed });
       }
 
       animate();
     }
-
 
     //*? -------- MOVIMIENTOS ---------
     //*! EL SET INTERVAL SE QUEDA AQUÍ PORQUE SI LO PASAS COMO FUNCIÓN NO SE ANEXA BIEN EL ID Y SE HACE UN DESASTRE
@@ -86,10 +58,18 @@ console.log(startIndex);
     //*! LOS EVENT LISTENERS NO LIMPIAN FUNCIONES ANÓNIMAS ES POR ELLO QUE EXTRAJE LA FUNCIÓN
 
     function eventMoveLeftInterval() {
+      clearInterval(moveLeftInterval);
+      clearInterval(eventMoveLeftInterval);
+      clearInterval(moveRightInterval);
+      clearInterval(eventMoveRigthInterval);
       moveLeftInterval = handleMoveLeftTouchStart(xPosition, keyPressed);
     }
 
     function eventMoveRigthInterval() {
+      clearInterval(moveLeftInterval);
+      clearInterval(eventMoveLeftInterval);
+      clearInterval(moveRightInterval);
+      clearInterval(eventMoveRigthInterval);
       moveRightInterval = handleMoveRightTouchStart(xPosition, keyPressed);
     }
 
@@ -140,6 +120,17 @@ console.log(startIndex);
       keyPressed.current = "neutro";
     });
 
+    //*? Limpiar cuando salta si no se hace un bug donde nunca para de correr
+
+    const jumpCleaner = () => {
+      clearInterval(moveLeftInterval);
+      clearInterval(eventMoveLeftInterval);
+      clearInterval(moveRightInterval);
+      clearInterval(eventMoveRigthInterval);
+    };
+
+    jumpButtonRef.current.addEventListener("click", jumpCleaner);
+
     //*? -------- MANEJAR EL REDIMENCIONADO
 
     const handleResize = () => {
@@ -183,6 +174,8 @@ console.log(startIndex);
         eventMoveRigthInterval
       );
 
+      jumpButtonRef.current.removeEventListener("click", jumpCleaner);
+
       //LIMPIAR ANIMACIÓN
 
       cancelAnimationFrame(animationId); //*? para que no le de epilepcia al conejo al montarse muchas veces el useEffect
@@ -198,7 +191,9 @@ console.log(startIndex);
         <button ref={moveLeftButtonRef}>Izquierda</button>
         <button ref={moveRightButtonRef}>Derecha</button>
       </div>
-      <button onClick={handleJump}>Saltar</button>
+      <button onClick={handleJump} ref={jumpButtonRef}>
+        Saltar
+      </button>
     </div>
   );
 };

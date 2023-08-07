@@ -58,7 +58,7 @@ export class Character extends Sprite {
 
     this.gravity = 0.1;
     this.impulse = 0; // Valor inicial del impulso
-    this.jumpStrength = -20; //
+    this.jumpStrength = 0; //
 
     //*! lo que hacemos aquí es asignar una nuevo objeto de imágen con su url al objeto strpite para que los cositos cambien de sprite
 

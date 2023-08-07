@@ -24,55 +24,123 @@ export const gameData = {
     },
     frames: [
       {
-        name: "flor-naranja",
-        frequency: 1,
+        name: "paloYArbusto",
+        frequency: 5,
       },
       {
-        name: "estatua",
-        frequency: 1,
+        name: "paloYArbolito",
+        frequency: 5,
       },
       {
-        name: "pasto",
-        frequency: 10,
-      },
-      {
-        name: "pasto-flor-azul",
-        frequency: 1,
+        name: "arbolCircular",
+        frequency: 5,
       },
       {
         name: "nopal",
         frequency: 1,
       },
       {
-        name: "pasto",
-        frequency: 1,
+        name: "dosPinosConBellotas",
+        frequency: 5,
+      },
+      {
+        name: "tresPinosConBellotas",
+        frequency: 5,
       },
       {
         name: "arbusto",
-        frequency: 1,
+        frequency: 5,
       },
       {
-        name: "piedra-lobo",
-        frequency: 1,
+        name: "arbustoFlorRoja",
+        frequency: 5,
       },
       {
-        name: "pasto-flor-azul",
-        frequency: 10,
+        name: "pinoTricolor",
+        frequency: 5,
+      },
+      {
+        name: "pinoTricolorConArbolito",
+        frequency: 5,
+      },
+      {
+        name: "dosPinos",
+        frequency: 5,
+      },
+      {
+        name: "tresPinos",
+        frequency: 5,
+      },
+      {
+        name: "tresArbolesBoludos",
+        frequency: 5,
+      },
+      {
+        name: "tresArbolesBoludosVolteados",
+        frequency: 5,
+      },
+      {
+        name: "tresArbolesBoludosConArbolito",
+        frequency: 5,
+      },
+      {
+        name: "pinito",
+        frequency: 5,
+      },
+      {
+        name: "pinitoYArbolBolas",
+        frequency: 5,
+      },
+      {
+        name: "palmera",
+        frequency: 1,
       },
       {
         name: "tronco",
         frequency: 1,
       },
       {
-        name: "pasto-flor-morada",
-        frequency: 10,
-      },
-      {
-        name: "poste",
+        name: "hongos",
         frequency: 1,
       },
       {
-        name: "palmera",
+        name: "flor",
+        frequency: 1,
+      },
+      {
+        name: "columna",
+        frequency: 1,
+      },
+      {
+        name: "piedraLobo",
+        frequency: 1,
+      },
+      {
+        name: "pastoFlorAzul",
+        frequency: 5,
+      },
+      {
+        name: "pasto",
+        frequency: 5,
+      },
+      {
+        name: "pastoFlorAzulnubes",
+        frequency: 5,
+      },
+      {
+        name: "pastoNubes",
+        frequency: 5,
+      },
+      {
+        name: "pastoFlorRojaNubes",
+        frequency: 5,
+      },
+      {
+        name: "pastoFlorRojas",
+        frequency: 5,
+      },
+      {
+        name: "poste",
         frequency: 1,
       },
       {
@@ -88,16 +156,12 @@ export const gameData = {
         frequency: 1,
       },
       {
-        name: "hongos",
-        frequency: 1,
-      },
-      {
         name: "fuente",
         frequency: 1,
       },
       {
-        name: " piedras",
-        frequency: 1,
+        name: "piedras",
+        frequency: 2,
       },
     ],
   },

@@ -59,7 +59,7 @@ export function backGroundAnimation({ c, canvasWidth, xPosition }) {
         ? 0
         : caltulateLastFragment - largoDelFramento - 1;
 
-    console.log("x ", caltulateInitialFragnet);
+    // console.log("x ", caltulateInitialFragnet);
   }
 
   //*? se hace el slice correpondiente y se va actualizando
