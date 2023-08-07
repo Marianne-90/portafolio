@@ -24,3 +24,5 @@ export function bunnyAnimation({
 
   bunnySprite.update(c, canvasHeight);
 }
+
+

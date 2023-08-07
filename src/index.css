@@ -1499,62 +1499,113 @@ input {
   flex-direction: column;
 }
 
+.gameContainer .controladores {
+  width: 100%;
+  padding: 0 15px;
+}
+
+.gameContainer .controladores .comida{
+    border: #4b5563 1px solid;
+    min-height: 50px;
+    background-color: #e9f7d2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 5px;
+    flex-wrap: wrap;
+}
+
+.gameContainer .controladores .comida .element{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-family: "Press Start 2P", cursive;
+  color: #4b5563;
+}
+
+.gameContainer .controladores .comida .element img{
+  height: 40px;
+  width: auto;
+}
+
+.gameContainer .controladores .vida{
+  border-left: #4b5563 1px solid;
+  border-right: #4b5563 1px solid;
+  height: 50px;
+  background-color: #cecbd4;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.gameContainer .controladores .vida img{
+  height: 50px;
+}
+
+.gameContainer .bunnyGame {
+  border: #4b5563 1px solid;
+}
+
 .gameContainer .bunnyGame {
   width: calc(100% - 30px);
   height: 300px;
   overflow: hidden;
 }
 
-.gameContainer .leftRight{
+.gameContainer .leftRight {
   width: 100%;
   padding: 0 15px;
 }
 
-.gameContainer .leftRight button{
+.gameContainer .leftRight button {
   width: 50%;
-  border: none;
   padding: 15px 0;
   text-transform: uppercase;
   cursor: pointer;
-  font-family: 'Press Start 2P', cursive;
-  background-color:#FDE68A;
-  color: #4B5563;
-  border: #4B5563 1px solid ;
+  font-family: "Press Start 2P", cursive;
+  background-color: #fde68a;
+  color: #4b5563;
+  border: none;
 }
 
-.gameContainer .leftRight button:nth-child(2){
+.gameContainer .leftRight button:nth-child(1) {
+  border-left: #4b5563 1px solid;
+  border-right: #4b5563 1px solid;
+}
+
+.gameContainer .leftRight button:nth-child(2) {
   width: 50%;
   border: none;
   padding: 15px 0;
   text-transform: uppercase;
   cursor: pointer;
-  font-family: 'Press Start 2P', cursive;
-  background-color:#FDBA74;
-  color: #4B5563;
-  border: #4B5563 1px solid ;
-  /* border-left: #4B5563 1px solid ;
-  border-top: #4B5563 1px solid ; */
+  font-family: "Press Start 2P", cursive;
+  background-color: #fdba74;
+  color: #4b5563;
+  border-right: #4b5563 1px solid;
 }
 
 .gameContainer > button {
-  border: #4B5563 1px solid ;
+  border: #4b5563 1px solid;
   width: calc(100% - 30px);
   padding: 15px 0;
   text-transform: uppercase;
   cursor: pointer;
-  font-family: 'Press Start 2P', cursive;
-  background-color: #84CC16;
-  color: #4B5563
+  font-family: "Press Start 2P", cursive;
+  background-color: #84cc16;
+  color: #4b5563;
 }
 
-
-
-.gameContainer .leftRight button:hover{
-  background-color:#edd882;
+.gameContainer .leftRight button:hover {
+  background-color: #edd882;
 }
 
-.gameContainer .leftRight button:nth-child(2):hover{
-  background-color:#f3b470;
+.gameContainer .leftRight button:nth-child(2):hover {
+  background-color: #f3b470;
 }
 
 .gameContainer > button:hover {

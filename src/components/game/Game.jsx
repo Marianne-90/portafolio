@@ -6,6 +6,8 @@ import {
   handleMoveRightTouchStart,
 } from "./tools/eventListeners";
 import { bunnySprite } from "./tools/sprites";
+import { gameData } from "../../data/gameData";
+
 
 export const Game = () => {
   const canvasRef = useRef(null);
@@ -19,6 +21,8 @@ export const Game = () => {
   let xPosition = useRef(0);
   let keyPressed = useRef("neutro");
   let animationId;
+
+  const { controllers } = gameData;
 
   const handleJump = () => {
     if (bunnySprite.impulse !== 0) return;
@@ -182,8 +186,49 @@ export const Game = () => {
     };
   }, []);
 
+  //*! como regresan jsx no puedo pasarlos a tool podría hacer otro componente pero no estorban mucho
+
+  const bunnyLife = () => {
+    const health = bunnySprite.health;
+    const bunnyLifes = [];
+
+    for (let i = 0; i < health; i++) {
+      bunnyLifes.push(<img key={i} src={controllers.bunny}/>);
+    }
+    return bunnyLifes;
+  };
+
+
+  const bunnyFood = () => {
+
+    const food = bunnySprite.food
+    const bunnyfood = [];
+
+    for (const key in food) {
+      if (food.hasOwnProperty.call(food, key)) {
+        const amount = food[key];
+        const element = key;
+        bunnyfood.push(<div key={key} className="element"><img src={controllers.fruit[element]}/><span>{amount}</span></div>);
+      }
+    }
+
+    return bunnyfood;
+
+  }
   return (
     <div className="gameContainer">
+      <div className="controladores">
+        <div className="comida">
+          {
+            bunnyFood()
+          }
+        </div>
+        <div className="vida">
+          {
+            bunnyLife()
+          }
+        </div>
+      </div>
       <div ref={containerRef} className="bunnyGame">
         <canvas ref={canvasRef}> </canvas>
       </div>

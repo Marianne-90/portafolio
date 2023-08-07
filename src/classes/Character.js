@@ -15,6 +15,7 @@ export class Character extends Sprite {
       height: undefined,
     },
     animate,
+    food = {},
   }) {
     super({
       impulse,
@@ -45,7 +46,7 @@ export class Character extends Sprite {
       height: atackBox.height,
       offset: atackBox.offset,
     };
-    this.health = 100;
+    this.health = 3;
 
     this.frameCurrent = 0;
     this.framesElapsed = 0;
@@ -59,6 +60,8 @@ export class Character extends Sprite {
     this.gravity = 0.1;
     this.impulse = 0; // Valor inicial del impulso
     this.jumpStrength = 0; //
+
+    this.food= food
 
     //*! lo que hacemos aquí es asignar una nuevo objeto de imágen con su url al objeto strpite para que los cositos cambien de sprite
 

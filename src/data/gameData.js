@@ -1,11 +1,24 @@
 import background from "../img/bunny/sprites/background/backGround.png";
 import initialFrame from "../img/bunny/sprites/background/mainFrame.png";
+
 import neutro from "../img/bunny/sprites/bunny/neutro.png";
 import caer from "../img/bunny/sprites/bunny/caer.png";
 import derecha from "../img/bunny/sprites/bunny/derecha.png";
 import izquierda from "../img/bunny/sprites/bunny/izquierda.png";
 import salto from "../img/bunny/sprites/bunny/salto.png";
 import durmiendo from "../img/bunny/sprites/bunny/durmiendo.png";
+
+import cereza from "../img/bunny/sprites/fruit/cereza.png";
+import chile from "../img/bunny/sprites/fruit/chile.png";
+import fresa from "../img/bunny/sprites/fruit/fresa.png";
+import naranja from "../img/bunny/sprites/fruit/naranja.png";
+
+import cerezagris from "../img/bunny/sprites/controllers/cerezagris.png";
+
+import chilegris from "../img/bunny/sprites/controllers/chilegris.png";
+import fresagris from "../img/bunny/sprites/controllers/fresagris.png";
+import naranjagris from "../img/bunny/sprites/controllers/naranjagris.png";
+import conejogris from "../img/bunny/sprites/controllers/conejogris.png";
 
 export const gameData = {
   background: {
@@ -17,9 +30,9 @@ export const gameData = {
       imageSrc: initialFrame,
       scale: 1,
       framesMax: 1,
-      framesData:{
+      framesData: {
         imageSrc: background,
-        framesTotal:0, //*! hasta abajo se le asigna el valor de frames
+        framesTotal: 0, //*! hasta abajo se le asigna el valor de frames
       },
     },
     frames: [
@@ -175,6 +188,12 @@ export const gameData = {
     scale: 0.33,
     framesMax: 12,
     animate: true,
+    food: {
+      fresa:0,
+      cereza:0,
+      naranja:0,
+      chile:0,
+    },
     sprites: {
       fall: {
         imageSrc: caer,
@@ -208,7 +227,28 @@ export const gameData = {
       },
     },
   },
+  fruit: {
+    position: { x: 0, y: 0 },
+    imageSrc: initialFrame,
+    scale: 1,
+    framesMax: 1,
+    fruits: {
+      fresa,
+      cereza,
+      naranja,
+      chile,
+    },
+  },
+  controllers: {
+    fruit: {
+      cereza: cerezagris,
+      chile: chilegris,
+      fresa: fresagris,
+      naranja: naranjagris,
+    },
+    bunny: conejogris,
+  },
 };
 
-
-gameData.background.general.framesData.framesTotal = gameData.background.frames.length
+gameData.background.general.framesData.framesTotal =
+  gameData.background.frames.length;
