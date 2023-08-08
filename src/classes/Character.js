@@ -152,4 +152,5 @@ export class Character extends Sprite {
     this.draw(c);
     this.animateFrames();
   }
+
 }

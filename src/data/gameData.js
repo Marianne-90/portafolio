@@ -227,18 +227,6 @@ export const gameData = {
       },
     },
   },
-  fruit: {
-    position: { x: 0, y: 0 },
-    imageSrc: initialFrame,
-    scale: 1,
-    framesMax: 1,
-    fruits: {
-      fresa,
-      cereza,
-      naranja,
-      chile,
-    },
-  },
   controllers: {
     fruit: {
       cereza: cerezagris,

@@ -46,7 +46,7 @@ export const Game = () => {
 
         backGroundAnimation({ c, canvasWidth, xPosition });
         bunnyAnimation({ c, canvasWidth, canvasHeight, keyPressed });
-        fruitAnimation({ c, canvasWidth, canvasHeight, keyPressed, xPosition });
+        fruitAnimation({ c, canvasWidth, canvasHeight, xPosition });
       }
 
       animate();

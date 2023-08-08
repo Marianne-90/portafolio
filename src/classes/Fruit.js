@@ -42,6 +42,12 @@ export class Fruit extends Sprite {
 
     this.foodName = foodName
     this.rotten = rotten
+    this.isEaten = false;
+    this.collition = false;
+  }
+
+
+  detectColliton(bunnyPosition){
 
   }
 
