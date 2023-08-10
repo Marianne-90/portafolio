@@ -60,7 +60,10 @@ export class Character extends Sprite {
     this.gravity = 0.1;
     this.jumpStrength = 0; //
 
-    this.food= food
+    this.food = food;
+    this.eating = false;
+    this.foodType = "";
+    this.isSick = false;
 
     //*! lo que hacemos aquí es asignar una nuevo objeto de imágen con su url al objeto strpite para que los cositos cambien de sprite
 
@@ -71,6 +74,7 @@ export class Character extends Sprite {
   }
 
   switchSpride(sprite) {
+    //*? ---------------SALTAR-------------------------
 
     if (this.image === this.sprites.jump.image && this.jumpStrength <= 0) {
       if (this.framesElapsed % this.framesHold === 0) {
@@ -79,29 +83,70 @@ export class Character extends Sprite {
 
       if (this.frameCurrent === this.sprites.jump.framesMax - 1) {
         this.animate = false;
-        this.spritesElapsed = 0
+        this.spritesElapsed = 0;
       }
       return;
-    } else if(this.impulse!==0){
-
+    } else if (this.impulse !== 0) {
       this.animate = false;
 
       this.framesMax = this.sprites["fall"].framesMax;
       this.image = this.sprites["fall"].image;
       this.framesHold = this.sprites["fall"].framesHold;
-      this.frameCurrent = 0
+      this.frameCurrent = 0;
 
       return;
-    } else if(this.impulse === 0 && this.image === this.sprites.fall.image){
+    } else if (this.impulse === 0 && this.image === this.sprites.fall.image) {
       this.animate = true;
       if (this.framesElapsed % this.framesHold === 0) {
         this.spritesElapsed++;
       }
-      if(this.spritesElapsed < this.framesMax){
-        return
+      if (this.spritesElapsed < this.framesMax) {
+        return;
       }
-    }else{
-      this.spritesElapsed = 0;
+      if (this.spritesElapsed === this.framesMax) {
+        this.spritesElapsed = 0;
+      }
+    }
+
+    //*? ---------------- COMER FRUTA --------------
+
+    if (this.eating && this.sprites[this.foodType].image === this.image) {
+      if (this.framesElapsed % this.framesHold === 0) {
+        this.spritesElapsed++;
+      }
+
+      if (this.spritesElapsed < this.framesMax) {
+        return;
+      }
+
+      if (this.spritesElapsed === this.framesMax) {
+        if (this.isSick) {
+          this.framesMax = this.sprites["vomit"].framesMax;
+          this.image = this.sprites["vomit"].image;
+          this.framesHold = this.sprites["vomit"].framesHold;
+          this.frameCurrent = 0;
+        } else {
+          this.eating = false;
+          this.foodType = "";
+        }
+        this.spritesElapsed = 0;
+      }
+    } 
+    
+    if (this.eating && this.image === this.sprites.vomit.image) {
+      if (this.framesElapsed % this.framesHold === 0) {
+        this.spritesElapsed++;
+      }
+
+      if (this.spritesElapsed < this.framesMax) {
+        return;
+      }
+
+      if (this.spritesElapsed === this.framesMax) {
+        this.eating = false;
+        this.isSick = false;
+        this.spritesElapsed = 0;
+      }
     }
 
     // //over writing all other animations with hit animation
@@ -152,5 +197,4 @@ export class Character extends Sprite {
     this.draw(c);
     this.animateFrames();
   }
-
 }

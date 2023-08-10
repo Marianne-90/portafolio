@@ -73,6 +73,9 @@ export function fruitAnimation({
   temporalLife,
   temporalFoodCounter,
 }) {
+
+
+
   if (food.length > 3) {
     food.shift();
   }
@@ -85,11 +88,6 @@ export function fruitAnimation({
         food.splice(i, 1);
         continue;
       }
-
-      //   if(element.position.x < canvasWidth && element.position.x > 0){
-      // console.log('pantalla');
-      //   };
-
       const estaEnPantalla = () => {
         return element.position.x < canvasWidth && element.position.x > 0;
       };
@@ -116,18 +114,28 @@ export function fruitAnimation({
         element.impulse === 0
       ) {
         element.isEaten = true;
+        bunnySprite.eating = true;
+        bunnySprite.foodType = element.foodName;
+
         if (!element.rotten) {
           bunnySprite.food[element.foodName]++;
           temporalFoodCounter.current.post = bunnySprite.food;
         } else if (element.rotten) {
           bunnySprite.health--;
           temporalLife.current.post = bunnySprite.health;
+          bunnySprite.isSick=true;
         }
       }
 
-      food[i].class.position.x =
+      if(bunnySprite.eating){
+        bunnySprite.switchSpride(element.foodName);
+      }
+
+      element.position.x =
         0 + food[i].initialPosition + temporalXposition.current;
-      food[i].class.update(c, canvasHeight);
+      element.update(c, canvasHeight);
     }
   }
+
+
 }

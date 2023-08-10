@@ -13,8 +13,6 @@ export const MainProvider = ({ children }) => {
       value={{
         bunnyLife, 
         setbunnyLife,
-        bunnyFood, 
-        setFood,
         bunnyFood,
         setFood,
         bunnyScenario,

@@ -7,11 +7,11 @@ import derecha from "../img/bunny/sprites/bunny/derecha.png";
 import izquierda from "../img/bunny/sprites/bunny/izquierda.png";
 import salto from "../img/bunny/sprites/bunny/salto.png";
 import durmiendo from "../img/bunny/sprites/bunny/durmiendo.png";
-
-import cereza from "../img/bunny/sprites/fruit/cereza.png";
-import chile from "../img/bunny/sprites/fruit/chile.png";
-import fresa from "../img/bunny/sprites/fruit/fresa.png";
-import naranja from "../img/bunny/sprites/fruit/naranja.png";
+import bunnyCereza from "../img/bunny/sprites/bunny/bunnyCereza.png";
+import bunnyChile from "../img/bunny/sprites/bunny/bunnyChile.png";
+import bunnyFresa from "../img/bunny/sprites/bunny/bunnyFresa.png";
+import bunnyNaranja from "../img/bunny/sprites/bunny/bunnyNaranja.png";
+import vomitando from "../img/bunny/sprites/bunny/vomitando.png";
 
 import cerezagris from "../img/bunny/sprites/controllers/cerezagris.png";
 
@@ -19,6 +19,8 @@ import chilegris from "../img/bunny/sprites/controllers/chilegris.png";
 import fresagris from "../img/bunny/sprites/controllers/fresagris.png";
 import naranjagris from "../img/bunny/sprites/controllers/naranjagris.png";
 import conejogris from "../img/bunny/sprites/controllers/conejogris.png";
+
+
 
 export const gameData = {
   background: {
@@ -199,31 +201,67 @@ export const gameData = {
         imageSrc: caer,
         framesMax: 5,
         framesHold: 4,
+        name:"fall"
       },
       rigth: {
         imageSrc: derecha,
         framesMax: 6,
         framesHold: 5,
+        name:"rigth"
       },
       left: {
         imageSrc: izquierda,
         framesMax: 6,
         framesHold: 5,
+        name:"left"
       },
       sleep: {
         imageSrc: durmiendo,
         framesMax: 2,
         framesHold: 30,
+        name:"sleep"
       },
       neutro: {
         imageSrc: neutro,
         framesMax: 12,
         framesHold: 30,
+        name:"neutro"
       },
       jump: {
         imageSrc: salto,
         framesMax: 4,
         framesHold: 5,
+        name:"jump"
+      },
+      cereza: {
+        imageSrc: bunnyCereza,
+        framesMax: 4,
+        framesHold: 30,
+        name:"cereza"
+      },
+      chile: {
+        imageSrc: bunnyChile,
+        framesMax: 4,
+        framesHold: 30,
+        name:"chile"
+      },
+      fresa: {
+        imageSrc: bunnyFresa,
+        framesMax: 4,
+        framesHold: 30,
+        name:"fresa"
+      },
+      naranja: {
+        imageSrc: bunnyNaranja,
+        framesMax: 4,
+        framesHold: 30,
+        name:"naranja"
+      },
+      vomit: {
+        imageSrc: vomitando,
+        framesMax: 5,
+        framesHold: 30,
+        name:"vomit"
       },
     },
   },

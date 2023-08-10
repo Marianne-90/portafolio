@@ -18,15 +18,17 @@ export const Buttons = () => {
 
   const handleMoveLeftTouchStart = () => {
     return setInterval(() => {
-      setKeyPressed("left");
-      temporalXposition += 5;
-      setXPosition(temporalXposition);
+      if(!bunnySprite.eating){
+        setKeyPressed("left");
+        temporalXposition += 5;
+        setXPosition(temporalXposition);
+      }
     }, 50);
   };
 
   const handleMoveRightTouchStart = () => {
     return setInterval(() => {
-      if (map.position.x >= 0) {
+      if (map.position.x >= 0 && !bunnySprite.eating) {
         setKeyPressed("rigth");
         temporalXposition -= 5;
         setXPosition(temporalXposition);
