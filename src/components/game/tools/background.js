@@ -40,9 +40,9 @@ let largoDelFramento = 0;
 let backgroungLeftFragment = [];
 let backgroungRight = [];
 
-export function backGroundAnimation({ c, canvasWidth, xPosition }) {
+export function backGroundAnimation({ c, canvasWidth, temporalXposition }) {
   let initialFrameWidth = map.image.width * map.scale;
-  map.position.x = canvasWidth / 2 - initialFrameWidth / 2 + xPosition.current;
+  map.position.x = canvasWidth / 2 - initialFrameWidth / 2 + temporalXposition.current;
   let anchoDeUnFrame = map.imageMap.width / map.framesData.framesTotal; //*! no entiendo poqué pero esta cosa se desgobierna si le pones initialFrameWidth, no lo hagas es obvio pero no lo hagas
 
   largoDelFramento = Math.ceil(canvasWidth / anchoDeUnFrame);

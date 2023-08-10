@@ -7,7 +7,7 @@ export function bunnyAnimation({
   c,
   canvasWidth,
   canvasHeight,
-  keyPressed,
+  temporalKeyPress,
 }) {
   let initialBunnyWidth =
     (bunnySprite.image.width * bunnySprite.scale) / bunnySprite.framesMax;
@@ -15,11 +15,10 @@ export function bunnyAnimation({
   bunnySprite.position.x = canvasWidth / 2 - initialBunnyWidth / 2;
 
 
-  bunnySprite.switchSpride(keyPressed.current);
+  bunnySprite.switchSpride(temporalKeyPress.current);
 
-  if(keyPressed.current === "jump"){
+  if(temporalKeyPress.current === "jump"){
     bunnySprite.jump(-6);
-    keyPressed.current = "neutro"
   }
 
   bunnySprite.update(c, canvasHeight);

@@ -53,7 +53,7 @@ export function randomFruitGenerator() {
         x: 0,
         y: 0,
       },
-      impulse: -100,
+      impulse: -300,
       imageSrc: selectedFood.img,
       framesMax: 1,
       foodName: selectedFood.type,
@@ -65,7 +65,14 @@ export function randomFruitGenerator() {
   food.push(newElement);
 }
 
-export function fruitAnimation({ c, canvasWidth, canvasHeight, xPosition }) {
+export function fruitAnimation({
+  c,
+  canvasWidth,
+  canvasHeight,
+  temporalXposition,
+  temporalLife,
+  temporalFoodCounter,
+}) {
   if (food.length > 3) {
     food.shift();
   }
@@ -79,6 +86,14 @@ export function fruitAnimation({ c, canvasWidth, canvasHeight, xPosition }) {
         continue;
       }
 
+      //   if(element.position.x < canvasWidth && element.position.x > 0){
+      // console.log('pantalla');
+      //   };
+
+      const estaEnPantalla = () => {
+        return element.position.x < canvasWidth && element.position.x > 0;
+      };
+
       //*! la fórmula de abajo lo que calcula es cuantas pantallas se han recorrido y si el diferencial de esta es igual a la mitad de la pantalla significa que la fruta está a la mitad igual que el conejo
       //*! se le suman 5 y se le restan 5 para dar un rango de acción ya que la fruta crece de 5 en 5
 
@@ -90,20 +105,28 @@ export function fruitAnimation({ c, canvasWidth, canvasHeight, xPosition }) {
             canvasWidth / 2 - element.image.width / 2 - 5
         );
       };
-    //*! si el conejo está saltando no puede comer debe estar en el piso
 
-      if (isInTheMidle() && bunnySprite.impulse === 0 ) {
+      //*! la altura de la comida debe ser el piso
+      //*! si el conejo está saltando no puede comer debe estar en el piso
+
+      if (
+        estaEnPantalla() &&
+        isInTheMidle() &&
+        bunnySprite.impulse === 0 &&
+        element.impulse === 0
+      ) {
         element.isEaten = true;
-        if(!element.rotten){
-            console.log('comió'); 
-            bunnySprite.food[element.foodName]++
-        } else{
-            bunnySprite.health-- //
+        if (!element.rotten) {
+          bunnySprite.food[element.foodName]++;
+          temporalFoodCounter.current.post = bunnySprite.food;
+        } else if (element.rotten) {
+          bunnySprite.health--;
+          temporalLife.current.post = bunnySprite.health;
         }
       }
 
       food[i].class.position.x =
-        0 + food[i].initialPosition + xPosition.current;
+        0 + food[i].initialPosition + temporalXposition.current;
       food[i].class.update(c, canvasHeight);
     }
   }
