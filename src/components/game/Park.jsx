@@ -12,7 +12,7 @@ import { gameData } from "../../data/gameData";
 export const Park = () => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
-  const moveLeftButtonRef = useRef(null);
+  const moveLeftButtonRef = useRef(null); 
   const moveRightButtonRef = useRef(null);
   const jumpButtonRef = useRef(null); 
 
