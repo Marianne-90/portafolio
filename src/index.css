@@ -1540,6 +1540,8 @@ input {
   align-items: center;
   justify-content: center;
   gap: 20px;
+ font-family: "Press Start 2P", cursive ;
+ color: #4b5563;
 }
 
 .gameContainer .controladores .vida img{

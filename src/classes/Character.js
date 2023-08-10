@@ -64,6 +64,7 @@ export class Character extends Sprite {
     this.eating = false;
     this.foodType = "";
     this.isSick = false;
+    this.isDead = false;
 
     //*! lo que hacemos aquí es asignar una nuevo objeto de imágen con su url al objeto strpite para que los cositos cambien de sprite
 
@@ -74,6 +75,30 @@ export class Character extends Sprite {
   }
 
   switchSpride(sprite) {
+    //*? -------------- MUERTO -----------------------
+
+    if (this.isDead && this.sprites.dead.image === this.image) {
+      if (this.framesElapsed % this.framesHold === 0) {
+        this.spritesElapsed++;
+      }
+
+      if (this.spritesElapsed < this.framesMax) {
+        return;
+      }
+
+      if (this.spritesElapsed === this.framesMax) {
+        this.framesMax = this.sprites["ghost"].framesMax;
+        this.image = this.sprites["ghost"].image;
+        this.framesHold = this.sprites["ghost"].framesHold;
+        this.frameCurrent = 0;
+        this.spritesElapsed = 0;
+      }
+    }
+
+    if (this.isDead && this.sprites.ghost.image === this.image) {
+      return;
+    }
+
     //*? ---------------SALTAR-------------------------
 
     if (this.image === this.sprites.jump.image && this.jumpStrength <= 0) {
@@ -131,8 +156,8 @@ export class Character extends Sprite {
         }
         this.spritesElapsed = 0;
       }
-    } 
-    
+    }
+
     if (this.eating && this.image === this.sprites.vomit.image) {
       if (this.framesElapsed % this.framesHold === 0) {
         this.spritesElapsed++;

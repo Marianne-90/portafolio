@@ -18,7 +18,7 @@ export const Buttons = () => {
 
   const handleMoveLeftTouchStart = () => {
     return setInterval(() => {
-      if(!bunnySprite.eating){
+      if(!bunnySprite.eating && !bunnySprite.isDead){
         setKeyPressed("left");
         temporalXposition += 5;
         setXPosition(temporalXposition);
@@ -28,7 +28,7 @@ export const Buttons = () => {
 
   const handleMoveRightTouchStart = () => {
     return setInterval(() => {
-      if (map.position.x >= 0 && !bunnySprite.eating) {
+      if (map.position.x >= 0 && !bunnySprite.eating && !bunnySprite.isDead) {
         setKeyPressed("rigth");
         temporalXposition -= 5;
         setXPosition(temporalXposition);

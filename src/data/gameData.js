@@ -12,6 +12,8 @@ import bunnyChile from "../img/bunny/sprites/bunny/bunnyChile.png";
 import bunnyFresa from "../img/bunny/sprites/bunny/bunnyFresa.png";
 import bunnyNaranja from "../img/bunny/sprites/bunny/bunnyNaranja.png";
 import vomitando from "../img/bunny/sprites/bunny/vomitando.png";
+import dead from "../img/bunny/sprites/bunny/muerto.png";
+import ghost from "../img/bunny/sprites/bunny/fantasma.png";
 
 import cerezagris from "../img/bunny/sprites/controllers/cerezagris.png";
 
@@ -262,6 +264,18 @@ export const gameData = {
         framesMax: 5,
         framesHold: 30,
         name:"vomit"
+      },
+      dead: {
+        imageSrc: dead,
+        framesMax: 4,
+        framesHold: 30,
+        name:"dead"
+      },
+      ghost: {
+        imageSrc: ghost,
+        framesMax: 4,
+        framesHold: 30,
+        name:"ghost"
       },
     },
   },

@@ -17,7 +17,12 @@ export function bunnyAnimation({
   if (bunnySprite.eating) {
     bunnySprite.switchSpride(bunnySprite.foodType);
   }
-  if (!bunnySprite.eating) {
+
+  if (bunnySprite.isDead) {
+    bunnySprite.switchSpride("dead");
+  }
+
+  if (!bunnySprite.eating && !bunnySprite.isDead) {
     if (temporalKeyPress.current === "jump") {
       bunnySprite.jump(-6);
     }
