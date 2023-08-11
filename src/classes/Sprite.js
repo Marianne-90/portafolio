@@ -50,6 +50,19 @@ export class Sprite {
       (this.image.width / this.framesMax) * this.scale,
       this.image.height * this.scale
     );
+
+
+  // // Agrega un borde rojo alrededor del elemento dibujado
+  // c.strokeStyle = "red"; // Color del borde rojo
+  // c.lineWidth = 2; // Grosor del borde (puedes ajustarlo según lo desees)
+  // c.strokeRect(
+  //   this.position.x - this.offset.x,
+  //   this.position.y - this.offset.y,
+  //   (this.image.width / this.framesMax) * this.scale,
+  //   this.image.height * this.scale
+  // );
+
+
   }
 
   animateFrames() {

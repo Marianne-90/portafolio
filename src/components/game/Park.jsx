@@ -2,6 +2,7 @@ import { useRef, useEffect, useContext } from "react";
 import { backGroundAnimation, initCanvas } from "./tools/background";
 import { bunnyAnimation } from "./tools/bunny";
 import { fruitAnimation, randomFruitGenerator } from "./tools/fruit";
+import { enemyAnimation, enemyGenerator } from "./tools/enemy";
 import { MainContext } from "./context/MainContext";
 import { bunnySprite } from "./tools/sprites";
 
@@ -11,8 +12,6 @@ export const Park = () => {
 
   let canvasWidth = 0;
   let canvasHeight = 0;
-  // let xPosition = useRef(0);
-  // let keyPressed = useRef("neutro");
   let animationId;
 
   const { keyPressed, xPosition, setKeyPressed, setbunnyLife, setFood } =
@@ -73,6 +72,13 @@ export const Park = () => {
           temporalLife,
           temporalFoodCounter,
         });
+        enemyAnimation({
+          c,
+          canvasWidth,
+          canvasHeight,
+          temporalXposition,
+          temporalLife,
+        });
 
         //*! vamos a evaluar si algo a cambiado en la salud o la comida y actualizarlo en el contexto general
 
@@ -98,6 +104,15 @@ export const Park = () => {
       randomFruitGenerator();
     }, Math.floor(Math.random() * 7000) + 5000);
 
+    //*? GENERADOR DE ENEMIGOS
+
+    let speeder = 0
+
+    const enemyTimer = setInterval(() => {
+      speeder += 100;
+      enemyGenerator(canvasWidth);
+    }, Math.floor(Math.random() * 15000*2 - speeder ) + 10000*2) - speeder;
+
     //*? -------- MANEJAR EL REDIMENCIONADO
 
     const handleResize = () => {
@@ -114,6 +129,7 @@ export const Park = () => {
 
     return () => {
       clearInterval(fruitTimer);
+      clearInterval(enemyTimer);
 
       //LIMPIAR RESIZE
       window.removeEventListener("resize", handleResize);

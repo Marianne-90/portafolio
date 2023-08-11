@@ -22,7 +22,8 @@ import fresagris from "../img/bunny/sprites/controllers/fresagris.png";
 import naranjagris from "../img/bunny/sprites/controllers/naranjagris.png";
 import conejogris from "../img/bunny/sprites/controllers/conejogris.png";
 
-
+import foxLeft from "../img/bunny/sprites/fox/left.png";
+import foxRight from "../img/bunny/sprites/fox/right.png";
 
 export const gameData = {
   background: {
@@ -193,89 +194,89 @@ export const gameData = {
     framesMax: 12,
     animate: true,
     food: {
-      fresa:0,
-      cereza:0,
-      naranja:0,
-      chile:0,
+      fresa: 0,
+      cereza: 0,
+      naranja: 0,
+      chile: 0,
     },
     sprites: {
       fall: {
         imageSrc: caer,
         framesMax: 5,
         framesHold: 4,
-        name:"fall"
+        name: "fall",
       },
       rigth: {
         imageSrc: derecha,
         framesMax: 6,
         framesHold: 5,
-        name:"rigth"
+        name: "rigth",
       },
       left: {
         imageSrc: izquierda,
         framesMax: 6,
         framesHold: 5,
-        name:"left"
+        name: "left",
       },
       sleep: {
         imageSrc: durmiendo,
         framesMax: 2,
         framesHold: 30,
-        name:"sleep"
+        name: "sleep",
       },
       neutro: {
         imageSrc: neutro,
         framesMax: 12,
         framesHold: 30,
-        name:"neutro"
+        name: "neutro",
       },
       jump: {
         imageSrc: salto,
         framesMax: 4,
         framesHold: 5,
-        name:"jump"
+        name: "jump",
       },
       cereza: {
         imageSrc: bunnyCereza,
         framesMax: 4,
         framesHold: 30,
-        name:"cereza"
+        name: "cereza",
       },
       chile: {
         imageSrc: bunnyChile,
         framesMax: 4,
         framesHold: 30,
-        name:"chile"
+        name: "chile",
       },
       fresa: {
         imageSrc: bunnyFresa,
         framesMax: 4,
         framesHold: 30,
-        name:"fresa"
+        name: "fresa",
       },
       naranja: {
         imageSrc: bunnyNaranja,
         framesMax: 4,
         framesHold: 30,
-        name:"naranja"
+        name: "naranja",
       },
       vomit: {
         imageSrc: vomitando,
         framesMax: 5,
         framesHold: 30,
-        name:"vomit"
+        name: "vomit",
       },
       dead: {
         imageSrc: dead,
         framesMax: 4,
-        framesHold: 30,
-        name:"dead"
+        framesHold: 10,
+        name: "dead",
       },
       ghost: {
         imageSrc: ghost,
         framesMax: 4,
         framesHold: 30,
-        name:"ghost"
+        name: "ghost",
       },
     },
   },
@@ -287,6 +288,31 @@ export const gameData = {
       naranja: naranjagris,
     },
     bunny: conejogris,
+  },
+  fox: {
+    position: {
+      x: 0,
+      y: 0,
+    },
+    impulse: 0,
+    imageSrc: foxLeft,
+    scale: 0.33,
+    framesMax: 6,
+    animate: true,
+    sprites: {
+      left: {
+        imageSrc: foxLeft,
+        framesMax: 6,
+        framesHold: 10,
+        name: "left",
+      },
+      right: {
+        imageSrc: foxRight,
+        framesMax: 6,
+        framesHold: 10,
+        name: "right",
+      },
+    },
   },
 };
 
