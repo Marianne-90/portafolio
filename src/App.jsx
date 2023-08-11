@@ -8,7 +8,6 @@ import {
   Skills,
   Work,
   Contact,
-  Bunny,
 } from "./components/index";
 
 
@@ -45,7 +44,6 @@ function App() {
         <Skills />
         <Proyects />
         <Work />
-        {/* <Bunny/> */}
         <Game/>
         <Contact />
       </section>

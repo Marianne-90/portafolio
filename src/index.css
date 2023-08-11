@@ -1427,78 +1427,35 @@ input {
   }
 }
 
-.bunny * {
-  margin: 0;
-  top: 0;
-  box-sizing: border-box;
-  overflow: hidden;
+.gameTitle{
+margin-top: 30px;
+padding: 5px;
 }
 
-.bunny h2 {
-  color: #df6c4f;
+.gameTitle h2{
   text-align: center;
-  margin-bottom: 10px;
-}
-.bunny h2 small {
-  color: #4c4746;
-  font-weight: 400;
-  font-size: 20px;
-}
+  font-family: "Press Start 2P", cursive ;
+  color: #4b5563;
+  }
 
-.bunny {
-  margin: 50px 10px;
+.gameTitle p{
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-weight: 200;
+  color: #4b5563;
 }
 
-.bunny .conteiner {
-  background-color: rgb(255, 255, 255);
-  background-image: url("./img/bunny/background.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom;
-  width: 100%;
-  height: 300px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 30px;
-}
 
-.bunny .conteiner .fresa {
-  width: 60px;
-  height: 60px;
-  position: absolute;
-}
-
-.bunny .conteiner .fresa img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.bunny .conteiner .conejo {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  z-index: 1;
-}
-
-.bunny .conteiner .conejo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
 .gameContainer {
-  margin-top: 50px;
+  margin-top: 20px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   position: relative;
+  overflow: visible;
 }
 
 .gameContainer .controladores {
@@ -1548,6 +1505,39 @@ input {
 
 .gameContainer .controladores .vida img{
   height: 50px;
+}
+
+.gameContainer .controladores .panel {
+  background-color: #4b5563;
+  width: calc(100% - 30px);
+  height: 390px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gameContainer .controladores .panelNoDisplay{
+  display: none;
+}
+
+.gameContainer .controladores .panel button{
+  font-family: "Press Start 2P", cursive ;
+  background-color: #84cc16;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  border: #ffffff 1px solid;
+}
+
+.gameContainer .controladores .panel button:hover{
+  font-family: "Press Start 2P", cursive ;
+  background-color: #7abd16;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  border: #ffffff 1px solid;
 }
 
 .gameContainer .bunnyGame {

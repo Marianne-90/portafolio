@@ -13,15 +13,29 @@ export const Indicators = () => {
 
   const [isLifeLoaded, setIsLifeLoaded] = useState(false);
   const [isBunnyDead, setIsBunnyDead] = useState(false);
+  const [display, setDisplay] = useState();
 
   let tempFoodCounter = bunnySprite.food;
 
   useEffect(() => {
     setIsLifeLoaded(true);
+
+    let timeoutId;
+
     if (lifeCouter <= 0 && isLifeLoaded) {
+
       bunnySprite.isDead = true;
+
+      timeoutId = setTimeout(() => {
+        setDisplay(true);
+      }, 2000); 
+
       setIsBunnyDead(true);
+
     }
+
+    return () => clearTimeout(timeoutId);
+
   }, [lifeCouter]);
 
   useEffect(() => {
@@ -59,14 +73,24 @@ export const Indicators = () => {
     return bunnyfood;
   };
 
+  const handleRestart = () => {
+    console.log('handleRestart');
+  };
+
   return (
     <div className="controladores">
       <div className="comida">{bunnyFood()}</div>
       <div className="vida">
         {bunnyLife()}
         {
-          isBunnyDead && <span>DEAD T.T</span>
+          isBunnyDead && <span>MR. CREAMY IS DEAD T.T</span>
         }
+      </div>
+      <div className={display?"panel":"panelNoDisplay"}>
+        <div className="img">
+          <img src={controllers.bunny} alt="bunny" />
+        </div>
+        <button onClick={handleRestart}>Restart</button>
       </div>
     </div>
   );

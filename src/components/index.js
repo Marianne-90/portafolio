@@ -5,4 +5,3 @@ export { Proyects } from "./Proyects";
 export { Skills } from "./Skills";
 export { Work } from "./Work";
 export { Contact } from "./Contact";
-export { Bunny } from "./Bunny";
