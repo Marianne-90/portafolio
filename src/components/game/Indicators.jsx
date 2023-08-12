@@ -1,19 +1,24 @@
-import { bunnySprite } from "./tools/sprites";
+import { bunnySprite, map } from "./tools/sprites";
 import { gameData } from "../../data/gameData";
 import { useRef, useEffect, useContext, useState } from "react";
 import { MainContext } from "./context/MainContext";
 
 export const Indicators = () => {
-  const { controllers } = gameData;
+  const { controllers, bunny } = gameData;
   const {
     bunnyLife: lifeCouter,
     bunnyFood: foodCounter,
     setFood,
+    setbunnyLife,
+    setbunnyScenario,
+    setKeyPressed,
+    setXPosition,
+    setRestart
   } = useContext(MainContext);
 
   const [isLifeLoaded, setIsLifeLoaded] = useState(false);
   const [isBunnyDead, setIsBunnyDead] = useState(false);
-  const [display, setDisplay] = useState();
+  const [display, setDisplay] = useState(false);
 
   let tempFoodCounter = bunnySprite.food;
 
@@ -23,19 +28,16 @@ export const Indicators = () => {
     let timeoutId;
 
     if (lifeCouter <= 0 && isLifeLoaded) {
-
       bunnySprite.isDead = true;
 
       timeoutId = setTimeout(() => {
         setDisplay(true);
-      }, 2000); 
+      }, 3500);
 
       setIsBunnyDead(true);
-
     }
 
     return () => clearTimeout(timeoutId);
-
   }, [lifeCouter]);
 
   useEffect(() => {
@@ -74,7 +76,15 @@ export const Indicators = () => {
   };
 
   const handleRestart = () => {
-    console.log('handleRestart');
+
+    setbunnyScenario("park");
+
+    setIsLifeLoaded(false);
+    setIsBunnyDead(false);
+    setDisplay(false);
+
+    setRestart(true);
+
   };
 
   return (
@@ -82,11 +92,9 @@ export const Indicators = () => {
       <div className="comida">{bunnyFood()}</div>
       <div className="vida">
         {bunnyLife()}
-        {
-          isBunnyDead && <span>MR. CREAMY IS DEAD T.T</span>
-        }
+        {isBunnyDead && <span>MR. CREAMY IS DEAD T.T</span>}
       </div>
-      <div className={display?"panel":"panelNoDisplay"}>
+      <div className={display ? "panel opacity" : "panelNoDisplay"}>
         <div className="img">
           <img src={controllers.bunny} alt="bunny" />
         </div>

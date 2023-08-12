@@ -1455,7 +1455,7 @@ padding: 5px;
   justify-content: center;
   flex-direction: column;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .gameContainer .controladores {

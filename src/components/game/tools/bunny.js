@@ -32,3 +32,13 @@ export function bunnyAnimation({
 
   bunnySprite.update(c, canvasHeight);
 }
+
+export function bunnyRestart(){
+
+  bunnySprite.isDead = false;
+  bunnySprite.switchSpride("neutro");
+  bunnySprite.food = bunny.food;
+  bunnySprite.eating = false;
+  bunnySprite.health = 3;
+
+}

@@ -1,12 +1,15 @@
 import { useRef, useEffect, useContext } from "react";
 import { backGroundAnimation, initCanvas } from "./tools/background";
-import { bunnyAnimation } from "./tools/bunny";
+import { bunnyAnimation, bunnyRestart } from "./tools/bunny";
 import { fruitAnimation, randomFruitGenerator } from "./tools/fruit";
 import { enemyAnimation, enemyGenerator } from "./tools/enemy";
 import { MainContext } from "./context/MainContext";
 import { bunnySprite } from "./tools/sprites";
+import { gameData } from "../../data/gameData";
 
 export const Park = () => {
+  const { bunny } = gameData;
+
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -14,8 +17,15 @@ export const Park = () => {
   let canvasHeight = 0;
   let animationId;
 
-  const { keyPressed, xPosition, setKeyPressed, setbunnyLife, setFood } =
-    useContext(MainContext);
+  const {
+    keyPressed,
+    xPosition,
+    setKeyPressed,
+    setbunnyLife,
+    setFood,
+    restart,
+    setRestart,
+  } = useContext(MainContext);
 
   let temporalXposition = useRef(0);
   let temporalKeyPress = useRef("");
@@ -24,6 +34,11 @@ export const Park = () => {
     post: 0,
   });
   let temporalFoodCounter = useRef({ prev: {}, post: {} });
+  let temporalRestart = useRef(false);
+
+  useEffect(() => {
+    temporalRestart.current = restart;
+  }, [restart]);
 
   useEffect(() => {
     temporalXposition.current = xPosition;
@@ -36,7 +51,9 @@ export const Park = () => {
   useEffect(() => {
     canvasWidth = containerRef.current.offsetWidth;
     canvasHeight = containerRef.current.offsetHeight;
-    // console.log(bunnySprite.health)
+
+    let speeder = 0; //*! esto es para que cada vez aparezcan más zorros
+
     temporalLife.current = {
       prev: bunnySprite.health,
       post: bunnySprite.health,
@@ -46,7 +63,6 @@ export const Park = () => {
       post: bunnySprite.food,
     };
     setbunnyLife(bunnySprite.health);
-    // setFood(bunnySprite.food);
 
     //SE INICIA EL CANVAS
     const c = initCanvas(canvasWidth, canvasHeight, canvasRef);
@@ -80,6 +96,25 @@ export const Park = () => {
           temporalLife,
         });
 
+        //*! vamos a reiniciar el juego
+
+        if (temporalRestart.current) {
+          temporalXposition.current = 0;
+          temporalKeyPress.current = "neutro";
+          temporalLife.current = {
+            prev: 0,
+            post: 3,
+          };
+          temporalFoodCounter.current = { prev: {}, post: { ...bunny.food } };
+          temporalRestart.current = false;
+          bunnyRestart();
+
+          clearInterval(fruitTimer);
+          clearInterval(enemyTimer);
+
+          setRestart(false);
+        }
+
         //*! vamos a evaluar si algo a cambiado en la salud o la comida y actualizarlo en el contexto general
 
         if (temporalLife.current.post !== temporalLife.current.prev) {
@@ -106,12 +141,11 @@ export const Park = () => {
 
     //*? GENERADOR DE ENEMIGOS
 
-    let speeder = 0
-
-    const enemyTimer = setInterval(() => {
-      speeder += 100;
-      enemyGenerator(canvasWidth);
-    }, Math.floor(Math.random() * 15000*2 - speeder ) + 10000*2) - speeder;
+    const enemyTimer =
+      setInterval(() => {
+        speeder += 1000;
+        enemyGenerator(canvasWidth);
+      }, Math.floor(Math.random() * 15000 * 2 - speeder) + 10000 * 2) - speeder;
 
     //*? -------- MANEJAR EL REDIMENCIONADO
 

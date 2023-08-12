@@ -7,6 +7,7 @@ export const MainProvider = ({ children }) => {
   const [bunnyScenario, setbunnyScenario] = useState("park");
   const [keyPressed, setKeyPressed] = useState("neutro");
   const [xPosition, setXPosition] = useState(0);
+  const [restart, setRestart] = useState(false);
 
   return (
     <MainContext.Provider
@@ -21,6 +22,8 @@ export const MainProvider = ({ children }) => {
         setKeyPressed,
         xPosition,
         setXPosition,
+        restart, 
+        setRestart
       }}
     >
       {children}

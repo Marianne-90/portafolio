@@ -5,9 +5,9 @@ import { MainContext } from "./context/MainContext";
 export const Buttons = () => {
   const moveLeftButtonRef = useRef(null);
   const moveRightButtonRef = useRef(null);
-  const jumpButtonRef = useRef(null);
 
-  const { setKeyPressed, xPosition, setXPosition } = useContext(MainContext);
+  const { setKeyPressed, xPosition, setXPosition, restart } =
+    useContext(MainContext);
 
   let temporalXposition = 0;
 
@@ -18,7 +18,7 @@ export const Buttons = () => {
 
   const handleMoveLeftTouchStart = () => {
     return setInterval(() => {
-      if(!bunnySprite.eating && !bunnySprite.isDead){
+      if (!bunnySprite.eating && !bunnySprite.isDead) {
         setKeyPressed("left");
         temporalXposition += 5;
         setXPosition(temporalXposition);
@@ -49,19 +49,23 @@ export const Buttons = () => {
     //*! LOS EVENT LISTENERS NO LIMPIAN FUNCIONES ANÓNIMAS ES POR ELLO QUE EXTRAJE LA FUNCIÓN
 
     function eventMoveLeftInterval() {
-      clearInterval(moveLeftInterval);
-      clearInterval(eventMoveLeftInterval);
-      clearInterval(moveRightInterval);
-      clearInterval(eventMoveRigthInterval);
       moveLeftInterval = handleMoveLeftTouchStart();
     }
 
     function eventMoveRigthInterval() {
+      moveRightInterval = handleMoveRightTouchStart();
+    }
+
+    function eventCleanLeft() {
       clearInterval(moveLeftInterval);
-      clearInterval(eventMoveLeftInterval);
+      clearInterval(eventMoveLeftInterval); //*! si no se queda moviendo para siempre
+      setKeyPressed("neutro");
+    }
+
+    function eventCleanRight() {
       clearInterval(moveRightInterval);
       clearInterval(eventMoveRigthInterval);
-      moveRightInterval = handleMoveRightTouchStart();
+      setKeyPressed("neutro");
     }
 
     // PC IZQUIERDA
@@ -69,11 +73,8 @@ export const Buttons = () => {
       "mousedown",
       eventMoveLeftInterval
     );
-    moveLeftButtonRef.current.addEventListener("mouseup", () => {
-      clearInterval(moveLeftInterval);
-      clearInterval(eventMoveLeftInterval); //*! si no se queda moviendo para siempre
-      setKeyPressed("neutro");
-    });
+    moveLeftButtonRef.current.addEventListener("mouseup", eventCleanLeft);
+    moveLeftButtonRef.current.addEventListener("mouseout", eventCleanLeft);
 
     // PC DERECHA
     moveRightButtonRef.current.addEventListener(
@@ -81,11 +82,9 @@ export const Buttons = () => {
       eventMoveRigthInterval
     );
 
-    moveRightButtonRef.current.addEventListener("mouseup", () => {
-      clearInterval(moveRightInterval);
-      clearInterval(eventMoveRigthInterval);
-      setKeyPressed("neutro");
-    });
+    moveRightButtonRef.current.addEventListener("mouseup", eventCleanRight);
+
+    moveRightButtonRef.current.addEventListener("mouseout", eventCleanRight);
 
     //*?  ----------------CELULARES-------------------
 
@@ -94,33 +93,14 @@ export const Buttons = () => {
       "touchstart",
       eventMoveLeftInterval
     );
-    moveLeftButtonRef.current.addEventListener("touchend", () => {
-      clearInterval(moveLeftInterval);
-      clearInterval(eventMoveLeftInterval); //*! si no se queda moviendo para siempre
-      setKeyPressed("neutro");
-    });
+    moveLeftButtonRef.current.addEventListener("touchend", eventCleanLeft);
 
     // DERECHA
     moveRightButtonRef.current.addEventListener(
       "touchstart",
       eventMoveRigthInterval
     );
-    moveRightButtonRef.current.addEventListener("touchend", () => {
-      clearInterval(moveRightInterval);
-      clearInterval(eventMoveRigthInterval);
-      setKeyPressed("neutro");
-    });
-
-    //*? Limpiar cuando salta si no se hace un bug donde nunca para de correr
-
-    const jumpCleaner = () => {
-      clearInterval(moveLeftInterval);
-      clearInterval(eventMoveLeftInterval);
-      clearInterval(moveRightInterval);
-      clearInterval(eventMoveRigthInterval);
-    };
-
-    jumpButtonRef.current.addEventListener("click", jumpCleaner);
+    moveRightButtonRef.current.addEventListener("touchend", eventCleanRight);
 
     return () => {
       if (moveLeftButtonRef.current) {
@@ -128,10 +108,22 @@ export const Buttons = () => {
           "mousedown",
           eventMoveLeftInterval
         );
+
+        moveLeftButtonRef.current.removeEventListener(
+          "mouseup",
+          eventCleanLeft
+        );
+        moveLeftButtonRef.current.removeEventListener(
+          "mouseout",
+          eventCleanLeft
+        );
+
         moveLeftButtonRef.current.removeEventListener(
           "touchstart",
           eventMoveLeftInterval
         );
+
+        moveLeftButtonRef.current.addEventListener("touchend", eventCleanLeft);
       }
 
       if (moveRightButtonRef.current) {
@@ -139,14 +131,26 @@ export const Buttons = () => {
           "touchstart",
           eventMoveRigthInterval
         );
+
+        moveRightButtonRef.current.removeEventListener(
+          "touchend",
+          eventCleanRight
+        );
+
         moveRightButtonRef.current.removeEventListener(
           "mousedown",
           eventMoveRigthInterval
         );
-      }
 
-      if (jumpButtonRef.current) {
-        jumpButtonRef.current.removeEventListener("click", jumpCleaner);
+        moveRightButtonRef.current.removeEventListener(
+          "mouseup",
+          eventCleanRight
+        );
+
+        moveRightButtonRef.current.removeEventListener(
+          "mouseout",
+          eventCleanRight
+        );
       }
     };
   }, []);
@@ -157,9 +161,7 @@ export const Buttons = () => {
         <button ref={moveLeftButtonRef}>Izquierda</button>
         <button ref={moveRightButtonRef}>Derecha</button>
       </div>
-      <button onClick={handleJump} ref={jumpButtonRef}>
-        Saltar
-      </button>
+      <button onClick={handleJump}>Saltar</button>
     </>
   );
 };
