@@ -1,4 +1,4 @@
-import { map } from "./sprites";
+import { map, bunnySprite } from "./sprites";
 import { gameData } from "../../../data/gameData";
 
 const { background } = gameData;
@@ -42,12 +42,37 @@ let backgroungRight = [];
 
 export function backGroundAnimation({ c, canvasWidth, temporalXposition }) {
   let initialFrameWidth = map.image.width * map.scale;
-  map.position.x = canvasWidth / 2 - initialFrameWidth / 2 + temporalXposition.current;
+  map.position.x =
+    canvasWidth / 2 - initialFrameWidth / 2 + temporalXposition.current;
   let anchoDeUnFrame = map.imageMap.width / map.framesData.framesTotal; //*! no entiendo poqué pero esta cosa se desgobierna si le pones initialFrameWidth, no lo hagas es obvio pero no lo hagas
 
   largoDelFramento = Math.ceil(canvasWidth / anchoDeUnFrame);
 
   let caltulateInitialFragnet = 0;
+
+  //*! asignar valores a los acction blocks lo pongo así para que sea escalable
+  //*! además evaluo si chocan y ejecuto una acción
+
+  map.accionBlocks.forEach((action, index) => {
+    let xPosition = map.position.x + map.accionBlocks[index].initialPosition.x;
+    let yPosition = map.image.height - map.accionBlocks[index].height; //*! quiero que se dibuje de abajo
+
+    let elementWidth =  map.accionBlocks[index].width
+
+    map.accionBlocks[index].position.x = xPosition;
+    map.accionBlocks[index].position.y = yPosition;
+
+    //*! vealmos si está dentro 
+    const isColliding = () => {
+      return xPosition < canvasWidth/2 && xPosition+elementWidth >  canvasWidth/2;
+    };
+
+
+    console.log(isColliding());
+    
+
+
+  });
 
   //*! esto es para optimizar la carga del mapa y que no se estén cargando todos los frames al mismo tiempo
   //*? tenemos que ver que anchoDeUnFrame sea mayor a 0 o sea que acabe de cargar si no las fórmulas no funcionan
@@ -58,11 +83,10 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition }) {
       caltulateLastFragment - largoDelFramento - 1 < 0 //*! este uno lo recupero abajo es para que no se vea la carga
         ? 0
         : caltulateLastFragment - largoDelFramento - 1;
-
-    // console.log("x ", caltulateInitialFragnet);
   }
 
   //*? se hace el slice correpondiente y se va actualizando
+
   backgroungLeftFragment = backgroungLeft.slice(
     caltulateInitialFragnet,
     caltulateInitialFragnet + largoDelFramento + 1 //*! aquí lo recupero
@@ -93,5 +117,19 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition }) {
   map.spritesLeft = backgroungLeftFragment;
   map.spritesRigth = backgroungRight;
 
+  //*! aquí asignamos los valores a los objetos de acción
+
   map.update(c, canvasWidth);
+}
+
+export function backGroundRestart(canvasWidth) {
+  map.spritesLeft = backgroungLeftFragment;
+  map.spritesRigth = backgroungRight;
+
+  let initialFrameWidth = map.image.width * map.scale;
+  map.position.x = canvasWidth / 2 - initialFrameWidth / 2;
+
+  background.general.position.x = 0;
+
+  // console.log('bacgroud restarte ', background.general.position.x );
 }

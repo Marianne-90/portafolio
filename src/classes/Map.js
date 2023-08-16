@@ -9,9 +9,11 @@ export class Map extends Sprite {
     offset = { x: 0, y: 0 },
     framesData,
     animate,
-    // Agregamos nuevos parámetros específicos de la clase "Map"
+    accionBlocks = [],
+    obstacles = [],
+
   }) {
-    // Llamamos al constructor de la clase padre "Character" usando "super"
+
     super({
       position,
       imageSrc,
@@ -27,10 +29,9 @@ export class Map extends Sprite {
     this.framesData = framesData;
     this.spritesLeft = [];
     this.spritesRigth = [];
+    this.accionBlocks = accionBlocks;
+    this.obstacles = obstacles;
   }
-
-
-  
 
   draw(c, canvasWidth) {
     c.drawImage(
@@ -52,6 +53,21 @@ export class Map extends Sprite {
       this.image.height * this.scale
     );
 
+    //*! dibujar el cuadro de volver a casa
+    
+    c.fillStyle = "red"; // Color rojo
+    
+    if(this.accionBlocks.length > 0){
+      for (let i = 0; i < this.accionBlocks.length; i++) {
+        c.fillRect(
+          this.accionBlocks[i].position.x,
+          this.accionBlocks[i].position.y,
+          this.accionBlocks[i].width,
+          this.accionBlocks[i].height
+        );
+      }
+    }
+
     if (this.spritesLeft.length > 0 && this.position.x > 0) {
       for (let i = 0; i < this.spritesLeft.length; i++) {
         c.drawImage(
@@ -66,7 +82,8 @@ export class Map extends Sprite {
           // end of crop information
           this.position.x -
             this.image.width / 2 -
-            this.spritesLeft[i].position * (this.imageMap.width / this.framesData.framesTotal),
+            this.spritesLeft[i].position *
+              (this.imageMap.width / this.framesData.framesTotal),
           this.position.y - this.offset.y,
 
           // tamaño de la imagen

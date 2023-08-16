@@ -39,6 +39,22 @@ export const gameData = {
         imageSrc: background,
         framesTotal: 0, //*! hasta abajo se le asigna el valor de frames
       },
+      accionBlocks: [
+        {
+          name: "home",
+          position: {
+            x: 0,
+            y: 0,
+          },
+          initialPosition: {
+            x: 235,
+            y: 0,
+          },
+          width: 100,
+          height: 40,
+          message:"Do you what to go home? "
+        },
+      ],
     },
     frames: [
       {
@@ -299,6 +315,7 @@ export const gameData = {
     scale: 0.33,
     framesMax: 6,
     animate: true,
+    framesHold: 10,
     sprites: {
       left: {
         imageSrc: foxLeft,

@@ -9,7 +9,13 @@ export const Buttons = () => {
   const { setKeyPressed, xPosition, setXPosition, restart } =
     useContext(MainContext);
 
-  let temporalXposition = 0;
+  let temporalXposition = useRef(0);
+
+  useEffect(()=>{
+    if(restart){
+      temporalXposition.current = 0
+    }
+  },[restart])
 
   const handleJump = () => {
     if (bunnySprite.impulse !== 0) return;
@@ -20,8 +26,8 @@ export const Buttons = () => {
     return setInterval(() => {
       if (!bunnySprite.eating && !bunnySprite.isDead) {
         setKeyPressed("left");
-        temporalXposition += 5;
-        setXPosition(temporalXposition);
+        temporalXposition.current += 5;
+        setXPosition(temporalXposition.current);
       }
     }, 50);
   };
@@ -30,14 +36,14 @@ export const Buttons = () => {
     return setInterval(() => {
       if (map.position.x >= 0 && !bunnySprite.eating && !bunnySprite.isDead) {
         setKeyPressed("rigth");
-        temporalXposition -= 5;
-        setXPosition(temporalXposition);
+        temporalXposition.current -= 5;
+        setXPosition(temporalXposition.current);
       }
     }, 50);
   };
 
   useEffect(() => {
-    temporalXposition = xPosition;
+    temporalXposition.current = xPosition;
     //*? -------- MOVIMIENTOS ---------
     //*! EL SET INTERVAL SE QUEDA AQUÍ PORQUE SI LO PASAS COMO FUNCIÓN NO SE ANEXA BIEN EL ID Y SE HACE UN DESASTRE
 

@@ -5,5 +5,8 @@ import { Map } from "../../../classes/Map";
 
 const { background, bunny } = gameData;
 
-export const map = new Map(background.general);
+let newBackgroundSprite = {...background.general}
+
+
+export const map = new Map(newBackgroundSprite);
 export const bunnySprite = new Character(bunny);

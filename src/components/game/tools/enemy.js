@@ -43,6 +43,7 @@ export function enemyGenerator(canvasWidth) {
     class: new Character({
       ...fox,
       imageSrc: options[randomOption].img,
+      framesHold : fox.framesHold/randomVelocity
     }),
     position: options[randomOption].position,
     type: options[randomOption].type,

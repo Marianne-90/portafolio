@@ -1,5 +1,9 @@
 import { useRef, useEffect, useContext } from "react";
-import { backGroundAnimation, initCanvas } from "./tools/background";
+import {
+  backGroundAnimation,
+  initCanvas,
+  backGroundRestart,
+} from "./tools/background";
 import { bunnyAnimation, bunnyRestart } from "./tools/bunny";
 import { fruitAnimation, randomFruitGenerator } from "./tools/fruit";
 import { enemyAnimation, enemyGenerator } from "./tools/enemy";
@@ -20,6 +24,7 @@ export const Park = () => {
   const {
     keyPressed,
     xPosition,
+    setXPosition,
     setKeyPressed,
     setbunnyLife,
     setFood,
@@ -41,6 +46,7 @@ export const Park = () => {
   }, [restart]);
 
   useEffect(() => {
+   
     temporalXposition.current = xPosition;
   }, [xPosition]);
 
@@ -72,6 +78,7 @@ export const Park = () => {
       const canvas = canvasRef.current;
 
       function animate() {
+        
         animationId = requestAnimationFrame(animate);
         if (temporalKeyPress.current === "jump") {
           setKeyPressed("neutro");
@@ -99,18 +106,33 @@ export const Park = () => {
         //*! vamos a reiniciar el juego
 
         if (temporalRestart.current) {
+          bunnyRestart();
+          backGroundRestart(canvasWidth);
+
+          speeder = 0;
           temporalXposition.current = 0;
           temporalKeyPress.current = "neutro";
           temporalLife.current = {
             prev: 0,
             post: 3,
           };
-          temporalFoodCounter.current = { prev: {}, post: { ...bunny.food } };
-          temporalRestart.current = false;
-          bunnyRestart();
+          temporalFoodCounter.current = {
+            prev: {},
+            post: {...bunny.food},
+          };
 
-          clearInterval(fruitTimer);
-          clearInterval(enemyTimer);
+          temporalRestart.current = false;
+
+          setXPosition(0);
+          setFood({});
+          
+          //*! 
+          // if (fruitTimer !== null) {
+          //   clearInterval(fruitTimer);
+          // }
+          // if (enemyTimer !== null) {
+          //   clearInterval(enemyTimer);
+          // }
 
           setRestart(false);
         }
@@ -133,21 +155,21 @@ export const Park = () => {
       animate();
     }
 
-    //*? GENERADOR DE FRUTAS ALEATORIAS
+    //*? ------ GENERADOR DE FRUTAS ALEATORIAS ---------------------
 
     const fruitTimer = setInterval(() => {
-      randomFruitGenerator();
+      // randomFruitGenerator();
     }, Math.floor(Math.random() * 7000) + 5000);
 
     //*? GENERADOR DE ENEMIGOS
 
     const enemyTimer =
       setInterval(() => {
-        speeder += 1000;
-        enemyGenerator(canvasWidth);
-      }, Math.floor(Math.random() * 15000 * 2 - speeder) + 10000 * 2) - speeder;
+        speeder += 100;
+        // enemyGenerator(canvasWidth);
+      }, Math.floor(Math.random() * 15000 - speeder * 2 ) + 10000 - speeder * 2) ;
 
-    //*? -------- MANEJAR EL REDIMENCIONADO
+    //*? -------- MANEJAR EL REDIMENCIONADO -----------------------
 
     const handleResize = () => {
       if (canvasRef.current) {

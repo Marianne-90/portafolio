@@ -9,10 +9,7 @@ export const Indicators = () => {
     bunnyLife: lifeCouter,
     bunnyFood: foodCounter,
     setFood,
-    setbunnyLife,
     setbunnyScenario,
-    setKeyPressed,
-    setXPosition,
     setRestart
   } = useContext(MainContext);
 
@@ -33,7 +30,7 @@ export const Indicators = () => {
       timeoutId = setTimeout(() => {
         setDisplay(true);
       }, 3500);
-
+      //*! regresar 
       setIsBunnyDead(true);
     }
 
