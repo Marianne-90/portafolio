@@ -52,7 +52,8 @@ export const gameData = {
           },
           width: 100,
           height: 40,
-          message:"Do you what to go home? "
+          message:"Do you what to go home? ",
+          isActive:false,
         },
       ],
     },
@@ -316,6 +317,14 @@ export const gameData = {
     framesMax: 6,
     animate: true,
     framesHold: 10,
+    atackBox: {
+      offset: {
+        x: 30,
+        y: 35,
+      },
+      width: 40,
+      height: 50,
+    },
     sprites: {
       left: {
         imageSrc: foxLeft,

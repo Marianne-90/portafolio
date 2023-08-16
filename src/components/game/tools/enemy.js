@@ -4,20 +4,22 @@ import { Character } from "../../../classes/Character";
 
 const { fox } = gameData;
 
-// let foxList = [{
+// const FOX_LIST = [
+//   {
 //     class: new Character({
 //       ...fox,
-//       imageSrc: fox.sprites.left.imageSrc,
+//       imageSrc: fox.sprites.right.imageSrc,
 //     }),
-//     position:  0 - map.position.x + 700,
-//     type: "right",
+//     position: 0 - map.position.x + 300,
+//     type: "left",
 //     velocity: 0,
-//   }];
+//   },
+// ];
 
-let foxList = [];
+const FOX_LIST = [];
 
 export function enemyGenerator(canvasWidth) {
-  if (foxList.length >= 3) return;
+  if (FOX_LIST.length >= 3) return;
 
   let randomVelocity = parseFloat(Math.random() * (1.5 - 1) + 1).toFixed(2);
 
@@ -43,15 +45,15 @@ export function enemyGenerator(canvasWidth) {
     class: new Character({
       ...fox,
       imageSrc: options[randomOption].img,
-      framesHold : fox.framesHold/randomVelocity
+      framesHold: fox.framesHold / randomVelocity,
     }),
     position: options[randomOption].position,
     type: options[randomOption].type,
     velocity: randomVelocity,
   };
 
-  foxList.push(newElement);
-//   console.log(`se añadió zorro ${newElement.type}`);
+  FOX_LIST.push(newElement);
+  //   console.log(`se añadió zorro ${newElement.type}`);
 }
 
 export function enemyAnimation({
@@ -63,30 +65,24 @@ export function enemyAnimation({
 }) {
   //   console.log();
 
-  if (foxList.length > 0) {
-    for (let i = 0; i < foxList.length; i++) {
-      let element = foxList[i].class;
+  if (FOX_LIST.length > 0) {
+    for (let i = 0; i < FOX_LIST.length; i++) {
+      let element = FOX_LIST[i].class;
       let imageWidth =
         (element.image.width * element.scale) / element.framesMax;
 
-      element.position.x = 0 + foxList[i].position + temporalXposition.current;
+      element.position.x = 0 + FOX_LIST[i].position + temporalXposition.current;
+      element.atackBox.position.y =
+        element.position.y + element.atackBox.offset.y;
+      //*! x lo bajé a derecha o izquierda
 
-      const estaEnPantalla = () => {
-        return element.position.x < canvasWidth && element.position.x > 0;
-      };
+      let xPositonAtackBlock = element.atackBox.position.x;
+      let atackBlockWidth = element.atackBox.with;
 
-      const isHittingLeft = () => {
+      const isColliding = () => {
         return (
-          element.position.x % canvasWidth <=
-            canvasWidth / 2 - imageWidth + 10 &&
-          element.position.x % canvasWidth >= canvasWidth / 2 - imageWidth - 50
-        );
-      };
-
-      const isHittingRight = () => {
-        return (
-          element.position.x % canvasWidth <= canvasWidth / 2 + 50 &&
-          element.position.x % canvasWidth >= canvasWidth / 2 - 10
+          xPositonAtackBlock < canvasWidth / 2 &&
+          xPositonAtackBlock + atackBlockWidth > canvasWidth / 2
         );
       };
 
@@ -95,54 +91,40 @@ export function enemyAnimation({
         temporalLife.current.post = bunnySprite.health;
       };
 
-      if (foxList[i].type === "left") {
-        foxList[i].position += foxList[i].velocity;
+      if (FOX_LIST[i].type === "left") {
+        FOX_LIST[i].position += FOX_LIST[i].velocity;
+        element.atackBox.position.x =
+          element.position.x +
+          imageWidth +
+          element.atackBox.offset.x -
+          element.atackBox.with;
 
-        //*! collition
+        //*! eliminarlo si sale de pantalla
 
-        if (
-          estaEnPantalla() &&
-          isHittingLeft() &&
-          bunnySprite.impulse === 0 &&
-          !bunnySprite.isDead
-        ) {
-          muerte();
-        }
-
-        //*! eliminarlo
-
-        if (foxList[i].position > 0 - map.position.x + canvasWidth + 400) {
-        //   console.log("eliminar derecha");
-
-          foxList.splice(i, 1);
+        if (FOX_LIST[i].position > 0 - map.position.x + canvasWidth + 400) {
+          FOX_LIST.splice(i, 1);
           continue;
         }
-
-        //*! veamos su el zorro roza con su nariz el centro
       }
 
-      if (foxList[i].type === "right") {
-        foxList[i].position -= foxList[i].velocity;
+      if (FOX_LIST[i].type === "right") {
+        FOX_LIST[i].position -= FOX_LIST[i].velocity;
+        element.atackBox.position.x =
+          element.position.x - element.atackBox.offset.x;
 
-        //*! collition
+        //*! eliminarlo si sale de pantalla
 
-        if (
-          estaEnPantalla() &&
-          isHittingRight() &&
-          bunnySprite.impulse === 0 &&
-          !bunnySprite.isDead
-        ) {
-          muerte();
-        }
-
-        //*! eliminarlo
-
-        if (foxList[i].position < 0 - map.position.x) {
-        //   console.log("eliminar izquierda");
-
-          foxList.splice(i, 1);
+        if (FOX_LIST[i].position < 0 - map.position.x) {
+          FOX_LIST.splice(i, 1);
           continue;
         }
+      }
+
+      //*! collition
+
+      if (isColliding() && bunnySprite.impulse === 0 && !bunnySprite.isDead) {
+        // console.log("golpeó");
+        muerte();
       }
 
       element.update(c, canvasHeight);

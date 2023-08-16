@@ -74,6 +74,9 @@ export class Character extends Sprite {
     }
   }
 
+
+
+
   switchSpride(sprite) {
     //*? -------------- MUERTO -----------------------
 
@@ -218,8 +221,17 @@ export class Character extends Sprite {
       this.jumpStrength += this.gravity;
       this.impulse = this.impulse + this.jumpStrength;
     }
-
     this.draw(c);
+
+   //     aquí se hace visible el atack box para cualquier modificación
+    // c.fillRect(
+    //   this.atackBox.position.x,
+    //   this.atackBox.position.y,
+    //   this.atackBox.with,
+    //   this.atackBox.height
+    // );
+
+
     this.animateFrames();
   }
 }

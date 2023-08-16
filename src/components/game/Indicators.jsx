@@ -2,9 +2,14 @@ import { bunnySprite, map } from "./tools/sprites";
 import { gameData } from "../../data/gameData";
 import { useRef, useEffect, useContext, useState } from "react";
 import { MainContext } from "./context/MainContext";
+import { Pops } from "./Pops";
 
 export const Indicators = () => {
+
   const { controllers, bunny } = gameData;
+
+  // console.log(map.accionBlocks[0]);
+
   const {
     bunnyLife: lifeCouter,
     bunnyFood: foodCounter,
@@ -97,6 +102,7 @@ export const Indicators = () => {
         </div>
         <button onClick={handleRestart}>Restart</button>
       </div>
+      <Pops/>
     </div>
   );
 };

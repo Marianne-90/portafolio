@@ -17,22 +17,22 @@ export const initCanvas = (canvasWidth, canvasHeight, canvasRef) => {
 };
 
 export function randomFramesGenerator(frames) {
-  const framesProbabilidades = [];
+  const FRAMESPROBABILIDADES = [];
 
   for (let i = 0; i < frames.length; i++) {
     let element = frames[i];
     let posibility = element.frequency;
 
     while (posibility > 0) {
-      framesProbabilidades.push({ index: i, name: element.name });
+      FRAMESPROBABILIDADES.push({ index: i, name: element.name });
       posibility--;
     }
   }
 
   //*! calcula un numero aleatorio entre 0 y la suma de todas las probabilidades
-  const randomNum = Math.floor(Math.random() * framesProbabilidades.length);
-  const randomFrame = framesProbabilidades[randomNum];
-  return randomFrame;
+  const RANDOMNUM = Math.floor(Math.random() * FRAMESPROBABILIDADES.length);
+  const RANDOMFRAME = FRAMESPROBABILIDADES[RANDOMNUM];
+  return RANDOMFRAME;
 }
 
 let backgroungLeft = [];
@@ -62,13 +62,19 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition }) {
     map.accionBlocks[index].position.x = xPosition;
     map.accionBlocks[index].position.y = yPosition;
 
-    //*! vealmos si está dentro 
     const isColliding = () => {
       return xPosition < canvasWidth/2 && xPosition+elementWidth >  canvasWidth/2;
     };
 
 
-    console.log(isColliding());
+   if(isColliding() && map.accionBlocks[index].isActive === false){
+    map.accionBlocks[index].isActive = true;
+    console.log('entro');
+    
+   }else if(!isColliding() && map.accionBlocks[index].isActive === true ){
+    map.accionBlocks[index].isActive = false;
+    console.log('salió');
+   }
     
 
 
