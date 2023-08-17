@@ -1,4 +1,4 @@
-import { map, bunnySprite } from "./sprites";
+import { MAP, BUNNY_SPRITE } from "./sprites";
 import { gameData } from "../../../data/gameData";
 import { Character } from "../../../classes/Character";
 
@@ -10,7 +10,7 @@ const { fox } = gameData;
 //       ...fox,
 //       imageSrc: fox.sprites.right.imageSrc,
 //     }),
-//     position: 0 - map.position.x + 300,
+//     position: 0 - MAP.position.x + 300,
 //     type: "left",
 //     velocity: 0,
 //   },
@@ -27,13 +27,13 @@ export function enemyGenerator(canvasWidth) {
 
   let left = {
     img: fox.sprites.right.imageSrc,
-    position: 0 - map.position.x - 400,
+    position: 0 - MAP.position.x - 400,
     type: "left",
   };
 
   let right = {
     img: fox.sprites.left.imageSrc,
-    position: 0 - map.position.x + canvasWidth + 500,
+    position: 0 - MAP.position.x + canvasWidth + 500,
     type: "right",
   };
 
@@ -87,8 +87,8 @@ export function enemyAnimation({
       };
 
       const muerte = () => {
-        bunnySprite.health--;
-        temporalLife.current.post = bunnySprite.health;
+        BUNNY_SPRITE.health--;
+        temporalLife.current.post = BUNNY_SPRITE.health;
       };
 
       if (FOX_LIST[i].type === "left") {
@@ -101,7 +101,7 @@ export function enemyAnimation({
 
         //*! eliminarlo si sale de pantalla
 
-        if (FOX_LIST[i].position > 0 - map.position.x + canvasWidth + 400) {
+        if (FOX_LIST[i].position > 0 - MAP.position.x + canvasWidth + 400) {
           FOX_LIST.splice(i, 1);
           continue;
         }
@@ -114,7 +114,7 @@ export function enemyAnimation({
 
         //*! eliminarlo si sale de pantalla
 
-        if (FOX_LIST[i].position < 0 - map.position.x) {
+        if (FOX_LIST[i].position < 0 - MAP.position.x) {
           FOX_LIST.splice(i, 1);
           continue;
         }
@@ -122,7 +122,7 @@ export function enemyAnimation({
 
       //*! collition
 
-      if (isColliding() && bunnySprite.impulse === 0 && !bunnySprite.isDead) {
+      if (isColliding() && BUNNY_SPRITE.impulse === 0 && !BUNNY_SPRITE.isDead) {
         // console.log("golpeó");
         muerte();
       }

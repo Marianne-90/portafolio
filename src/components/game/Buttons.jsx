@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { bunnySprite, map } from "./tools/sprites";
+import { BUNNY_SPRITE, MAP } from "./tools/sprites";
 import { MainContext } from "./context/MainContext";
 
 export const Buttons = () => {
@@ -22,13 +22,13 @@ export const Buttons = () => {
   },[restart])
 
   const handleJump = () => {
-    if (bunnySprite.impulse !== 0) return;
+    if (BUNNY_SPRITE.impulse !== 0) return;
     setKeyPressed("jump");
   };
 
   const handleMoveLeftTouchStart = () => {
     return setInterval(() => {
-      if (!bunnySprite.eating && !bunnySprite.isDead) {
+      if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
         setKeyPressed("left");
         temporalXposition.current += 5;
         setXPosition(temporalXposition.current);
@@ -38,7 +38,7 @@ export const Buttons = () => {
 
   const handleMoveRightTouchStart = () => {
     return setInterval(() => {
-      if (map.position.x >= 0 - 300 && !bunnySprite.eating && !bunnySprite.isDead) {
+      if (MAP.position.x >= 0 - 300 && !BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
         setKeyPressed("rigth");
         temporalXposition.current -= 5;
         setXPosition(temporalXposition.current);

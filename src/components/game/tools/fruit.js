@@ -1,5 +1,5 @@
 import { Fruit } from "../../../classes/Fruit";
-import { map, bunnySprite } from "./sprites";
+import { MAP, BUNNY_SPRITE } from "./sprites";
 
 import cereza from "../../../img/bunny/sprites/fruit/cereza.png";
 import chile from "../../../img/bunny/sprites/fruit/chile.png";
@@ -41,8 +41,8 @@ export function randomFruitGenerator() {
     foodIsRootten = true;
   }
 
-  let rangoInicialX = 0 - map.position.x;
-  let rangoFinalX = 0 - map.position.x + 500;
+  let rangoInicialX = 0 - MAP.position.x;
+  let rangoFinalX = 0 - MAP.position.x + 500;
 
   let randomPositionX =
     Math.floor(Math.random() * (rangoFinalX - rangoInicialX)) + rangoInicialX;
@@ -110,25 +110,25 @@ export function fruitAnimation({
       if (
         estaEnPantalla() &&
         isInTheMidle() &&
-        bunnySprite.impulse === 0 &&
+        BUNNY_SPRITE.impulse === 0 &&
         element.impulse === 0
       ) {
         element.isEaten = true;
-        bunnySprite.eating = true;
-        bunnySprite.foodType = element.foodName;
+        BUNNY_SPRITE.eating = true;
+        BUNNY_SPRITE.foodType = element.foodName;
 
         if (!element.rotten) {
-          bunnySprite.food[element.foodName]++;
-          temporalFoodCounter.current.post = bunnySprite.food;
+          BUNNY_SPRITE.food[element.foodName]++;
+          temporalFoodCounter.current.post = BUNNY_SPRITE.food;
         } else if (element.rotten) {
-          bunnySprite.health--;
-          temporalLife.current.post = bunnySprite.health;
-          bunnySprite.isSick=true;
+          BUNNY_SPRITE.health--;
+          temporalLife.current.post = BUNNY_SPRITE.health;
+          BUNNY_SPRITE.isSick=true;
         }
       }
 
-      if(bunnySprite.eating){
-        bunnySprite.switchSpride(element.foodName);
+      if(BUNNY_SPRITE.eating){
+        BUNNY_SPRITE.switchSpride(element.foodName);
       }
 
       element.position.x =

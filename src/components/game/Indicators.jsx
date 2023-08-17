@@ -1,4 +1,4 @@
-import { bunnySprite, map } from "./tools/sprites";
+import { BUNNY_SPRITE } from "./tools/sprites";
 import { gameData } from "../../data/gameData";
 import { useRef, useEffect, useContext, useState } from "react";
 import { MainContext } from "./context/MainContext";
@@ -20,7 +20,7 @@ export const Indicators = () => {
     setRestart,
   } = useContext(MainContext);
 
-  let tempFoodCounter = bunnySprite.food;
+  let tempFoodCounter = BUNNY_SPRITE.food;
 
   useEffect(() => {
     setIsLifeLoaded(true);
@@ -28,7 +28,7 @@ export const Indicators = () => {
     let timeoutId;
 
     if (lifeCouter <= 0 && isLifeLoaded) {
-      bunnySprite.isDead = true;
+      BUNNY_SPRITE.isDead = true;
 
       timeoutId = setTimeout(() => {
         setDisplay(true);
@@ -41,7 +41,7 @@ export const Indicators = () => {
   }, [lifeCouter]);
 
   useEffect(() => {
-    setFood(bunnySprite.food);
+    setFood(BUNNY_SPRITE.food);
     tempFoodCounter = foodCounter;
   }, [foodCounter]);
 

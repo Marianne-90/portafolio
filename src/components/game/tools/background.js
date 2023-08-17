@@ -1,4 +1,4 @@
-import { map, bunnySprite } from "./sprites";
+import { MAP } from "./sprites";
 import { gameData } from "../../../data/gameData";
 
 const { background } = gameData;
@@ -41,10 +41,10 @@ let backgroungLeftFragment = [];
 let backgroungRight = [];
 
 export function backGroundAnimation({ c, canvasWidth, temporalXposition, temporalPop }) {
-  let initialFrameWidth = map.image.width * map.scale;
-  map.position.x =
+  let initialFrameWidth = MAP.image.width * MAP.scale;
+  MAP.position.x =
     canvasWidth / 2 - initialFrameWidth / 2 + temporalXposition.current;
-  let anchoDeUnFrame = map.imageMap.width / map.framesData.framesTotal; //*! no entiendo poqué pero esta cosa se desgobierna si le pones initialFrameWidth, no lo hagas es obvio pero no lo hagas
+  let anchoDeUnFrame = MAP.imageMap.width / MAP.framesData.framesTotal; //*! no entiendo poqué pero esta cosa se desgobierna si le pones initialFrameWidth, no lo hagas es obvio pero no lo hagas
 
   largoDelFramento = Math.ceil(canvasWidth / anchoDeUnFrame);
 
@@ -53,14 +53,14 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition, tempora
   //*! asignar valores a los acction blocks lo pongo así para que sea escalable
   //*! además evaluo si chocan y ejecuto una acción
 
-  map.accionBlocks.forEach((action, index) => {
-    let xPosition = map.position.x + map.accionBlocks[index].initialPosition.x;
-    let yPosition = map.image.height - map.accionBlocks[index].height; //*! quiero que se dibuje de abajo
+  MAP.accionBlocks.forEach((action, index) => {
+    let xPosition = MAP.position.x + MAP.accionBlocks[index].initialPosition.x;
+    let yPosition = MAP.image.height - MAP.accionBlocks[index].height; //*! quiero que se dibuje de abajo
 
-    let elementWidth = map.accionBlocks[index].width;
+    let elementWidth = MAP.accionBlocks[index].width;
 
-    map.accionBlocks[index].position.x = xPosition;
-    map.accionBlocks[index].position.y = yPosition;
+    MAP.accionBlocks[index].position.x = xPosition;
+    MAP.accionBlocks[index].position.y = yPosition;
 
     const isColliding = () => {
       return (
@@ -69,11 +69,11 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition, tempora
       );
     };
 
-    if (isColliding() && map.accionBlocks[index].isActive === false) {
-      map.accionBlocks[index].isActive = true;
-      temporalPop.current.post = {... map.accionBlocks[index], index}
-    } else if (!isColliding() && map.accionBlocks[index].isActive === true) {
-      map.accionBlocks[index].isActive = false;
+    if (isColliding() && MAP.accionBlocks[index].isActive === false) {
+      MAP.accionBlocks[index].isActive = true;
+      temporalPop.current.post = {... MAP.accionBlocks[index], index}
+    } else if (!isColliding() && MAP.accionBlocks[index].isActive === true) {
+      MAP.accionBlocks[index].isActive = false;
       temporalPop.current.post = {}
     }
   });
@@ -81,7 +81,7 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition, tempora
   //*! esto es para optimizar la carga del mapa y que no se estén cargando todos los frames al mismo tiempo
   //*? tenemos que ver que anchoDeUnFrame sea mayor a 0 o sea que acabe de cargar si no las fórmulas no funcionan
   if (anchoDeUnFrame !== 0) {
-    let caltulateLastFragment = Math.ceil(map.position.x / anchoDeUnFrame); //*? la distancia de x la dividimos entre el ancho de un frame y redondeamos para arriba
+    let caltulateLastFragment = Math.ceil(MAP.position.x / anchoDeUnFrame); //*? la distancia de x la dividimos entre el ancho de un frame y redondeamos para arriba
 
     caltulateInitialFragnet =
       caltulateLastFragment - largoDelFramento - 1 < 0 //*! este uno lo recupero abajo es para que no se vea la carga
@@ -98,7 +98,7 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition, tempora
 
   //*? esto genera los frames aleatorios pertinentes y los mantiene conforme crece
 
-  if (map.position.x - backgroungLeft.length * anchoDeUnFrame >= 0) {
+  if (MAP.position.x - backgroungLeft.length * anchoDeUnFrame >= 0) {
     let element = {
       ...randomFramesGenerator(background.frames),
       position: backgroungLeft.length,
@@ -110,7 +110,7 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition, tempora
   //*? lo mismo para la izquierda, pero no aplico la fragmentación pues solo lo voy a dibujar hasta que tope el home y luego ya no va a avanzar
 
   if (
-    map.position.x +
+    MAP.position.x +
       initialFrameWidth +
       backgroungRight.length * anchoDeUnFrame >=
     0
@@ -118,20 +118,20 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition, tempora
     backgroungRight.push(randomFramesGenerator(background.frames));
   }
 
-  map.spritesLeft = backgroungLeftFragment;
-  map.spritesRigth = backgroungRight;
+  MAP.spritesLeft = backgroungLeftFragment;
+  MAP.spritesRigth = backgroungRight;
 
   //*! aquí asignamos los valores a los objetos de acción
 
-  map.update(c, canvasWidth);
+  MAP.update(c, canvasWidth);
 }
 
 export function backGroundRestart(canvasWidth) {
-  map.spritesLeft = backgroungLeftFragment;
-  map.spritesRigth = backgroungRight;
+  MAP.spritesLeft = backgroungLeftFragment;
+  MAP.spritesRigth = backgroungRight;
 
-  let initialFrameWidth = map.image.width * map.scale;
-  map.position.x = canvasWidth / 2 - initialFrameWidth / 2;
+  let initialFrameWidth = MAP.image.width * MAP.scale;
+  MAP.position.x = canvasWidth / 2 - initialFrameWidth / 2;
 
   background.general.position.x = 0;
 

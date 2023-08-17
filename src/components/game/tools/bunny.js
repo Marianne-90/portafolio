@@ -1,4 +1,4 @@
-import { bunnySprite } from "./sprites";
+import { BUNNY_SPRITE } from "./sprites";
 import { gameData } from "../../../data/gameData";
 
 const { bunny } = gameData;
@@ -10,38 +10,38 @@ export function bunnyAnimation({
   temporalKeyPress,
 }) {
   let initialBunnyWidth =
-    (bunnySprite.image.width * bunnySprite.scale) / bunnySprite.framesMax;
+    (BUNNY_SPRITE.image.width * BUNNY_SPRITE.scale) / BUNNY_SPRITE.framesMax;
 
-  bunnySprite.position.x = canvasWidth / 2 - initialBunnyWidth / 2;
+  BUNNY_SPRITE.position.x = canvasWidth / 2 - initialBunnyWidth / 2;
   //*! en el archivo de frutas se asigna el sprite e comer frutas
-  if (bunnySprite.eating) {
-    bunnySprite.switchSpride(bunnySprite.foodType);
+  if (BUNNY_SPRITE.eating) {
+    BUNNY_SPRITE.switchSpride(BUNNY_SPRITE.foodType);
   }
 
-  if (bunnySprite.isDead) {
-    bunnySprite.switchSpride("dead");
+  if (BUNNY_SPRITE.isDead) {
+    BUNNY_SPRITE.switchSpride("dead");
   }
 
-  if (!bunnySprite.eating && !bunnySprite.isDead) {
+  if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
     if (temporalKeyPress.current === "jump") {
-      bunnySprite.jump(-6);
+      BUNNY_SPRITE.jump(-6);
     }
 
-    bunnySprite.switchSpride(temporalKeyPress.current);
+    BUNNY_SPRITE.switchSpride(temporalKeyPress.current);
   }
 
-  bunnySprite.update(c, canvasHeight);
+  BUNNY_SPRITE.update(c, canvasHeight);
 }
 
 export function bunnyRestart() {
-  bunnySprite.isDead = false;
-  bunnySprite.switchSpride("neutro");
-  bunnySprite.food = {
+  BUNNY_SPRITE.isDead = false;
+  BUNNY_SPRITE.switchSpride("neutro");
+  BUNNY_SPRITE.food = {
     fresa: 0,
     cereza: 0,
     naranja: 0,
     chile: 0,
   };
-  bunnySprite.eating = false;
-  bunnySprite.health = 3;
+  BUNNY_SPRITE.eating = false;
+  BUNNY_SPRITE.health = 3;
 }

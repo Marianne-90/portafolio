@@ -1,23 +1,35 @@
 import { useContext } from "react";
 import { MainContext } from "./context/MainContext";
+import { MAP, BUNNY_SPRITE } from "./tools/sprites";
+import { gameData } from "../../data/gameData";
 
 export const Pops = () => {
-  const { setbunnyScenario, popElement, setPopElement} = useContext(MainContext);
+  const { setbunnyScenario, popElement, setPopElement } =
+    useContext(MainContext);
+
+    const { house } = gameData;   
 
   const handleAction = () => {
     switch (popElement.name) {
       case "home":
-        setbunnyScenario()
+
+        let newSrc = house.general.imageSrc;
+        MAP.switchBackGround(newSrc);
+
+        MAP.framesData = house.framesData;
+        MAP.accionBlocks = house.accionBlocks;
+
+        BUNNY_SPRITE.base = 40;
+        setbunnyScenario("home");
         break;
       default:
         break;
     }
 
-    setPopElement({})
+    setPopElement({});
   };
 
-  if(popElement.index !== undefined){
-
+  if (popElement.index !== undefined) {
     return (
       <div className="pop">
         <div className="popElement">
@@ -32,8 +44,7 @@ export const Pops = () => {
             </button>
           </div>
         </div>
-      </div>)
+      </div>
+    );
   }
-  
-
 };

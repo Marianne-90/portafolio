@@ -2,7 +2,7 @@ import background from "../img/bunny/sprites/background/backGround.png";
 import initialFrame from "../img/bunny/sprites/background/mainFrame.png";
 
 import house from "../img/bunny/sprites/background/house.png"
-import wall from "../img/bunny/sprites/background/house.png"
+import wall from "../img/bunny/sprites/background/walls.png"
 
 import neutro from "../img/bunny/sprites/bunny/neutro.png";
 import caer from "../img/bunny/sprites/bunny/caer.png";
@@ -229,15 +229,15 @@ export const gameData = {
           },
           width: 100,
           height: 40,
-          message:"Do you what to go home? ",
+          message:"Do you what to go to the park? ",
           isActive:false,
         },
       ],
     },
     frames: [
       {
-        name: "paloYArbusto",
-        frequency: 5,
+        name: "pared",
+        frequency: 1,
       },
     ],
   },

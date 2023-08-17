@@ -118,7 +118,13 @@ export class Map extends Sprite {
     }
   }
 
-  test() {
-    console.log("sprites", spritesLeft);
-  }
+switchBackGround(newSrc){
+
+let image = new Image();
+image.src = newSrc;
+
+this.image = image;
+
+}
+
 }

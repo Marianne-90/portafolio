@@ -8,7 +8,7 @@ import { bunnyAnimation, bunnyRestart } from "./tools/bunny";
 import { fruitAnimation, randomFruitGenerator } from "./tools/fruit";
 import { enemyAnimation, enemyGenerator } from "./tools/enemy";
 import { MainContext } from "./context/MainContext";
-import { bunnySprite } from "./tools/sprites";
+import { BUNNY_SPRITE } from "./tools/sprites";
 import { gameData } from "../../data/gameData";
 
 export const Park = () => {
@@ -66,14 +66,14 @@ export const Park = () => {
     let speeder = 0; //*! esto es para que cada vez aparezcan más zorros
 
     temporalLife.current = {
-      prev: bunnySprite.health,
-      post: bunnySprite.health,
+      prev: BUNNY_SPRITE.health,
+      post: BUNNY_SPRITE.health,
     };
     temporalFoodCounter.current.prev = {
-      prev: bunnySprite.food,
-      post: bunnySprite.food,
+      prev: BUNNY_SPRITE.food,
+      post: BUNNY_SPRITE.food,
     };
-    setbunnyLife(bunnySprite.health);
+    setbunnyLife(BUNNY_SPRITE.health);
 
     //SE INICIA EL CANVAS
     const c = initCanvas(canvasWidth, canvasHeight, canvasRef);
