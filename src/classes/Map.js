@@ -55,18 +55,18 @@ export class Map extends Sprite {
 
     //*! dibujar el cuadro de volver a casa
     
-    c.fillStyle = "red"; // Color rojo
+    // c.fillStyle = "red"; // Color rojo
     
-    if(this.accionBlocks.length > 0){
-      for (let i = 0; i < this.accionBlocks.length; i++) {
-        c.fillRect(
-          this.accionBlocks[i].position.x,
-          this.accionBlocks[i].position.y,
-          this.accionBlocks[i].width,
-          this.accionBlocks[i].height
-        );
-      }
-    }
+    // if(this.accionBlocks.length > 0){
+    //   for (let i = 0; i < this.accionBlocks.length; i++) {
+    //     c.fillRect(
+    //       this.accionBlocks[i].position.x,
+    //       this.accionBlocks[i].position.y,
+    //       this.accionBlocks[i].width,
+    //       this.accionBlocks[i].height
+    //     );
+    //   }
+    // }
 
     if (this.spritesLeft.length > 0 && this.position.x > 0) {
       for (let i = 0; i < this.spritesLeft.length; i++) {

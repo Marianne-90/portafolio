@@ -5,22 +5,20 @@ import { MainContext } from "./context/MainContext";
 import { Pops } from "./Pops";
 
 export const Indicators = () => {
-
   const { controllers, bunny } = gameData;
 
-  // console.log(map.accionBlocks[0]);
+  const [isLifeLoaded, setIsLifeLoaded] = useState(false);
+  const [isBunnyDead, setIsBunnyDead] = useState(false);
+  const [display, setDisplay] = useState(false);
+
 
   const {
     bunnyLife: lifeCouter,
     bunnyFood: foodCounter,
     setFood,
     setbunnyScenario,
-    setRestart
+    setRestart,
   } = useContext(MainContext);
-
-  const [isLifeLoaded, setIsLifeLoaded] = useState(false);
-  const [isBunnyDead, setIsBunnyDead] = useState(false);
-  const [display, setDisplay] = useState(false);
 
   let tempFoodCounter = bunnySprite.food;
 
@@ -35,7 +33,7 @@ export const Indicators = () => {
       timeoutId = setTimeout(() => {
         setDisplay(true);
       }, 3500);
-      //*! regresar 
+      //*! regresar
       setIsBunnyDead(true);
     }
 
@@ -78,7 +76,6 @@ export const Indicators = () => {
   };
 
   const handleRestart = () => {
-
     setbunnyScenario("park");
 
     setIsLifeLoaded(false);
@@ -86,7 +83,6 @@ export const Indicators = () => {
     setDisplay(false);
 
     setRestart(true);
-
   };
 
   return (

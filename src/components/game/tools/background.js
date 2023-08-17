@@ -17,22 +17,22 @@ export const initCanvas = (canvasWidth, canvasHeight, canvasRef) => {
 };
 
 export function randomFramesGenerator(frames) {
-  const FRAMESPROBABILIDADES = [];
+  const FRAMES_PROBABILIDADES = [];
 
   for (let i = 0; i < frames.length; i++) {
     let element = frames[i];
     let posibility = element.frequency;
 
     while (posibility > 0) {
-      FRAMESPROBABILIDADES.push({ index: i, name: element.name });
+      FRAMES_PROBABILIDADES.push({ index: i, name: element.name });
       posibility--;
     }
   }
 
   //*! calcula un numero aleatorio entre 0 y la suma de todas las probabilidades
-  const RANDOMNUM = Math.floor(Math.random() * FRAMESPROBABILIDADES.length);
-  const RANDOMFRAME = FRAMESPROBABILIDADES[RANDOMNUM];
-  return RANDOMFRAME;
+  const RANDOM_NUM = Math.floor(Math.random() * FRAMES_PROBABILIDADES.length);
+  const RANDOM_FRAME = FRAMES_PROBABILIDADES[RANDOM_NUM];
+  return RANDOM_FRAME;
 }
 
 let backgroungLeft = [];
@@ -40,7 +40,7 @@ let largoDelFramento = 0;
 let backgroungLeftFragment = [];
 let backgroungRight = [];
 
-export function backGroundAnimation({ c, canvasWidth, temporalXposition }) {
+export function backGroundAnimation({ c, canvasWidth, temporalXposition, temporalPop }) {
   let initialFrameWidth = map.image.width * map.scale;
   map.position.x =
     canvasWidth / 2 - initialFrameWidth / 2 + temporalXposition.current;
@@ -57,27 +57,25 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition }) {
     let xPosition = map.position.x + map.accionBlocks[index].initialPosition.x;
     let yPosition = map.image.height - map.accionBlocks[index].height; //*! quiero que se dibuje de abajo
 
-    let elementWidth =  map.accionBlocks[index].width
+    let elementWidth = map.accionBlocks[index].width;
 
     map.accionBlocks[index].position.x = xPosition;
     map.accionBlocks[index].position.y = yPosition;
 
     const isColliding = () => {
-      return xPosition < canvasWidth/2 && xPosition+elementWidth >  canvasWidth/2;
+      return (
+        xPosition < canvasWidth / 2 &&
+        xPosition + elementWidth > canvasWidth / 2
+      );
     };
 
-
-   if(isColliding() && map.accionBlocks[index].isActive === false){
-    map.accionBlocks[index].isActive = true;
-    console.log('entro');
-    
-   }else if(!isColliding() && map.accionBlocks[index].isActive === true ){
-    map.accionBlocks[index].isActive = false;
-    console.log('salió');
-   }
-    
-
-
+    if (isColliding() && map.accionBlocks[index].isActive === false) {
+      map.accionBlocks[index].isActive = true;
+      temporalPop.current.post = {... map.accionBlocks[index], index}
+    } else if (!isColliding() && map.accionBlocks[index].isActive === true) {
+      map.accionBlocks[index].isActive = false;
+      temporalPop.current.post = {}
+    }
   });
 
   //*! esto es para optimizar la carga del mapa y que no se estén cargando todos los frames al mismo tiempo

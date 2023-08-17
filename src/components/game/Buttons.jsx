@@ -11,6 +11,10 @@ export const Buttons = () => {
 
   let temporalXposition = useRef(0);
 
+  // useEffect(()=>{
+  //   temporalXposition.current = xPosition;
+  // },[xPosition])
+
   useEffect(()=>{
     if(restart){
       temporalXposition.current = 0
@@ -34,7 +38,7 @@ export const Buttons = () => {
 
   const handleMoveRightTouchStart = () => {
     return setInterval(() => {
-      if (map.position.x >= 0 && !bunnySprite.eating && !bunnySprite.isDead) {
+      if (map.position.x >= 0 - 300 && !bunnySprite.eating && !bunnySprite.isDead) {
         setKeyPressed("rigth");
         temporalXposition.current -= 5;
         setXPosition(temporalXposition.current);

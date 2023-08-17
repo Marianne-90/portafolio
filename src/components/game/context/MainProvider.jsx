@@ -8,7 +8,7 @@ export const MainProvider = ({ children }) => {
   const [keyPressed, setKeyPressed] = useState("neutro");
   const [xPosition, setXPosition] = useState(0);
   const [restart, setRestart] = useState(false);
-
+  const [popElement, setPopElement] = useState({});
   return (
     <MainContext.Provider
       value={{
@@ -23,7 +23,9 @@ export const MainProvider = ({ children }) => {
         xPosition,
         setXPosition,
         restart, 
-        setRestart
+        setRestart,
+        popElement, 
+        setPopElement
       }}
     >
       {children}

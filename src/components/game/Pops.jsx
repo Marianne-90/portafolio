@@ -1,8 +1,39 @@
-import { map } from "./tools/sprites";
-
+import { useContext } from "react";
+import { MainContext } from "./context/MainContext";
 
 export const Pops = () => {
-    // console.log(map.accionBlocks[0]);
+  const { setbunnyScenario, popElement, setPopElement} = useContext(MainContext);
 
-    console.log('Pops');
+  const handleAction = () => {
+    switch (popElement.name) {
+      case "home":
+        setbunnyScenario()
+        break;
+      default:
+        break;
+    }
+
+    setPopElement({})
+  };
+
+  if(popElement.index !== undefined){
+
+    return (
+      <div className="pop">
+        <div className="popElement">
+          <p>{popElement.message}</p>
+          <div className="buttons">
+            <button
+              onClick={() => {
+                handleAction();
+              }}
+            >
+              Yes
+            </button>
+          </div>
+        </div>
+      </div>)
+  }
+  
+
 };

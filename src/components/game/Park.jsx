@@ -30,6 +30,7 @@ export const Park = () => {
     setFood,
     restart,
     setRestart,
+    setPopElement,
   } = useContext(MainContext);
 
   let temporalXposition = useRef(0);
@@ -39,6 +40,10 @@ export const Park = () => {
     post: 0,
   });
   let temporalFoodCounter = useRef({ prev: {}, post: {} });
+  let temporalPop = useRef({
+    prev: {},
+    post: {},
+  })
   let temporalRestart = useRef(false);
 
   useEffect(() => {
@@ -85,7 +90,7 @@ export const Park = () => {
         }
 
         c.fillRect(0, 0, canvasWidth, canvas.height);
-        backGroundAnimation({ c, canvasWidth, temporalXposition });
+        backGroundAnimation({ c, canvasWidth, temporalXposition, temporalPop });
         bunnyAnimation({ c, canvasWidth, canvasHeight, temporalKeyPress });
         fruitAnimation({
           c,
@@ -125,19 +130,11 @@ export const Park = () => {
 
           setXPosition(0);
           setFood({});
-          
-          //*! 
-          // if (fruitTimer !== null) {
-          //   clearInterval(fruitTimer);
-          // }
-          // if (enemyTimer !== null) {
-          //   clearInterval(enemyTimer);
-          // }
 
           setRestart(false);
         }
 
-        //*! vamos a evaluar si algo a cambiado en la salud o la comida y actualizarlo en el contexto general
+        //*! vamos a evaluar si algo a cambiado en la salud o la comida o actionBlocks y actualizarlo en el contexto general
 
         if (temporalLife.current.post !== temporalLife.current.prev) {
           temporalLife.current.prev = temporalLife.current.post;
@@ -150,6 +147,11 @@ export const Park = () => {
           temporalFoodCounter.current.prev = temporalFoodCounter.current.post;
           setFood(temporalFoodCounter.current.post);
         }
+
+        if( temporalPop.current.prev !== temporalPop.current.post){
+          temporalPop.current.prev = temporalPop.current.post;
+          setPopElement(temporalPop.current.post)
+        }
       }
 
       animate();
@@ -158,15 +160,15 @@ export const Park = () => {
     //*? ------ GENERADOR DE FRUTAS ALEATORIAS ---------------------
 
     const fruitTimer = setInterval(() => {
-      // randomFruitGenerator();
+      randomFruitGenerator();
     }, Math.floor(Math.random() * 7000) + 5000);
 
     //*? GENERADOR DE ENEMIGOS
 
     const enemyTimer =
       setInterval(() => {
-        speeder += 100;
-        // enemyGenerator(canvasWidth);
+        speeder += 100;        
+        enemyGenerator(canvasWidth);
       }, Math.floor(Math.random() * 15000 - speeder * 2 ) + 10000 - speeder * 2) ;
 
     //*? -------- MANEJAR EL REDIMENCIONADO -----------------------

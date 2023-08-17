@@ -1540,6 +1540,43 @@ padding: 5px;
   border: #ffffff 1px solid;
 }
 
+.gameContainer .controladores .pop{
+  position: absolute;
+  top: 130px;
+  width: calc(100% - 30px);
+  display: flex;
+  justify-content: center;
+}
+.gameContainer .controladores .pop .popElement{
+  background-color: #e9f7d2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  font-family: "Press Start 2P", cursive;
+  color: #354757;
+  border: #4b5563 1px solid;
+}
+
+.gameContainer .controladores .pop .popElement p {
+  text-align: center;
+}
+
+.gameContainer .controladores .pop .popElement button{
+  font-family: "Press Start 2P", cursive;
+  color: #354757;
+  padding: 10px;
+  background-color: #84cc16;
+  cursor: pointer;
+  border: #4b5563 1px solid;
+}
+
+.gameContainer .controladores .pop .popElement button:hover{
+  background-color: #73b315;
+}
+
+
 .gameContainer .bunnyGame {
   border: #4b5563 1px solid;
 }
