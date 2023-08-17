@@ -10,3 +10,4 @@ let newBackgroundSprite = {...background.general}
 
 export const map = new Map(newBackgroundSprite);
 export const bunnySprite = new Character(bunny);
+export const HOUSE_SPRITE = new Map(...house.general)

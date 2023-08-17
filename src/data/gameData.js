@@ -1,6 +1,9 @@
 import background from "../img/bunny/sprites/background/backGround.png";
 import initialFrame from "../img/bunny/sprites/background/mainFrame.png";
 
+import house from "../img/bunny/sprites/background/house.png"
+import wall from "../img/bunny/sprites/background/house.png"
+
 import neutro from "../img/bunny/sprites/bunny/neutro.png";
 import caer from "../img/bunny/sprites/bunny/caer.png";
 import derecha from "../img/bunny/sprites/bunny/derecha.png";
@@ -197,6 +200,44 @@ export const gameData = {
       {
         name: "piedras",
         frequency: 2,
+      },
+    ],
+  },
+    house: {
+    general: {
+      position: {
+        x: 0,
+        y: 0,
+      },
+      imageSrc: house,
+      scale: 1,
+      framesMax: 1,
+      framesData: {
+        imageSrc: wall,
+        framesTotal: 0, 
+      },
+      accionBlocks: [
+        {
+          name: "home",
+          position: {
+            x: 0,
+            y: 0,
+          },
+          initialPosition: {
+            x: 235,
+            y: 0,
+          },
+          width: 100,
+          height: 40,
+          message:"Do you what to go home? ",
+          isActive:false,
+        },
+      ],
+    },
+    frames: [
+      {
+        name: "paloYArbusto",
+        frequency: 5,
       },
     ],
   },
