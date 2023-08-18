@@ -118,12 +118,16 @@ export class Map extends Sprite {
     }
   }
 
-switchBackGround(newSrc){
+switchBackGround(newSrc, newFrameSrc){
 
 let image = new Image();
+let frameImage = new Image();
+
 image.src = newSrc;
+frameImage.src = newFrameSrc;
 
 this.image = image;
+this.imageMap = frameImage 
 
 }
 

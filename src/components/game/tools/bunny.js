@@ -1,5 +1,7 @@
 import { BUNNY_SPRITE } from "./sprites";
 import { gameData } from "../../../data/gameData";
+import { useContext } from "react";
+import { MainContext } from "../context/MainContext";
 
 const { bunny } = gameData;
 
@@ -9,6 +11,7 @@ export function bunnyAnimation({
   canvasHeight,
   temporalKeyPress,
 }) {
+  
   let initialBunnyWidth =
     (BUNNY_SPRITE.image.width * BUNNY_SPRITE.scale) / BUNNY_SPRITE.framesMax;
 
@@ -24,7 +27,7 @@ export function bunnyAnimation({
 
   if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
     if (temporalKeyPress.current === "jump") {
-      BUNNY_SPRITE.jump(-6);
+      BUNNY_SPRITE.jump();
     }
 
     BUNNY_SPRITE.switchSpride(temporalKeyPress.current);

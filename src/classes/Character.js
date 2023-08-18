@@ -59,6 +59,7 @@ export class Character extends Sprite {
 
     this.gravity = 0.1;
     this.jumpStrength = 0; //
+    this.strengt = -6;
 
     this.food = food;
     this.eating = false;
@@ -203,8 +204,8 @@ export class Character extends Sprite {
     }
   }
 
-  jump(strengt) {
-    this.jumpStrength = strengt;
+  jump() {
+    this.jumpStrength = this.strengt;
     this.impulse = this.jumpStrength;
   }
 
