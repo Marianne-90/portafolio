@@ -214,7 +214,7 @@ export const gameData = {
       framesMax: 1,
       framesData: {
         imageSrc: wall,
-        framesTotal: 0, 
+        framesTotal: 1, 
       },
       accionBlocks: [
         {

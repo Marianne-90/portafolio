@@ -11,9 +11,7 @@ export class Map extends Sprite {
     animate,
     accionBlocks = [],
     obstacles = [],
-
   }) {
-
     super({
       position,
       imageSrc,
@@ -54,9 +52,9 @@ export class Map extends Sprite {
     );
 
     //*! dibujar el cuadro de volver a casa
-    
+
     // c.fillStyle = "red"; // Color rojo
-    
+
     // if(this.accionBlocks.length > 0){
     //   for (let i = 0; i < this.accionBlocks.length; i++) {
     //     c.fillRect(
@@ -70,6 +68,8 @@ export class Map extends Sprite {
 
     if (this.spritesLeft.length > 0 && this.position.x > 0) {
       for (let i = 0; i < this.spritesLeft.length; i++) {
+        // console.log(this.imageMap.width / this.framesData.framesTotal);
+        
         c.drawImage(
           this.imageMap,
           //   crop information
@@ -118,17 +118,14 @@ export class Map extends Sprite {
     }
   }
 
-switchBackGround(newSrc, newFrameSrc){
+  switchBackGround(newSrc, newFrameSrc) {
+    let image = new Image();
+    let frameImage = new Image();
 
-let image = new Image();
-let frameImage = new Image();
+    image.src = newSrc;
+    frameImage.src = newFrameSrc;
 
-image.src = newSrc;
-frameImage.src = newFrameSrc;
-
-this.image = image;
-this.imageMap = frameImage 
-
-}
-
+    this.image = image;
+    this.imageMap = frameImage;
+  }
 }

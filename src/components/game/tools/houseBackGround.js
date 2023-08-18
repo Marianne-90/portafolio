@@ -16,7 +16,9 @@ export const initCanvas = (canvasWidth, canvasHeight, canvasRef) => {
   return null;
 };
 
-let wallFrame =  house.frames[0]
+let wallFrame = house.frames[0];
+
+let nivelador = 1.5; //*! no sé porqué no entiendo, los frames aleatorios no están funcionando correctamente y se le debe restar 1.5
 
 let backgroungLeft = [];
 let largoDelFramento = 0;
@@ -28,10 +30,37 @@ export function housedAnimation({
   temporalXposition,
   temporalPop,
 }) {
+  let houseWidth = MAP.image.width * MAP.scale;
+  let anchoDeUnFrame = MAP.imageMap.width / MAP.framesData.framesTotal;
 
-    
-  let house = MAP.image.width * MAP.scale;
-  MAP.position.x = canvasWidth / 2 - house / 2 + temporalXposition.current;
+  MAP.position.x = canvasWidth / 2 - houseWidth / 2 + temporalXposition.current;
+
+  //*! dibujar la pared para que no se vea negro y feo
+
+  //*? IZQUIERDA
+  if (MAP.position.x - backgroungLeft.length * anchoDeUnFrame >= 0) {
+    let element = {
+      name: house.frames[0].name,
+      index: 0,
+      position: backgroungLeft.length - nivelador,
+    };
+    backgroungLeft.push(element);
+  }
+
+  //*? DERECHA
+
+  if (
+    MAP.position.x + houseWidth + backgroungRight.length * anchoDeUnFrame <=
+    canvasWidth
+  ) {
+    let element = {
+      name: house.frames[0].name,
+      index: 0,
+      position: backgroungRight.length + nivelador,
+    };
+
+    backgroungRight.push(element);
+  }
 
   MAP.spritesLeft = backgroungLeft;
   MAP.spritesRigth = backgroungRight;

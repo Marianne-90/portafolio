@@ -1516,6 +1516,7 @@ padding: 5px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 10;
 }
 
 .gameContainer .controladores .panelNoDisplay{
@@ -1546,6 +1547,7 @@ padding: 5px;
   width: calc(100% - 30px);
   display: flex;
   justify-content: center;
+  z-index: 1;
 }
 .gameContainer .controladores .pop .popElement{
   background-color: #e9f7d2;

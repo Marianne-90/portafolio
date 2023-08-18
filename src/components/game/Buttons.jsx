@@ -6,7 +6,7 @@ export const Buttons = () => {
   const moveLeftButtonRef = useRef(null);
   const moveRightButtonRef = useRef(null);
 
-  const { setKeyPressed, xPosition, setXPosition, restart } =
+  const { setKeyPressed, xPosition, setXPosition, restart, bunnyScenario } =
     useContext(MainContext);
 
   let temporalXposition = useRef(0);
@@ -27,23 +27,56 @@ export const Buttons = () => {
   };
 
   const handleMoveLeftTouchStart = () => {
-    return setInterval(() => {
-      if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
-        setKeyPressed("left");
-        temporalXposition.current += 5;
-        setXPosition(temporalXposition.current);
-      }
-    }, 50);
+
+
+    if(bunnyScenario === "park"){
+      return setInterval(() => {
+        if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
+          setKeyPressed("left");
+          temporalXposition.current += 5;
+          setXPosition(temporalXposition.current);
+        }
+      }, 50);
+    }
+
+    if(bunnyScenario === "home"){
+      return setInterval(() => {
+        if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
+          // console.log(MAP.image.width); 
+          setKeyPressed("left");
+          temporalXposition.current += 5;
+          setXPosition(temporalXposition.current);
+        }
+      }, 50);
+    }
   };
 
   const handleMoveRightTouchStart = () => {
-    return setInterval(() => {
-      if (MAP.position.x >= 0 - 300 && !BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
-        setKeyPressed("rigth");
-        temporalXposition.current -= 5;
-        setXPosition(temporalXposition.current);
-      }
-    }, 50);
+    if(bunnyScenario === "park"){
+      return setInterval(() => {
+        if (MAP.position.x >= 0 - 300 && !BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
+       
+          setKeyPressed("rigth");
+          temporalXposition.current -= 5;
+          setXPosition(temporalXposition.current);
+        }
+      }, 50);
+    }
+
+    if(bunnyScenario === "home"){
+      return setInterval(() => {
+        if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead)  {
+
+          // IMAGE WIDTH 960 ENTRE DOS 430
+
+          console.log(xPosition);
+      
+          setKeyPressed("rigth");
+          temporalXposition.current -= 5;
+          setXPosition(temporalXposition.current);
+        }
+      }, 50);
+    }
   };
 
   useEffect(() => {

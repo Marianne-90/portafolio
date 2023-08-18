@@ -1,11 +1,18 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MainContext } from "./context/MainContext";
 import { MAP, BUNNY_SPRITE } from "./tools/sprites";
 import { gameData } from "../../data/gameData";
 
 export const Pops = () => {
-  const { setbunnyScenario, popElement, setPopElement, bunnyScenario } =
-    useContext(MainContext);
+  const {
+    setbunnyScenario,
+    popElement,
+    setPopElement,
+    restart,
+    bunnyScenario,
+  } = useContext(MainContext);
+
+  const [initialLoad, setInitialLoad] = useState(true);
 
   const { house, background } = gameData;
 
@@ -22,7 +29,7 @@ export const Pops = () => {
       () => (MAP.framesData = house.general.framesData),
       () => (MAP.accionBlocks = house.general.accionBlocks),
       () => (BUNNY_SPRITE.base = 40),
-      () => (BUNNY_SPRITE.strengt = -3),
+      () => (BUNNY_SPRITE.strengt = -4),
       () => setbunnyScenario("home"),
     ],
     park: [
@@ -36,11 +43,18 @@ export const Pops = () => {
     ],
   };
 
-  useEffect(()=>{
-    for (let i = 0; i < SCENARIO_SPECIFICATIONS[bunnyScenario].length; i++) {
-      SCENARIO_SPECIFICATIONS[bunnyScenario][i]();
+  useEffect(() => {
+    if (initialLoad) {
+      setInitialLoad(false);
+      for (let i = 0; i < SCENARIO_SPECIFICATIONS[bunnyScenario].length; i++) {
+        SCENARIO_SPECIFICATIONS[bunnyScenario][i]();
+      }
+    } else if (restart) {
+      for (let i = 0; i < SCENARIO_SPECIFICATIONS[bunnyScenario].length; i++) {
+        SCENARIO_SPECIFICATIONS[bunnyScenario][i]();
+      }
     }
-  },[])
+  }, [restart, initialLoad]);
 
   const handleAction = () => {
     let selector = popElement.name;
