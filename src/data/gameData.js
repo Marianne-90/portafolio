@@ -1,8 +1,8 @@
 import background from "../img/bunny/sprites/background/backGround.png";
 import initialFrame from "../img/bunny/sprites/background/mainFrame.png";
 
-import house from "../img/bunny/sprites/background/house.png"
-import wall from "../img/bunny/sprites/background/walls.png"
+import house from "../img/bunny/sprites/background/house.png";
+import wall from "../img/bunny/sprites/background/walls.png";
 
 import neutro from "../img/bunny/sprites/bunny/neutro.png";
 import caer from "../img/bunny/sprites/bunny/caer.png";
@@ -55,10 +55,11 @@ export const gameData = {
           },
           width: 100,
           height: 40,
-          message:"Do you what to go home? ",
-          isActive:false,
+          message: "Do you what to go home? ",
+          isActive: false,
         },
       ],
+      obstacles: [],
     },
     frames: [
       {
@@ -203,7 +204,7 @@ export const gameData = {
       },
     ],
   },
-    house: {
+  house: {
     general: {
       position: {
         x: 0,
@@ -214,23 +215,59 @@ export const gameData = {
       framesMax: 1,
       framesData: {
         imageSrc: wall,
-        framesTotal: 1, 
+        framesTotal: 1,
       },
       accionBlocks: [
         {
-          name: "home",
+          name: "park",
           position: {
             x: 0,
             y: 0,
           },
           initialPosition: {
-            x: 235,
+            x: 70,
             y: 0,
           },
-          width: 100,
+          width: 30,
           height: 40,
-          message:"Do you what to go to the park? ",
-          isActive:false,
+          message: "Do you what to go to the park? ",
+          isActive: false,
+        },
+      ],
+      obstacles: [
+        {
+          name: "left wall",
+          position: {
+            x: 0,
+            y: 0,
+          },
+          initialPosition: {
+            x: -15,
+            y: 0,
+          },
+          width: 30,
+          height: 300,
+          collition: {
+            left: false,
+            right: false,
+          },
+        },
+        {
+          name: "right wall",
+          position: {
+            x: 0,
+            y: 0,
+          },
+          initialPosition: {
+            x: 940,  //*! ancho de la imagen
+            y: 0,
+          },
+          width: 30,
+          height: 300,
+          collition: {
+            left: false,
+            right: false,
+          },
         },
       ],
     },
@@ -385,3 +422,4 @@ export const gameData = {
 
 gameData.background.general.framesData.framesTotal =
   gameData.background.frames.length;
+

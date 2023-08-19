@@ -3,23 +3,16 @@ import { MainContext } from "./context/MainContext";
 import { bunnyAnimation } from "./tools/bunny";
 import { BUNNY_SPRITE } from "./tools/sprites";
 import { gameData } from "../../data/gameData";
-import {
-  initCanvas,
-  housedAnimation,
-} from "./tools/houseBackGround";
-
+import { initCanvas, housedAnimation } from "./tools/houseBackGround";
 
 export const House = () => {
   const {
     keyPressed,
     xPosition,
-    setXPosition,
     setKeyPressed,
-    setbunnyLife,
-    setFood,
-    restart,
-    setRestart,
     setPopElement,
+    blockMove,
+    setblockMove,
   } = useContext(MainContext);
 
   const canvasRef = useRef(null);
@@ -35,11 +28,20 @@ export const House = () => {
     prev: {},
     post: {},
   });
+  let temporalBlockMove = useRef({
+    prev: {
+      left: false,
+      right: false,
+    },
+    post: {
+      left: false,
+      right: false,
+    },
+  });
 
   useEffect(() => {
     temporalXposition.current = xPosition;
   }, [xPosition]);
-
 
   useEffect(() => {
     temporalKeyPress.current = keyPressed;
@@ -57,23 +59,28 @@ export const House = () => {
       const canvas = canvasRef.current;
 
       function animate() {
-        
         animationId = requestAnimationFrame(animate);
         if (temporalKeyPress.current === "jump") {
           setKeyPressed("neutro");
         }
 
         c.fillRect(0, 0, canvasWidth, canvas.height);
-        housedAnimation({ c, canvasWidth, temporalXposition, temporalPop });
+        housedAnimation({ c, canvasWidth, temporalXposition, temporalPop, temporalBlockMove });
         bunnyAnimation({ c, canvasWidth, canvasHeight, temporalKeyPress });
-    
 
         //*! vamos a evaluar si algo a cambiado en la salud o la comida o actionBlocks y actualizarlo en el contexto general
 
-        if( temporalPop.current.prev !== temporalPop.current.post){
+        if (temporalPop.current.prev !== temporalPop.current.post) {
           temporalPop.current.prev = temporalPop.current.post;
-          setPopElement(temporalPop.current.post)
+          setPopElement(temporalPop.current.post);
         }
+
+        if (temporalBlockMove.current.prev !== temporalBlockMove.current.post) {
+          temporalBlockMove.current.prev = temporalBlockMove.current.post;
+          setblockMove(temporalBlockMove.current.post);
+        }
+
+        
       }
 
       animate();
@@ -101,8 +108,6 @@ export const House = () => {
       cancelAnimationFrame(animationId); //*? para que no le de epilepcia al conejo al montarse muchas veces el useEffect
     };
   }, []);
-
-
 
   return (
     <>

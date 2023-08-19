@@ -121,8 +121,6 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition, tempora
   MAP.spritesLeft = backgroungLeftFragment;
   MAP.spritesRigth = backgroungRight;
 
-  //*! aquí asignamos los valores a los objetos de acción
-
   MAP.update(c, canvasWidth);
 }
 

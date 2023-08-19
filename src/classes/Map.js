@@ -51,25 +51,12 @@ export class Map extends Sprite {
       this.image.height * this.scale
     );
 
-    //*! dibujar el cuadro de volver a casa
 
-    // c.fillStyle = "red"; // Color rojo
-
-    // if(this.accionBlocks.length > 0){
-    //   for (let i = 0; i < this.accionBlocks.length; i++) {
-    //     c.fillRect(
-    //       this.accionBlocks[i].position.x,
-    //       this.accionBlocks[i].position.y,
-    //       this.accionBlocks[i].width,
-    //       this.accionBlocks[i].height
-    //     );
-    //   }
-    // }
 
     if (this.spritesLeft.length > 0 && this.position.x > 0) {
       for (let i = 0; i < this.spritesLeft.length; i++) {
         // console.log(this.imageMap.width / this.framesData.framesTotal);
-        
+
         c.drawImage(
           this.imageMap,
           //   crop information
@@ -116,6 +103,38 @@ export class Map extends Sprite {
         );
       }
     }
+
+
+        //*! dibujar action blocks
+
+    // c.fillStyle = "red"; // Color rojo
+
+    // if(this.accionBlocks.length > 0){
+    //   for (let i = 0; i < this.accionBlocks.length; i++) {
+    //     c.fillRect(
+    //       this.accionBlocks[i].position.x,
+    //       this.accionBlocks[i].position.y,
+    //       this.accionBlocks[i].width,
+    //       this.accionBlocks[i].height
+    //     );
+    //   }
+    // }
+
+    //*! dibular obstacles
+
+    // c.fillStyle = "blue"; // Color rojo
+
+    // if (this.obstacles.length > 0) {
+
+    //   for (let i = 0; i < this.obstacles.length; i++) {
+    //     c.fillRect(
+    //       this.obstacles[i].position.x,
+    //       this.obstacles[i].position.y,
+    //       this.obstacles[i].width,
+    //       this.obstacles[i].height
+    //     );
+    //   }
+    // }
   }
 
   switchBackGround(newSrc, newFrameSrc) {

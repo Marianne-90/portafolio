@@ -9,10 +9,11 @@ export const MainProvider = ({ children }) => {
   const [xPosition, setXPosition] = useState(0);
   const [restart, setRestart] = useState(false);
   const [popElement, setPopElement] = useState({});
+  const [blockMove, setblockMove] = useState({ left: false, right: false });
   return (
     <MainContext.Provider
       value={{
-        bunnyLife, 
+        bunnyLife,
         setbunnyLife,
         bunnyFood,
         setFood,
@@ -22,10 +23,12 @@ export const MainProvider = ({ children }) => {
         setKeyPressed,
         xPosition,
         setXPosition,
-        restart, 
+        restart,
         setRestart,
-        popElement, 
-        setPopElement
+        popElement,
+        setPopElement,
+        blockMove,
+        setblockMove,
       }}
     >
       {children}

@@ -6,20 +6,36 @@ export const Buttons = () => {
   const moveLeftButtonRef = useRef(null);
   const moveRightButtonRef = useRef(null);
 
-  const { setKeyPressed, xPosition, setXPosition, restart, bunnyScenario } =
-    useContext(MainContext);
+  const {
+    setKeyPressed,
+    xPosition,
+    setXPosition,
+    restart,
+    bunnyScenario,
+    blockMove,
+  } = useContext(MainContext);
 
   let temporalXposition = useRef(0);
+  let temporalScenario = useRef("");
+  let temporalBlockMove = useRef({ left: false, right: false });
 
-  // useEffect(()=>{
-  //   temporalXposition.current = xPosition;
-  // },[xPosition])
+  useEffect(() => {
+    temporalBlockMove.current = blockMove;
+  }, [blockMove]);
 
-  useEffect(()=>{
-    if(restart){
-      temporalXposition.current = 0
+  useEffect(() => {
+    temporalScenario.current = bunnyScenario;
+  }, [bunnyScenario]);
+
+  useEffect(() => {
+    if (restart) {
+      temporalXposition.current = 0;
     }
-  },[restart])
+  }, [restart]);
+
+  useEffect(() => {
+    temporalXposition.current = xPosition;
+  }, [xPosition]);
 
   const handleJump = () => {
     if (BUNNY_SPRITE.impulse !== 0) return;
@@ -27,9 +43,7 @@ export const Buttons = () => {
   };
 
   const handleMoveLeftTouchStart = () => {
-
-
-    if(bunnyScenario === "park"){
+    if (temporalScenario.current === "park") {
       return setInterval(() => {
         if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
           setKeyPressed("left");
@@ -39,10 +53,13 @@ export const Buttons = () => {
       }, 50);
     }
 
-    if(bunnyScenario === "home"){
+    if (temporalScenario.current === "home") {
       return setInterval(() => {
-        if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
-          // console.log(MAP.image.width); 
+        if (
+          !BUNNY_SPRITE.eating &&
+          !BUNNY_SPRITE.isDead &&
+          !temporalBlockMove.current.left
+        ) {
           setKeyPressed("left");
           temporalXposition.current += 5;
           setXPosition(temporalXposition.current);
@@ -52,10 +69,13 @@ export const Buttons = () => {
   };
 
   const handleMoveRightTouchStart = () => {
-    if(bunnyScenario === "park"){
+    if (temporalScenario.current === "park") {
       return setInterval(() => {
-        if (MAP.position.x >= 0 - 300 && !BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
-       
+        if (
+          MAP.position.x >= 0 - 300 &&
+          !BUNNY_SPRITE.eating &&
+          !BUNNY_SPRITE.isDead
+        ) {
           setKeyPressed("rigth");
           temporalXposition.current -= 5;
           setXPosition(temporalXposition.current);
@@ -63,14 +83,9 @@ export const Buttons = () => {
       }, 50);
     }
 
-    if(bunnyScenario === "home"){
+    if (temporalScenario.current === "home") {
       return setInterval(() => {
-        if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead)  {
-
-          // IMAGE WIDTH 960 ENTRE DOS 430
-
-          console.log(xPosition);
-      
+        if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead && !temporalBlockMove.current.right) {
           setKeyPressed("rigth");
           temporalXposition.current -= 5;
           setXPosition(temporalXposition.current);
