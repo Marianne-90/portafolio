@@ -7,6 +7,7 @@ export const Buttons = () => {
   const moveRightButtonRef = useRef(null);
 
   const {
+    keyPressed,
     setKeyPressed,
     xPosition,
     setXPosition,

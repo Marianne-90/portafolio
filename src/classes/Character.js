@@ -79,6 +79,26 @@ export class Character extends Sprite {
 
 
   switchSpride(sprite) {
+
+   if(this.image === this.sprites.program.image ||
+      this.image === this.sprites.read.image ||
+      this.image === this.sprites.sleep.image){
+
+    if (this.framesElapsed % this.framesHold === 0) {
+      this.spritesElapsed++;
+    }
+
+    if (this.spritesElapsed < this.framesMax) {
+      return;
+    }
+
+    if (this.spritesElapsed === this.framesMax) {
+      this.base = 38;
+      this.spritesElapsed = 0;
+    }
+   }
+   
+
     //*? -------------- MUERTO -----------------------
 
     if (this.isDead && this.sprites.dead.image === this.image) {

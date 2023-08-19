@@ -34,6 +34,13 @@ export function bunnyAnimation({
   }
 
   BUNNY_SPRITE.update(c, canvasHeight);
+
+if(temporalKeyPress.current === "program" || 
+temporalKeyPress.current === "read" ||
+temporalKeyPress.current === "sleep"){
+  temporalKeyPress.current = "neutro";
+}
+
 }
 
 export function bunnyRestart() {

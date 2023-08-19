@@ -9,6 +9,8 @@ import caer from "../img/bunny/sprites/bunny/caer.png";
 import derecha from "../img/bunny/sprites/bunny/derecha.png";
 import izquierda from "../img/bunny/sprites/bunny/izquierda.png";
 import salto from "../img/bunny/sprites/bunny/salto.png";
+import leer from "../img/bunny/sprites/bunny/leer.png";
+import programar from "../img/bunny/sprites/bunny/programar.png";
 import durmiendo from "../img/bunny/sprites/bunny/durmiendo.png";
 import bunnyCereza from "../img/bunny/sprites/bunny/bunnyCereza.png";
 import bunnyChile from "../img/bunny/sprites/bunny/bunnyChile.png";
@@ -233,6 +235,51 @@ export const gameData = {
           message: "Do you what to go to the park? ",
           isActive: false,
         },
+        {
+          name: "programate",
+          position: {
+            x: 0,
+            y: 0,
+          },
+          initialPosition: {
+            x: 465,
+            y: 0,
+          },
+          width: 20,
+          height: 40,
+          message: "How about a little programming?",
+          isActive: false,
+        },
+        {
+          name: "read",
+          position: {
+            x: 0,
+            y: 0,
+          },
+          initialPosition: {
+            x: 660,
+            y: 0,
+          },
+          width: 20,
+          height: 40,
+          message: "Fancy a book?",
+          isActive: false,
+        },
+        {
+          name: "sleep",
+          position: {
+            x: 0,
+            y: 0,
+          },
+          initialPosition: {
+            x: 840,
+            y: 0,
+          },
+          width: 20,
+          height: 40,
+          message: "How about getting some beauty sleep?",
+          isActive: false,
+        },
       ],
       obstacles: [
         {
@@ -315,9 +362,21 @@ export const gameData = {
       },
       sleep: {
         imageSrc: durmiendo,
-        framesMax: 2,
-        framesHold: 30,
+        framesMax: 8,
+        framesHold: 60,
         name: "sleep",
+      },
+      program: {
+        imageSrc: programar,
+        framesMax: 8,
+        framesHold: 20,
+        name: "program",
+      },
+      read: {
+        imageSrc: leer,
+        framesMax: 16,
+        framesHold: 30,
+        name: "read",
       },
       neutro: {
         imageSrc: neutro,

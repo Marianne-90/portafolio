@@ -11,8 +11,8 @@ export const Pops = () => {
     restart,
     bunnyScenario,
     setXPosition,
+    setKeyPressed,
   } = useContext(MainContext);
-
 
   const { house, background } = gameData;
 
@@ -47,6 +47,9 @@ export const Pops = () => {
       () => setbunnyScenario("park"),
       () => setXPosition(0),
     ],
+    programate: [() => setKeyPressed("program")],
+    read: [() => setKeyPressed("read")],
+    sleep: [() => setKeyPressed("sleep")],
   };
 
   useEffect(() => {
