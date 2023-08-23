@@ -61,7 +61,23 @@ export const gameData = {
           isActive: false,
         },
       ],
-      obstacles: [],
+      obstacles: [ {
+        name: "right limit",
+        position: {
+          x: 0,
+          y: 0,
+        },
+        initialPosition: {
+          x: 500,
+          y: 0,
+        },
+        width: 30,
+        height: 300,
+        collition: {
+          left: false,
+          right: false,
+        },
+      },],
     },
     frames: [
       {

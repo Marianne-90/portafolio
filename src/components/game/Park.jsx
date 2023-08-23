@@ -102,7 +102,7 @@ export const Park = () => {
         }
 
         c.fillRect(0, 0, canvasWidth, canvas.height);
-        backGroundAnimation({ c, canvasWidth, temporalXposition, temporalPop });
+        backGroundAnimation({ c, canvasWidth, temporalXposition, temporalPop, temporalBlockMove });
         bunnyAnimation({ c, canvasWidth, canvasHeight, temporalKeyPress, temporalBlockMove });
         fruitAnimation({
           c,

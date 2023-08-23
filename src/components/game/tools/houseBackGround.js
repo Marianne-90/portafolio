@@ -76,16 +76,6 @@ export function housedAnimation({
 
     MAP.obstacles[index].position.x = xPosition;
     MAP.obstacles[index].position.y = yPosition;
-
-    // console.log(BUNNY_SPRITE.position.y);
-
-  
-    
-    // let bunnyBase = BUNNY_SPRITE.position.y - BUNNY_SPRITE.image.height * BUNNY_SPRITE.scale - BUNNY_SPRITE.base;
-
-    // if (bunnyBase *-1 >= 95 && bunnyBase *-1 <= 95 +1 ) {
-    //   BUNNY_SPRITE.base = 95 + 1;
-    // }else{}
     
     const isCollidingLeft = () => {
       return (
@@ -110,7 +100,6 @@ export function housedAnimation({
     }
 
     if (isCollidingRight() && !MAP.obstacles[index].collition.right) {
-
       MAP.obstacles[index].collition.right = true;
       temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
 

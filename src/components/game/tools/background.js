@@ -1,4 +1,4 @@
-import { MAP } from "./sprites";
+import { MAP, BUNNY_SPRITE } from "./sprites";
 import { gameData } from "../../../data/gameData";
 
 const { background } = gameData;
@@ -40,7 +40,7 @@ let largoDelFramento = 0;
 let backgroungLeftFragment = [];
 let backgroungRight = [];
 
-export function backGroundAnimation({ c, canvasWidth, temporalXposition, temporalPop }) {
+export function backGroundAnimation({ c, canvasWidth, temporalXposition, temporalPop, temporalBlockMove }) {
   let initialFrameWidth = MAP.image.width * MAP.scale;
   MAP.position.x =
     canvasWidth / 2 - initialFrameWidth / 2 + temporalXposition.current;
@@ -121,8 +121,56 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition, tempora
   MAP.spritesLeft = backgroungLeftFragment;
   MAP.spritesRigth = backgroungRight;
 
+
+    //*! DETECTAR LOS OBSTACULOS
+
+    MAP.obstacles.forEach((action, index) => {
+      let bunnyWidth =
+        (BUNNY_SPRITE.image.width * BUNNY_SPRITE.scale) / BUNNY_SPRITE.framesMax;
+      let xPosition = MAP.position.x + MAP.obstacles[index].initialPosition.x;
+      let yPosition = MAP.image.height - MAP.obstacles[index].height; //*! quiero que se dibuje de abajo
+  
+      let elementWidth = MAP.obstacles[index].width;
+  
+      MAP.obstacles[index].position.x = xPosition;
+      MAP.obstacles[index].position.y = yPosition;
+      
+      const isCollidingLeft = () => {
+        return (
+          xPosition + elementWidth > canvasWidth / 2 - bunnyWidth / 2 &&
+          xPosition < canvasWidth / 2 - bunnyWidth / 2
+        );
+      };
+  
+      const isCollidingRight = () => {
+        return (
+          xPosition < canvasWidth / 2 + bunnyWidth / 2 &&
+          xPosition + elementWidth > canvasWidth / 2 + bunnyWidth / 2
+        );
+      };
+  
+      if (isCollidingLeft() && !MAP.obstacles[index].collition.left) {
+        MAP.obstacles[index].collition.left = true;
+        temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
+      } else if (!isCollidingLeft() && MAP.obstacles[index].collition.left) {
+        MAP.obstacles[index].collition.left = false;
+        temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
+      }
+  
+      if (isCollidingRight() && !MAP.obstacles[index].collition.right) {
+        MAP.obstacles[index].collition.right = true;
+        temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
+  
+      } else if (!isCollidingRight() && MAP.obstacles[index].collition.right) {
+        MAP.obstacles[index].collition.right = false;
+        temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
+      }
+    });
+    
   MAP.update(c, canvasWidth);
 }
+
+
 
 export function backGroundRestart(canvasWidth) {
   MAP.spritesLeft = backgroungLeftFragment;
