@@ -49,7 +49,10 @@ export const Pops = () => {
     ],
     programate: [() => setKeyPressed("program")],
     read: [() => setKeyPressed("read")],
-    sleep: [() => setKeyPressed("sleep")],
+    sleep: [
+      () => (BUNNY_SPRITE.base = 95),
+      () => setKeyPressed("sleep"),
+    ],
   };
 
   useEffect(() => {

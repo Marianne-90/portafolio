@@ -66,7 +66,7 @@ export const House = () => {
 
         c.fillRect(0, 0, canvasWidth, canvas.height);
         housedAnimation({ c, canvasWidth, temporalXposition, temporalPop, temporalBlockMove });
-        bunnyAnimation({ c, canvasWidth, canvasHeight, temporalKeyPress });
+        bunnyAnimation({ c, canvasWidth, canvasHeight, temporalKeyPress, temporalBlockMove });
 
         //*! vamos a evaluar si algo a cambiado en la salud o la comida o actionBlocks y actualizarlo en el contexto general
 

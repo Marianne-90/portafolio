@@ -66,7 +66,7 @@ export class Character extends Sprite {
     this.foodType = "";
     this.isSick = false;
     this.isDead = false;
-
+    this.blockMove = false; //*! esto es para bloquear el movimiento
     //*! lo que hacemos aquí es asignar una nuevo objeto de imágen con su url al objeto strpite para que los cositos cambien de sprite
 
     for (const sprite in this.sprites) {
@@ -80,6 +80,8 @@ export class Character extends Sprite {
 
   switchSpride(sprite) {
 
+//*! actividades
+
    if(this.image === this.sprites.program.image ||
       this.image === this.sprites.read.image ||
       this.image === this.sprites.sleep.image){
@@ -89,12 +91,14 @@ export class Character extends Sprite {
     }
 
     if (this.spritesElapsed < this.framesMax) {
+      this.blockMove = true;
       return;
     }
 
     if (this.spritesElapsed === this.framesMax) {
       this.base = 38;
       this.spritesElapsed = 0;
+      this.blockMove = false;
     }
    }
    
@@ -102,6 +106,7 @@ export class Character extends Sprite {
     //*? -------------- MUERTO -----------------------
 
     if (this.isDead && this.sprites.dead.image === this.image) {
+      this.blockMove = true;
       if (this.framesElapsed % this.framesHold === 0) {
         this.spritesElapsed++;
       }
@@ -120,6 +125,7 @@ export class Character extends Sprite {
     }
 
     if (this.isDead && this.sprites.ghost.image === this.image) {
+      this.blockMove = false;
       return;
     }
 
@@ -165,6 +171,7 @@ export class Character extends Sprite {
       }
 
       if (this.spritesElapsed < this.framesMax) {
+        this.blockMove = true;
         return;
       }
 
@@ -177,6 +184,7 @@ export class Character extends Sprite {
         } else {
           this.eating = false;
           this.foodType = "";
+          this.blockMove = false;
         }
         this.spritesElapsed = 0;
       }
@@ -195,6 +203,7 @@ export class Character extends Sprite {
         this.eating = false;
         this.isSick = false;
         this.spritesElapsed = 0;
+        this.blockMove = false;
       }
     }
 

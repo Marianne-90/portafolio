@@ -44,21 +44,8 @@ export const Buttons = () => {
   };
 
   const handleMoveLeftTouchStart = () => {
-    if (temporalScenario.current === "park") {
-      return setInterval(() => {
-        if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead) {
-          setKeyPressed("left");
-          temporalXposition.current += 5;
-          setXPosition(temporalXposition.current);
-        }
-      }, 50);
-    }
-
-    if (temporalScenario.current === "home") {
       return setInterval(() => {
         if (
-          !BUNNY_SPRITE.eating &&
-          !BUNNY_SPRITE.isDead &&
           !temporalBlockMove.current.left
         ) {
           setKeyPressed("left");
@@ -66,33 +53,16 @@ export const Buttons = () => {
           setXPosition(temporalXposition.current);
         }
       }, 50);
-    }
   };
 
   const handleMoveRightTouchStart = () => {
-    if (temporalScenario.current === "park") {
       return setInterval(() => {
-        if (
-          MAP.position.x >= 0 - 300 &&
-          !BUNNY_SPRITE.eating &&
-          !BUNNY_SPRITE.isDead
-        ) {
+        if (!temporalBlockMove.current.right) {
           setKeyPressed("rigth");
           temporalXposition.current -= 5;
           setXPosition(temporalXposition.current);
         }
       }, 50);
-    }
-
-    if (temporalScenario.current === "home") {
-      return setInterval(() => {
-        if (!BUNNY_SPRITE.eating && !BUNNY_SPRITE.isDead && !temporalBlockMove.current.right) {
-          setKeyPressed("rigth");
-          temporalXposition.current -= 5;
-          setXPosition(temporalXposition.current);
-        }
-      }, 50);
-    }
   };
 
   useEffect(() => {

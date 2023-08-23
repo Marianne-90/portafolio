@@ -10,8 +10,8 @@ export function bunnyAnimation({
   canvasWidth,
   canvasHeight,
   temporalKeyPress,
+  temporalBlockMove,
 }) {
-  
   let initialBunnyWidth =
     (BUNNY_SPRITE.image.width * BUNNY_SPRITE.scale) / BUNNY_SPRITE.framesMax;
 
@@ -19,6 +19,28 @@ export function bunnyAnimation({
   //*! en el archivo de frutas se asigna el sprite e comer frutas
   if (BUNNY_SPRITE.eating) {
     BUNNY_SPRITE.switchSpride(BUNNY_SPRITE.foodType);
+  }
+
+  function isSomethingMoving() {
+    return (
+      !temporalBlockMove.current.post.left ||
+      !temporalBlockMove.current.post.right
+    );
+  }
+
+  // console.log(isComethingMoving());
+
+  //  BUNNY_SPRITE.blockMove
+  if (BUNNY_SPRITE.blockMove && isSomethingMoving()) {
+    temporalBlockMove.current.post = {
+      left: true,
+      right: true,
+    };
+  } else if (!BUNNY_SPRITE.blockMove && !isSomethingMoving()) {
+    temporalBlockMove.current.post = {
+      left: false,
+      right: false,
+    };
   }
 
   if (BUNNY_SPRITE.isDead) {
@@ -35,12 +57,13 @@ export function bunnyAnimation({
 
   BUNNY_SPRITE.update(c, canvasHeight);
 
-if(temporalKeyPress.current === "program" || 
-temporalKeyPress.current === "read" ||
-temporalKeyPress.current === "sleep"){
-  temporalKeyPress.current = "neutro";
-}
-
+  if (
+    temporalKeyPress.current === "program" ||
+    temporalKeyPress.current === "read" ||
+    temporalKeyPress.current === "sleep"
+  ) {
+    temporalKeyPress.current = "neutro";
+  }
 }
 
 export function bunnyRestart() {

@@ -316,6 +316,7 @@ export const gameData = {
             right: false,
           },
         },
+        
       ],
     },
     frames: [

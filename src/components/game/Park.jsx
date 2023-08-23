@@ -31,6 +31,7 @@ export const Park = () => {
     restart,
     setRestart,
     setPopElement,
+    setblockMove,
   } = useContext(MainContext);
 
   let temporalXposition = useRef(0);
@@ -58,6 +59,17 @@ export const Park = () => {
   useEffect(() => {
     temporalKeyPress.current = keyPressed;
   }, [keyPressed]);
+
+  let temporalBlockMove = useRef({
+    prev: {
+      left: false,
+      right: false,
+    },
+    post: {
+      left: false,
+      right: false,
+    },
+  });
 
   useEffect(() => {
     canvasWidth = containerRef.current.offsetWidth;
@@ -91,7 +103,7 @@ export const Park = () => {
 
         c.fillRect(0, 0, canvasWidth, canvas.height);
         backGroundAnimation({ c, canvasWidth, temporalXposition, temporalPop });
-        bunnyAnimation({ c, canvasWidth, canvasHeight, temporalKeyPress });
+        bunnyAnimation({ c, canvasWidth, canvasHeight, temporalKeyPress, temporalBlockMove });
         fruitAnimation({
           c,
           canvasWidth,
@@ -151,6 +163,11 @@ export const Park = () => {
         if( temporalPop.current.prev !== temporalPop.current.post){
           temporalPop.current.prev = temporalPop.current.post;
           setPopElement(temporalPop.current.post)
+        }
+
+        if (temporalBlockMove.current.prev !== temporalBlockMove.current.post) {
+          temporalBlockMove.current.prev = temporalBlockMove.current.post;
+          setblockMove(temporalBlockMove.current.post);
         }
       }
 
