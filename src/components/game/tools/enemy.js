@@ -56,6 +56,19 @@ export function enemyGenerator(canvasWidth) {
   //   console.log(`se añadió zorro ${newElement.type}`);
 }
 
+const isColliding = (xPositonAtackBlock, canvasWidth, atackBlockWidth) => {
+  return (
+    xPositonAtackBlock < canvasWidth / 2 &&
+    xPositonAtackBlock + atackBlockWidth > canvasWidth / 2
+  );
+};
+
+const muerte = (temporalLife) => {
+  BUNNY_SPRITE.health--;
+  temporalLife.current.post = BUNNY_SPRITE.health;
+};
+
+
 export function enemyAnimation({
   c,
   canvasWidth,
@@ -63,8 +76,6 @@ export function enemyAnimation({
   temporalXposition,
   temporalLife,
 }) {
-  //   console.log();
-
   if (FOX_LIST.length > 0) {
     for (let i = 0; i < FOX_LIST.length; i++) {
       let element = FOX_LIST[i].class;
@@ -78,18 +89,6 @@ export function enemyAnimation({
 
       let xPositonAtackBlock = element.atackBox.position.x;
       let atackBlockWidth = element.atackBox.with;
-
-      const isColliding = () => {
-        return (
-          xPositonAtackBlock < canvasWidth / 2 &&
-          xPositonAtackBlock + atackBlockWidth > canvasWidth / 2
-        );
-      };
-
-      const muerte = () => {
-        BUNNY_SPRITE.health--;
-        temporalLife.current.post = BUNNY_SPRITE.health;
-      };
 
       if (FOX_LIST[i].type === "left") {
         FOX_LIST[i].position += FOX_LIST[i].velocity;
@@ -122,9 +121,12 @@ export function enemyAnimation({
 
       //*! collition
 
-      if (isColliding() && BUNNY_SPRITE.impulse === 0 && !BUNNY_SPRITE.isDead) {
-        // console.log("golpeó");
-        muerte();
+      if (
+        isColliding(xPositonAtackBlock, canvasWidth, atackBlockWidth) &&
+        BUNNY_SPRITE.impulse === 0 &&
+        !BUNNY_SPRITE.isDead
+      ) {
+        muerte(temporalLife);
       }
 
       element.update(c, canvasHeight);

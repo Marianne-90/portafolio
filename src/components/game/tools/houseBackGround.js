@@ -16,29 +16,10 @@ export const initCanvas = (canvasWidth, canvasHeight, canvasRef) => {
   return null;
 };
 
-let wallFrame = house.frames[0];
 
-let nivelador = 1.5; //*! no sé porqué no entiendo, los frames aleatorios no están funcionando correctamente y se le debe restar 1.5
 
-let backgroungLeft = [];
-let largoDelFramento = 0;
-let backgroungRight = [];
 
-export function housedAnimation({
-  c,
-  canvasWidth,
-  temporalXposition,
-  temporalPop,
-  temporalBlockMove,
-}) {
-  let houseWidth = MAP.image.width * MAP.scale;
-  let anchoDeUnFrame = MAP.imageMap.width / MAP.framesData.framesTotal;
-
-  MAP.position.x = canvasWidth / 2 - houseWidth / 2 + temporalXposition.current;
-
-  //*! asignar valores a los acction blocks lo pongo así para que sea escalable
-  //*! además evaluo si chocan y ejecuto una acción
-
+const actionBlocksHandler = (temporalPop, canvasWidth) => {
   MAP.accionBlocks.forEach((action, index) => {
     let xPosition = MAP.position.x + MAP.accionBlocks[index].initialPosition.x;
     let yPosition = MAP.image.height - MAP.accionBlocks[index].height; //*! quiero que se dibuje de abajo
@@ -63,7 +44,9 @@ export function housedAnimation({
       temporalPop.current.post = {};
     }
   });
+};
 
+const obstaclesHandler = (temporalBlockMove, canvasWidth) => {
   //*! DETECTAR LOS OBSTACULOS
 
   MAP.obstacles.forEach((action, index) => {
@@ -76,7 +59,7 @@ export function housedAnimation({
 
     MAP.obstacles[index].position.x = xPosition;
     MAP.obstacles[index].position.y = yPosition;
-    
+
     const isCollidingLeft = () => {
       return (
         xPosition + elementWidth > canvasWidth / 2 - bunnyWidth / 2 &&
@@ -102,14 +85,22 @@ export function housedAnimation({
     if (isCollidingRight() && !MAP.obstacles[index].collition.right) {
       MAP.obstacles[index].collition.right = true;
       temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
-
     } else if (!isCollidingRight() && MAP.obstacles[index].collition.right) {
       MAP.obstacles[index].collition.right = false;
       temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
     }
   });
+};
 
+
+let nivelador = 1.5; //*! no sé porqué no entiendo, los frames aleatorios no están funcionando correctamente y se le debe restar 1.5
+
+let backgroungLeft = [];
+let backgroungRight = [];
+
+const wallsDrawing = (houseWidth, canvasWidth) => {
   //*! dibujar la pared para que no se vea negro y feo
+  let anchoDeUnFrame = MAP.imageMap.width / MAP.framesData.framesTotal;
 
   //*? IZQUIERDA
   if (MAP.position.x - backgroungLeft.length * anchoDeUnFrame >= 0) {
@@ -138,6 +129,23 @@ export function housedAnimation({
 
   MAP.spritesLeft = backgroungLeft;
   MAP.spritesRigth = backgroungRight;
+};
+
+export function housedAnimation({
+  c,
+  canvasWidth,
+  temporalXposition,
+  temporalPop,
+  temporalBlockMove,
+}) {
+  let houseWidth = MAP.image.width * MAP.scale;
+  MAP.position.x = canvasWidth / 2 - houseWidth / 2 + temporalXposition.current;
+
+
+  actionBlocksHandler(temporalPop, canvasWidth);
+  obstaclesHandler(temporalBlockMove, canvasWidth);
+  wallsDrawing(houseWidth, canvasWidth);
+  
 
   MAP.update(c, canvasWidth);
 }

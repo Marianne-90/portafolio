@@ -44,7 +44,7 @@ export const Park = () => {
   let temporalPop = useRef({
     prev: {},
     post: {},
-  })
+  });
   let temporalRestart = useRef(false);
 
   useEffect(() => {
@@ -52,7 +52,6 @@ export const Park = () => {
   }, [restart]);
 
   useEffect(() => {
-   
     temporalXposition.current = xPosition;
   }, [xPosition]);
 
@@ -95,22 +94,18 @@ export const Park = () => {
       const canvas = canvasRef.current;
 
       function animate() {
-        
         animationId = requestAnimationFrame(animate);
         if (temporalKeyPress.current === "jump") {
           setKeyPressed("neutro");
         }
 
         c.fillRect(0, 0, canvasWidth, canvas.height);
-        backGroundAnimation({ c, canvasWidth, temporalXposition, temporalPop, temporalBlockMove });
-        bunnyAnimation({ c, canvasWidth, canvasHeight, temporalKeyPress, temporalBlockMove });
-        fruitAnimation({
+        backGroundAnimation({
           c,
           canvasWidth,
-          canvasHeight,
           temporalXposition,
-          temporalLife,
-          temporalFoodCounter,
+          temporalPop,
+          temporalBlockMove,
         });
         enemyAnimation({
           c,
@@ -118,6 +113,21 @@ export const Park = () => {
           canvasHeight,
           temporalXposition,
           temporalLife,
+        });
+        bunnyAnimation({
+          c,
+          canvasWidth,
+          canvasHeight,
+          temporalKeyPress,
+          temporalBlockMove,
+        });
+        fruitAnimation({
+          c,
+          canvasWidth,
+          canvasHeight,
+          temporalXposition,
+          temporalLife,
+          temporalFoodCounter,
         });
 
         //*! vamos a reiniciar el juego
@@ -135,7 +145,7 @@ export const Park = () => {
           };
           temporalFoodCounter.current = {
             prev: {},
-            post: {...bunny.food},
+            post: { ...bunny.food },
           };
 
           temporalRestart.current = false;
@@ -160,9 +170,9 @@ export const Park = () => {
           setFood(temporalFoodCounter.current.post);
         }
 
-        if( temporalPop.current.prev !== temporalPop.current.post){
+        if (temporalPop.current.prev !== temporalPop.current.post) {
           temporalPop.current.prev = temporalPop.current.post;
-          setPopElement(temporalPop.current.post)
+          setPopElement(temporalPop.current.post);
         }
 
         if (temporalBlockMove.current.prev !== temporalBlockMove.current.post) {
@@ -182,11 +192,10 @@ export const Park = () => {
 
     //*? GENERADOR DE ENEMIGOS
 
-    const enemyTimer =
-      setInterval(() => {
-        speeder += 100;        
-        enemyGenerator(canvasWidth);
-      }, Math.floor(Math.random() * 15000 - speeder * 2 ) + 10000 - speeder * 2) ;
+    const enemyTimer = setInterval(() => {
+      speeder += 100;
+      enemyGenerator(canvasWidth);
+    }, Math.floor(Math.random() * 15000 - speeder * 2) + 10000 - speeder * 2);
 
     //*? -------- MANEJAR EL REDIMENCIONADO -----------------------
 

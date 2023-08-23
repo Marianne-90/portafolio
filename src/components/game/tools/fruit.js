@@ -65,6 +65,22 @@ export function randomFruitGenerator() {
   food.push(newElement);
 }
 
+const estaEnPantalla = (element, canvasWidth) => {
+  return element.position.x < canvasWidth && element.position.x > 0;
+};
+
+//*! la fórmula de abajo lo que calcula es cuantas pantallas se han recorrido y si el diferencial de esta es igual a la mitad de la pantalla significa que la fruta está a la mitad igual que el conejo
+//*! se le suman 5 y se le restan 5 para dar un rango de acción ya que la fruta crece de 5 en 5
+
+const isInTheMidle = (element, canvasWidth) => {
+  return (
+    element.position.x % canvasWidth <=
+      canvasWidth / 2 - element.image.width / 2 + 5 &&
+    element.position.x % canvasWidth >=
+      canvasWidth / 2 - element.image.width / 2 - 5
+  );
+};
+
 export function fruitAnimation({
   c,
   canvasWidth,
@@ -73,9 +89,6 @@ export function fruitAnimation({
   temporalLife,
   temporalFoodCounter,
 }) {
-
-
-
   if (food.length > 3) {
     food.shift();
   }
@@ -88,29 +101,15 @@ export function fruitAnimation({
         food.splice(i, 1);
         continue;
       }
-      const estaEnPantalla = () => {
-        return element.position.x < canvasWidth && element.position.x > 0;
-      };
-
-      //*! la fórmula de abajo lo que calcula es cuantas pantallas se han recorrido y si el diferencial de esta es igual a la mitad de la pantalla significa que la fruta está a la mitad igual que el conejo
-      //*! se le suman 5 y se le restan 5 para dar un rango de acción ya que la fruta crece de 5 en 5
-
-      const isInTheMidle = () => {
-        return (
-          element.position.x % canvasWidth <=
-            canvasWidth / 2 - element.image.width / 2 + 5 &&
-          element.position.x % canvasWidth >=
-            canvasWidth / 2 - element.image.width / 2 - 5
-        );
-      };
 
       //*! la altura de la comida debe ser el piso
       //*! si el conejo está saltando no puede comer debe estar en el piso
 
       if (
-        estaEnPantalla() &&
-        isInTheMidle() &&
+        estaEnPantalla(element, canvasWidth) &&
+        isInTheMidle(element, canvasWidth) &&
         BUNNY_SPRITE.impulse === 0 &&
+        !BUNNY_SPRITE.isDead &&
         element.impulse === 0
       ) {
         element.isEaten = true;
@@ -123,11 +122,11 @@ export function fruitAnimation({
         } else if (element.rotten) {
           BUNNY_SPRITE.health--;
           temporalLife.current.post = BUNNY_SPRITE.health;
-          BUNNY_SPRITE.isSick=true;
+          BUNNY_SPRITE.isSick = true;
         }
       }
 
-      if(BUNNY_SPRITE.eating){
+      if (BUNNY_SPRITE.eating) {
         BUNNY_SPRITE.switchSpride(element.foodName);
       }
 
@@ -136,6 +135,4 @@ export function fruitAnimation({
       element.update(c, canvasHeight);
     }
   }
-
-
 }

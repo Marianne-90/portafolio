@@ -5,42 +5,31 @@ import { MainContext } from "../context/MainContext";
 
 const { bunny } = gameData;
 
-export function bunnyAnimation({
-  c,
-  canvasWidth,
-  canvasHeight,
-  temporalKeyPress,
-  temporalBlockMove,
-}) {
-  let initialBunnyWidth =
-    (BUNNY_SPRITE.image.width * BUNNY_SPRITE.scale) / BUNNY_SPRITE.framesMax;
+function isSomethingMoving(temporalBlockMove) {
+  return (
+    !temporalBlockMove.current.post.left ||
+    !temporalBlockMove.current.post.right
+  );
+}
 
-  BUNNY_SPRITE.position.x = canvasWidth / 2 - initialBunnyWidth / 2;
-  //*! en el archivo de frutas se asigna el sprite e comer frutas
-  if (BUNNY_SPRITE.eating) {
-    BUNNY_SPRITE.switchSpride(BUNNY_SPRITE.foodType);
-  }
-
-  function isSomethingMoving() {
-    return (
-      !temporalBlockMove.current.post.left ||
-      !temporalBlockMove.current.post.right
-    );
-  }
-
-  // console.log(isComethingMoving());
-
-  //  BUNNY_SPRITE.blockMove
-  if (BUNNY_SPRITE.blockMove && isSomethingMoving()) {
+function movementHandler(temporalBlockMove) {
+  if (BUNNY_SPRITE.blockMove && isSomethingMoving(temporalBlockMove)) {
     temporalBlockMove.current.post = {
       left: true,
       right: true,
     };
-  } else if (!BUNNY_SPRITE.blockMove && !isSomethingMoving()) {
+  } else if (!BUNNY_SPRITE.blockMove && !isSomethingMoving(temporalBlockMove)) {
     temporalBlockMove.current.post = {
       left: false,
       right: false,
     };
+  }
+}
+
+function spritesHandler(temporalKeyPress) {
+  //*! en el archivo de frutas se asigna el sprite e comer frutas
+  if (BUNNY_SPRITE.eating) {
+    BUNNY_SPRITE.switchSpride(BUNNY_SPRITE.foodType);
   }
 
   if (BUNNY_SPRITE.isDead) {
@@ -54,9 +43,26 @@ export function bunnyAnimation({
 
     BUNNY_SPRITE.switchSpride(temporalKeyPress.current);
   }
+}
+
+export function bunnyAnimation({
+  c,
+  canvasWidth,
+  canvasHeight,
+  temporalKeyPress,
+  temporalBlockMove,
+}) {
+  let initialBunnyWidth =
+    (BUNNY_SPRITE.image.width * BUNNY_SPRITE.scale) / BUNNY_SPRITE.framesMax;
+
+  BUNNY_SPRITE.position.x = canvasWidth / 2 - initialBunnyWidth / 2;
+
+  movementHandler(temporalBlockMove);
+  spritesHandler(temporalKeyPress);
 
   BUNNY_SPRITE.update(c, canvasHeight);
 
+  //*! esto es para neutralizar si no se hace un desmadre.
   if (
     temporalKeyPress.current === "program" ||
     temporalKeyPress.current === "read" ||

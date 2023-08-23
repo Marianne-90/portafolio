@@ -40,16 +40,13 @@ let largoDelFramento = 0;
 let backgroungLeftFragment = [];
 let backgroungRight = [];
 
-export function backGroundAnimation({ c, canvasWidth, temporalXposition, temporalPop, temporalBlockMove }) {
-  let initialFrameWidth = MAP.image.width * MAP.scale;
-  MAP.position.x =
-    canvasWidth / 2 - initialFrameWidth / 2 + temporalXposition.current;
-  let anchoDeUnFrame = MAP.imageMap.width / MAP.framesData.framesTotal; //*! no entiendo poqué pero esta cosa se desgobierna si le pones initialFrameWidth, no lo hagas es obvio pero no lo hagas
+const isColliding = (xPosition, canvasWidth, elementWidth) => {
+  return (
+    xPosition < canvasWidth / 2 && xPosition + elementWidth > canvasWidth / 2
+  );
+};
 
-  largoDelFramento = Math.ceil(canvasWidth / anchoDeUnFrame);
-
-  let caltulateInitialFragnet = 0;
-
+const actionBlocksHandler = (temporalPop, canvasWidth) => {
   //*! asignar valores a los acction blocks lo pongo así para que sea escalable
   //*! además evaluo si chocan y ejecuto una acción
 
@@ -62,21 +59,26 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition, tempora
     MAP.accionBlocks[index].position.x = xPosition;
     MAP.accionBlocks[index].position.y = yPosition;
 
-    const isColliding = () => {
-      return (
-        xPosition < canvasWidth / 2 &&
-        xPosition + elementWidth > canvasWidth / 2
-      );
-    };
-
-    if (isColliding() && MAP.accionBlocks[index].isActive === false) {
+    if (
+      isColliding(xPosition, canvasWidth, elementWidth) &&
+      MAP.accionBlocks[index].isActive === false
+    ) {
       MAP.accionBlocks[index].isActive = true;
-      temporalPop.current.post = {... MAP.accionBlocks[index], index}
-    } else if (!isColliding() && MAP.accionBlocks[index].isActive === true) {
+      temporalPop.current.post = { ...MAP.accionBlocks[index], index };
+    } else if (
+      !isColliding(xPosition, canvasWidth, elementWidth) &&
+      MAP.accionBlocks[index].isActive === true
+    ) {
       MAP.accionBlocks[index].isActive = false;
-      temporalPop.current.post = {}
+      temporalPop.current.post = {};
     }
   });
+};
+
+const drawBackground = (canvasWidth, initialFrameWidth) => {
+  let anchoDeUnFrame = MAP.imageMap.width / MAP.framesData.framesTotal; //*! no entiendo poqué pero esta cosa se desgobierna si le pones initialFrameWidth, no lo hagas es obvio pero no lo hagas
+  largoDelFramento = Math.ceil(canvasWidth / anchoDeUnFrame);
+  let caltulateInitialFragnet = 0;
 
   //*! esto es para optimizar la carga del mapa y que no se estén cargando todos los frames al mismo tiempo
   //*? tenemos que ver que anchoDeUnFrame sea mayor a 0 o sea que acabe de cargar si no las fórmulas no funcionan
@@ -120,56 +122,65 @@ export function backGroundAnimation({ c, canvasWidth, temporalXposition, tempora
 
   MAP.spritesLeft = backgroungLeftFragment;
   MAP.spritesRigth = backgroungRight;
+};
 
+const isCollidingLeft = (xPosition, elementWidth, canvasWidth, bunnyWidth) => {
+  return (
+    xPosition + elementWidth > canvasWidth / 2 - bunnyWidth / 2 &&
+    xPosition < canvasWidth / 2 - bunnyWidth / 2
+  );
+};
 
-    //*! DETECTAR LOS OBSTACULOS
+const isCollidingRight = (xPosition, elementWidth, canvasWidth, bunnyWidth) => {
+  return (
+    xPosition < canvasWidth / 2 + bunnyWidth / 2 &&
+    xPosition + elementWidth > canvasWidth / 2 + bunnyWidth / 2
+  );
+};
 
-    MAP.obstacles.forEach((action, index) => {
-      let bunnyWidth =
-        (BUNNY_SPRITE.image.width * BUNNY_SPRITE.scale) / BUNNY_SPRITE.framesMax;
-      let xPosition = MAP.position.x + MAP.obstacles[index].initialPosition.x;
-      let yPosition = MAP.image.height - MAP.obstacles[index].height; //*! quiero que se dibuje de abajo
-  
-      let elementWidth = MAP.obstacles[index].width;
-  
-      MAP.obstacles[index].position.x = xPosition;
-      MAP.obstacles[index].position.y = yPosition;
-      
-      const isCollidingLeft = () => {
-        return (
-          xPosition + elementWidth > canvasWidth / 2 - bunnyWidth / 2 &&
-          xPosition < canvasWidth / 2 - bunnyWidth / 2
-        );
-      };
-  
-      const isCollidingRight = () => {
-        return (
-          xPosition < canvasWidth / 2 + bunnyWidth / 2 &&
-          xPosition + elementWidth > canvasWidth / 2 + bunnyWidth / 2
-        );
-      };
-  
-      if (isCollidingLeft() && !MAP.obstacles[index].collition.left) {
-        MAP.obstacles[index].collition.left = true;
-        temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
-      } else if (!isCollidingLeft() && MAP.obstacles[index].collition.left) {
-        MAP.obstacles[index].collition.left = false;
-        temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
-      }
-  
-      if (isCollidingRight() && !MAP.obstacles[index].collition.right) {
-        MAP.obstacles[index].collition.right = true;
-        temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
-  
-      } else if (!isCollidingRight() && MAP.obstacles[index].collition.right) {
-        MAP.obstacles[index].collition.right = false;
-        temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
-      }
-    });
-    
-  MAP.update(c, canvasWidth);
-}
+const obstaclesHandler = (temporalBlockMove, canvasWidth) => {
+  //*! DETECTAR LOS OBSTACULOS
 
+  MAP.obstacles.forEach((action, index) => {
+    let bunnyWidth =
+      (BUNNY_SPRITE.image.width * BUNNY_SPRITE.scale) / BUNNY_SPRITE.framesMax;
+    let xPosition = MAP.position.x + MAP.obstacles[index].initialPosition.x;
+    let yPosition = MAP.image.height - MAP.obstacles[index].height; //*! quiero que se dibuje de abajo
+
+    let elementWidth = MAP.obstacles[index].width;
+
+    MAP.obstacles[index].position.x = xPosition;
+    MAP.obstacles[index].position.y = yPosition;
+
+    if (
+      isCollidingLeft(xPosition, elementWidth, canvasWidth, bunnyWidth) &&
+      !MAP.obstacles[index].collition.left
+    ) {
+      MAP.obstacles[index].collition.left = true;
+      temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
+    } else if (
+      !isCollidingLeft(xPosition, elementWidth, canvasWidth, bunnyWidth) &&
+      MAP.obstacles[index].collition.left
+    ) {
+      MAP.obstacles[index].collition.left = false;
+      temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
+    }
+
+    if (
+      isCollidingRight(xPosition, elementWidth, canvasWidth, bunnyWidth) &&
+      !MAP.obstacles[index].collition.right
+    ) {
+      MAP.obstacles[index].collition.right = true;
+      temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
+    } else if (
+      !isCollidingRight(xPosition, elementWidth, canvasWidth, bunnyWidth) &&
+      MAP.obstacles[index].collition.right
+    ) {
+      MAP.obstacles[index].collition.right = false;
+      temporalBlockMove.current.post = { ...MAP.obstacles[index].collition };
+    }
+  });
+};
 
 
 export function backGroundRestart(canvasWidth) {
@@ -183,3 +194,23 @@ export function backGroundRestart(canvasWidth) {
 
   // console.log('bacgroud restarte ', background.general.position.x );
 }
+
+export function backGroundAnimation({
+  c,
+  canvasWidth,
+  temporalXposition,
+  temporalPop,
+  temporalBlockMove,
+}) {
+  let initialFrameWidth = MAP.image.width * MAP.scale;
+  MAP.position.x =
+    canvasWidth / 2 - initialFrameWidth / 2 + temporalXposition.current;
+
+  actionBlocksHandler(temporalPop, canvasWidth);
+  drawBackground(canvasWidth, initialFrameWidth);
+  obstaclesHandler(temporalBlockMove, canvasWidth);
+
+  MAP.update(c, canvasWidth);
+}
+
+
