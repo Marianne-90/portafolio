@@ -1502,6 +1502,7 @@ input {
   font-family: "Press Start 2P", cursive;
   color: #4b5563;
   overflow: hidden;
+  text-align: center;
 }
 
 .gameContainer .controladores .vida img {
@@ -1550,7 +1551,10 @@ input {
 
 .gameContainer .controladores .panel .playerScore .play {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: space-between;
+  align-content: flex-start;
   background-color: #8431754c;
   padding: 5px;
   margin: 5px;
@@ -1648,6 +1652,12 @@ input {
   background-color: #fde68a;
   color: #4b5563;
   border: none;
+
+  -webkit-touch-callout: none; /* Safari */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+  user-select: none; /* Estándar */
 }
 
 .gameContainer .leftRight button:nth-child(1) {
@@ -1676,6 +1686,13 @@ input {
   font-family: "Press Start 2P", cursive;
   background-color: #84cc16;
   color: #4b5563;
+
+  -webkit-touch-callout: none; /* Safari */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+  user-select: none; /* Estándar */
+
 }
 
 .gameContainer .leftRight button:hover {
