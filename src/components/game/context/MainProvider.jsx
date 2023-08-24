@@ -10,6 +10,7 @@ export const MainProvider = ({ children }) => {
   const [restart, setRestart] = useState(false);
   const [popElement, setPopElement] = useState({});
   const [blockMove, setblockMove] = useState({ left: false, right: false });
+  const [playerScore, setPlayerScore] = useState([]);
   return (
     <MainContext.Provider
       value={{
@@ -29,6 +30,8 @@ export const MainProvider = ({ children }) => {
         setPopElement,
         blockMove,
         setblockMove,
+        playerScore,
+        setPlayerScore,
       }}
     >
       {children}

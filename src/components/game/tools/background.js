@@ -210,6 +210,7 @@ export function backGroundAnimation({
   drawBackground(canvasWidth, initialFrameWidth);
   obstaclesHandler(temporalBlockMove, canvasWidth);
 
+
   MAP.update(c, canvasWidth);
 }
 

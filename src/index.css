@@ -1427,25 +1427,24 @@ input {
   }
 }
 
-.gameTitle{
-margin-top: 30px;
-padding: 5px;
+.gameTitle {
+  margin-top: 30px;
+  padding: 5px;
 }
 
-.gameTitle h2{
+.gameTitle h2 {
   text-align: center;
-  font-family: "Press Start 2P", cursive ;
+  font-family: "Press Start 2P", cursive;
   color: #4b5563;
-  }
+}
 
-.gameTitle p{
+.gameTitle p {
   width: 100%;
   text-align: center;
   font-family: "Raleway", sans-serif;
   font-weight: 200;
   color: #4b5563;
 }
-
 
 .gameContainer {
   margin-top: 20px;
@@ -1463,19 +1462,19 @@ padding: 5px;
   padding: 0 15px;
 }
 
-.gameContainer .controladores .comida{
-    border: #4b5563 1px solid;
-    min-height: 50px;
-    background-color: #e9f7d2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 5px;
-    flex-wrap: wrap;
+.gameContainer .controladores .comida {
+  border: #4b5563 1px solid;
+  min-height: 50px;
+  background-color: #e9f7d2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 5px;
+  flex-wrap: wrap;
 }
 
-.gameContainer .controladores .comida .element{
+.gameContainer .controladores .comida .element {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1484,12 +1483,13 @@ padding: 5px;
   color: #4b5563;
 }
 
-.gameContainer .controladores .comida .element img{
+.gameContainer .controladores .comida .element img {
   height: 40px;
   width: auto;
+  overflow: hidden;
 }
 
-.gameContainer .controladores .vida{
+.gameContainer .controladores .vida {
   border-left: #4b5563 1px solid;
   border-right: #4b5563 1px solid;
   height: 50px;
@@ -1499,12 +1499,14 @@ padding: 5px;
   align-items: center;
   justify-content: center;
   gap: 20px;
- font-family: "Press Start 2P", cursive ;
- color: #4b5563;
+  font-family: "Press Start 2P", cursive;
+  color: #4b5563;
+  overflow: hidden;
 }
 
-.gameContainer .controladores .vida img{
+.gameContainer .controladores .vida img {
   height: 50px;
+  overflow: hidden;
 }
 
 .gameContainer .controladores .panel {
@@ -1517,23 +1519,64 @@ padding: 5px;
   align-items: center;
   flex-direction: column;
   z-index: 10;
+  overflow: hidden;
 }
 
-.gameContainer .controladores .panelNoDisplay{
+.gameContainer .controladores .panel .img {
+  overflow: hidden;
+}
+
+.gameContainer .controladores .panelNoDisplay {
   display: none;
 }
 
-.gameContainer .controladores .panel button{
-  font-family: "Press Start 2P", cursive ;
+.gameContainer .controladores .panel .playerScore {
+  padding: 20px;
+  margin: 20px;
+  max-height: 200px;
+  border: #ffffff 1px solid;
+  background-color: #354757be;
+}
+
+.gameContainer .controladores .panel .playerScore .counter {
+  color: white;
+  font-family: "Press Start 2P", cursive;
+  font-size: .7rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+
+.gameContainer .controladores .panel .playerScore .play {
+  display: flex;
+  gap: 20px;
+  background-color: #8431754c;
+  padding: 5px;
+  margin: 5px;
+}
+
+.gameContainer .controladores .panel .playerScore .play .fruit span {
+  font-family: "Press Start 2P", cursive;
+  color: white;
+  font-size: 0.7rem;
+  margin-left: 5px;
+}
+
+
+.gameContainer .controladores .panel button {
+  font-family: "Press Start 2P", cursive;
   background-color: #84cc16;
   padding: 10px 20px;
   color: white;
   cursor: pointer;
   border: #ffffff 1px solid;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
-.gameContainer .controladores .panel button:hover{
-  font-family: "Press Start 2P", cursive ;
+.gameContainer .controladores .panel button:hover {
+  font-family: "Press Start 2P", cursive;
   background-color: #7abd16;
   padding: 10px 20px;
   color: white;
@@ -1541,7 +1584,7 @@ padding: 5px;
   border: #ffffff 1px solid;
 }
 
-.gameContainer .controladores .pop{
+.gameContainer .controladores .pop {
   position: absolute;
   top: 110px;
   width: calc(100% - 30px);
@@ -1549,7 +1592,7 @@ padding: 5px;
   justify-content: center;
   z-index: 1;
 }
-.gameContainer .controladores .pop .popElement{
+.gameContainer .controladores .pop .popElement {
   background-color: #e9f7d2aa;
   display: flex;
   align-items: center;
@@ -1566,7 +1609,7 @@ padding: 5px;
   text-align: center;
 }
 
-.gameContainer .controladores .pop .popElement button{
+.gameContainer .controladores .pop .popElement button {
   font-family: "Press Start 2P", cursive;
   color: #354757;
   padding: 10px;
@@ -1574,12 +1617,12 @@ padding: 5px;
   cursor: pointer;
   border: #4b5563 1px solid;
   font-size: 13px;
+  overflow: hidden;
 }
 
-.gameContainer .controladores .pop .popElement button:hover{
+.gameContainer .controladores .pop .popElement button:hover {
   background-color: #73b315;
 }
-
 
 .gameContainer .bunnyGame {
   border: #4b5563 1px solid;

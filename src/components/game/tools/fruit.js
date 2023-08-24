@@ -12,17 +12,17 @@ import fresaBad from "../../../img/bunny/sprites/fruit/fresabad.png";
 import naranjaBad from "../../../img/bunny/sprites/fruit/naranjabad.png";
 
 const goodFood = [
-  { type: "fresa", img: fresa },
-  { type: "cereza", img: cereza },
-  { type: "naranja", img: naranja },
-  { type: "chile", img: chile },
+  { type: "strawberry", img: fresa },
+  { type: "cherry", img: cereza },
+  { type: "orange", img: naranja },
+  { type: "chili", img: chile },
 ];
 
 const badFood = [
-  { type: "fresa", img: fresaBad },
-  { type: "cereza", img: cerezaBad },
-  { type: "naranja", img: naranjaBad },
-  { type: "chile", img: chileBad },
+  { type: "strawberry", img: fresaBad },
+  { type: "cherry", img: cerezaBad },
+  { type: "orange", img: naranjaBad },
+  { type: "chili", img: chileBad },
 ];
 
 const food = [];

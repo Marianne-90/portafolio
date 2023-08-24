@@ -76,10 +76,10 @@ export function bunnyRestart() {
   BUNNY_SPRITE.isDead = false;
   BUNNY_SPRITE.switchSpride("neutro");
   BUNNY_SPRITE.food = {
-    fresa: 0,
-    cereza: 0,
-    naranja: 0,
-    chile: 0,
+    strawberry: 0,
+    cherry: 0,
+    orange: 0,
+    chili: 0,
   };
   BUNNY_SPRITE.eating = false;
   BUNNY_SPRITE.health = 3;

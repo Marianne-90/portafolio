@@ -353,10 +353,10 @@ export const gameData = {
     framesMax: 12,
     animate: true,
     food: {
-      fresa: 0,
-      cereza: 0,
-      naranja: 0,
-      chile: 0,
+      strawberry: 0,
+      cherry: 0,
+      orange: 0,
+      chili: 0,
     },
     sprites: {
       fall: {
@@ -407,29 +407,29 @@ export const gameData = {
         framesHold: 5,
         name: "jump",
       },
-      cereza: {
+      cherry: {
         imageSrc: bunnyCereza,
         framesMax: 4,
         framesHold: 30,
-        name: "cereza",
+        name: "cherry",
       },
-      chile: {
+      chili: {
         imageSrc: bunnyChile,
         framesMax: 4,
         framesHold: 30,
-        name: "chile",
+        name: "chili",
       },
-      fresa: {
+      strawberry: {
         imageSrc: bunnyFresa,
         framesMax: 4,
         framesHold: 30,
-        name: "fresa",
+        name: "strawberry",
       },
-      naranja: {
+      orange: {
         imageSrc: bunnyNaranja,
         framesMax: 4,
         framesHold: 30,
-        name: "naranja",
+        name: "orange",
       },
       vomit: {
         imageSrc: vomitando,
@@ -453,10 +453,10 @@ export const gameData = {
   },
   controllers: {
     fruit: {
-      cereza: cerezagris,
-      chile: chilegris,
-      fresa: fresagris,
-      naranja: naranjagris,
+      cherry: cerezagris,
+      chili: chilegris,
+      strawberry: fresagris,
+      orange: naranjagris,
     },
     bunny: conejogris,
   },

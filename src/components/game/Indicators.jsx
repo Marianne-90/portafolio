@@ -10,7 +10,7 @@ export const Indicators = () => {
   const [isLifeLoaded, setIsLifeLoaded] = useState(false);
   const [isBunnyDead, setIsBunnyDead] = useState(false);
   const [display, setDisplay] = useState(false);
-
+  const [higuerScore, setHiguerScore] = useState(0);
 
   const {
     bunnyLife: lifeCouter,
@@ -18,6 +18,8 @@ export const Indicators = () => {
     setFood,
     setbunnyScenario,
     setRestart,
+    playerScore,
+    setPlayerScore,
   } = useContext(MainContext);
 
   let tempFoodCounter = BUNNY_SPRITE.food;
@@ -35,6 +37,8 @@ export const Indicators = () => {
       }, 3500);
       //*! regresar
       setIsBunnyDead(true);
+      //*! añadimos el listado de frutas a el historial del contador
+      setPlayerScore([...playerScore, foodCounter]);
     }
 
     return () => clearTimeout(timeoutId);
@@ -85,6 +89,37 @@ export const Indicators = () => {
     setRestart(true);
   };
 
+  const handleTotal = (item) => {
+    let total = 0;
+    let claves = Object.keys(item);
+
+    for (let i = 0; i < claves.length; i++) {
+      let clave = claves[i];
+      total += item[clave];
+    }
+
+    if (higuerScore < total) {
+      setHiguerScore(total);
+    }
+    return total;
+  };
+
+  const handleScore = (item, index) => {
+    let playerScore = [];
+    let claves = Object.keys(item);
+
+    for (let i = 0; i < claves.length; i++) {
+      let clave = claves[i];
+      playerScore.push(
+        <div key={`${clave}${index}`} className="fruit">
+          <span>{clave}: </span>
+          <span>{item[clave]}</span>
+        </div>
+      );
+    }
+    return playerScore;
+  };
+
   return (
     <div className="controladores">
       <div className="comida">{bunnyFood()}</div>
@@ -96,9 +131,26 @@ export const Indicators = () => {
         <div className="img">
           <img src={controllers.bunny} alt="bunny" />
         </div>
+        <div className="playerScore">
+          {playerScore.length > 0 &&
+            lifeCouter <= 0 &&
+            playerScore.map((item, index) => {
+              let localTotal = handleTotal(item);
+              return (
+                <div key={index}>
+                  <div className="counter">
+                    <span>PLAY {index + 1}</span>{" "}
+                    {higuerScore === localTotal && <span>HIGHEST SCORE!!</span>}
+                    <span>TOTAL: {localTotal}</span>
+                  </div>
+                  <div className="play">{handleScore(item, index)}</div>
+                </div>
+              );
+            })}
+        </div>
         <button onClick={handleRestart}>Restart</button>
       </div>
-      <Pops/>
+      <Pops />
     </div>
   );
 };
