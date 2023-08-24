@@ -2,14 +2,11 @@ import fresa from "../img/fresa.ico";
 import { data } from "../data/data.js";
 import { DocumentPDF } from "./DocumentPDF";
 
-import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 export const Home = () => {
   const { home } = data;
 
-  const handleDownload = () => {
-    setState(!state);
-  };
 
   return (
     <>
@@ -29,7 +26,7 @@ export const Home = () => {
               document={<DocumentPDF />}
               fileName="Marianne-Garrido.pdf"
             >
-              <button onClick={handleDownload}>Download Resume PDF</button>
+              <button>Download Resume PDF</button>
             </PDFDownloadLink>
           </div>
           <img src={fresa} alt="fresa" className="slide-bottom-text" />

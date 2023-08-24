@@ -140,7 +140,7 @@ export const Indicators = () => {
                 <div key={index}>
                   <div className="counter">
                     <span>PLAY {index + 1}</span>{" "}
-                    {higuerScore === localTotal && <span>HIGHEST SCORE!!</span>}
+                    {higuerScore > 0 && higuerScore === localTotal && <span>HIGHEST SCORE!!</span>}
                     <span>TOTAL: {localTotal}</span>
                   </div>
                   <div className="play">{handleScore(item, index)}</div>
