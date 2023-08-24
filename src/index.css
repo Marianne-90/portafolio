@@ -442,12 +442,14 @@ label {
   text-transform: uppercase;
   font-weight: 400;
   letter-spacing: 1.2px;
+  margin:0;
 }
 
 .inner-text h5 {
   color: #6d85a8;
   letter-spacing: 1.2px;
   text-transform: uppercase;
+  margin:0;
 }
 
 .inner-text p {

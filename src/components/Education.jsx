@@ -11,13 +11,12 @@ export const Education = () => {
   };
 
   const { education } = data;
-  const {lenguaje, educationList, certifications} = education
+  const { lenguaje, educationList, certifications } = education;
 
   const handleOtherAnimation = () => {
     setIsVisibleOtherVisible(true);
   };
 
-  
   return (
     <section id="education">
       <ScrollTrigger onEnter={handleAnimation}>
@@ -61,10 +60,9 @@ export const Education = () => {
               }
               key={certificate.title}
             >
+              <h5>{certificate.title}</h5>
               <h3>{certificate.subtitle}</h3>
-              <i className="ic ion-spoon"></i>
               <div className="text-box">
-                <h5>React-Redux JS</h5>
                 <p>{certificate.description}</p>
               </div>
             </div>
