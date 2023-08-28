@@ -40,6 +40,7 @@ export const Buttons = () => {
 
   const handleJump = () => {
     if (BUNNY_SPRITE.impulse !== 0) return;
+    if(temporalBlockMove.current.left && temporalBlockMove.current.right) return;
     setKeyPressed("jump");
   };
 
