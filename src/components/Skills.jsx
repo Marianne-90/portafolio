@@ -1,17 +1,19 @@
 import { AiFillCheckCircle } from "react-icons/ai";
-import { useState, useRef, useEffect } from "react";
+import { useState, useContext } from "react";
 import { data } from "../data/data.js";
 import ScrollTrigger from "react-scroll-trigger";
 import { bunnyData } from "../data/bunnyData.js";
 import { BunnyAnimation } from "./BunnyAnimation.jsx";
+import { MainContext } from "../context/MainContext.jsx";
 
-const { skillsData } = data;
-
-  //LA ANIMACIÓN DEL CONEJO
-  const { studyBunny } = bunnyData;
+//LA ANIMACIÓN DEL CONEJO
+const { studyBunny } = bunnyData;
 
 export const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+  const { data } = useContext(MainContext);
+  const { skillsData } = data;
 
   const classNameGenerator = (index) => {
     if (index % 2 === 0) {
@@ -44,11 +46,9 @@ export const Skills = () => {
     }
   };
 
-
-
   return (
     <section id="skills">
-      <BunnyAnimation width={100} height={100} data={studyBunny} speed={20}/>
+      <BunnyAnimation width={100} height={100} data={studyBunny} speed={20} />
 
       <ScrollTrigger onEnter={handleAnimation}>
         <div className="grand-title">

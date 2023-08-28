@@ -10,12 +10,13 @@ import {
   Contact,
 } from "./components/index";
 
-
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { MainContext } from "./context/MainContext";
 
 function App() {
+  const { data } = useContext(MainContext);
   const [isNavbarFixed, setIsNavbarFixed] = useState(false);
-  const containerRef = useRef(null);
+  const containerRef = useRef(null);  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,14 +39,19 @@ function App() {
   return (
     <>
       <NavBar state={isNavbarFixed} />
-      <Home />
+      {data.language !== undefined && <Home />}
       <section className="content" ref={containerRef}>
-        <Education />
-        <Skills />
-        <Proyects />
-        <Work />
-        <Game/>
-        <Contact />
+        {data.language !== undefined && (
+          <>
+            <Education />
+            <Skills />
+            <Proyects />
+            <Work />
+            <Game />
+            <Contact />
+          </>
+        )}
+        {/*> */}
       </section>
     </>
   );

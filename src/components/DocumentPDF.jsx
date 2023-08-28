@@ -8,7 +8,9 @@ import {
   StyleSheet,
   Link,
 } from "@react-pdf/renderer";
+
 import { data } from "../data/data.js";
+
 import qr from "../img/bunnyqr.png"
 const styles = StyleSheet.create({
   page: {

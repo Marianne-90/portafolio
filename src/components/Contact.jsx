@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { MainContext } from "../context/MainContext";
+
 import ScrollTrigger from "react-scroll-trigger";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
-import { data } from "../data/data.js";
 import { AiFillLinkedin } from "react-icons/ai";
 import { AiFillPhone } from "react-icons/ai";
 import { AiFillMail } from "react-icons/ai";
@@ -10,7 +11,9 @@ import { AiFillMail } from "react-icons/ai";
 export const Contact = () => {
 
   const [isVisible, setIsVisible] = useState(false);
+  const { data } = useContext(MainContext);
   const { contact } = data;
+
   const {phone, mail, linkedIn} = contact;
 
   const handleAnimation = () => {

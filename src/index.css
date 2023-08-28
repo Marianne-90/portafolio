@@ -64,6 +64,21 @@ nav span {
   display: none;
 }
 
+nav button{
+  cursor: pointer;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background: #829725;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+}
+
+nav button:hover{
+  background: #64741b;
+}
+
 .menu a {
   clear: right;
   text-decoration: none;
@@ -1376,7 +1391,7 @@ input {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 675px) {
   label {
     display: block;
     cursor: pointer;

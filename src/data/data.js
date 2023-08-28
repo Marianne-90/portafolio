@@ -12,6 +12,7 @@ import solaz from "../img/proyects/solaz.jpg";
 
 
 export const data = {
+  language:"eng",
   home: {
     name: "Marianne Garrido Minutti",
     description:

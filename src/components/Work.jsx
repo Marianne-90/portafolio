@@ -1,11 +1,14 @@
 import { WorkMap } from "./WorkMap";
-import { data } from "../data/data.js";
+
 import { bunnyData } from "../data/bunnyData.js";
 import { BunnyAnimation } from "./BunnyAnimation.jsx";
+import { MainContext } from "../context/MainContext";
+import { useContext } from "react";
 
 
 
 export const Work = () => {
+  const { data } = useContext(MainContext);
   
   //LA ANIMACIÓN DEL CONEJO
   const { programingBunny } = bunnyData;

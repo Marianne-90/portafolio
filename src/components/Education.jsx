@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { AiFillCheckCircle, AiOutlineBulb } from "react-icons/ai";
 import ScrollTrigger from "react-scroll-trigger";
-import { data } from "../data/data.js";
+import { MainContext } from "../context/MainContext";
 
 export const Education = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,6 +10,7 @@ export const Education = () => {
     setIsVisible(true);
   };
 
+  const { data } = useContext(MainContext);
   const { education } = data;
   const { lenguaje, educationList, certifications } = education;
 

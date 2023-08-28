@@ -1,11 +1,12 @@
-import { data } from "../data/data.js";
 import { AiFillGithub } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useContext } from "react";
+
 import ScrollTrigger from "react-scroll-trigger";
+import { MainContext } from "../context/MainContext.jsx";
 
 export const Proyects = () => {
   const [isVisible, setIsVisible] = useState(false);
-
+  const { data } = useContext(MainContext);
   const { proyects } = data;
 
   const handleAnimation = () => {
