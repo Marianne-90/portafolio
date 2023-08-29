@@ -52,7 +52,7 @@ export const Skills = () => {
 
       <ScrollTrigger onEnter={handleAnimation}>
         <div className="grand-title">
-          <h4 data-ix="slowfade-scroll-bigs">SKILLS</h4>
+          <h4 data-ix="slowfade-scroll-bigs">{data.language == "eng"? "SKILLS":"HABILIDADES"} </h4>
         </div>
         <div className="skillsContainer">
           {skillsData.map((data, index) => {

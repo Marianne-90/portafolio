@@ -9,12 +9,11 @@ import { AiFillPhone } from "react-icons/ai";
 import { AiFillMail } from "react-icons/ai";
 
 export const Contact = () => {
-
   const [isVisible, setIsVisible] = useState(false);
   const { data } = useContext(MainContext);
   const { contact } = data;
 
-  const {phone, mail, linkedIn} = contact;
+  const { phone, mail, linkedIn } = contact;
 
   const handleAnimation = () => {
     setIsVisible(true);
@@ -62,74 +61,92 @@ export const Contact = () => {
     event.target.reset();
   };
 
+  const formattedPhoneNumber = phone.replace(
+    /^(\+\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/,
+    "$1 $2-$3-$4-$5-$6"
+  );
 
-    const formattedPhoneNumber = phone.replace(
-      /^(\+\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/,
-      '$1 $2-$3-$4-$5-$6'
-    );
+  const CONTENT_TEXT = {
+    eng: ["Contact", "Name", "Mail", "Phone", "Message", "Send", "Your name", "Your mail", "Your phone"],
+    esp: ["Contacto","Nombre", "Correo","Teléfono","Mensaje","Enviar", "Tu nombre","Tu correo", "Tu teléfono"],
+  };
 
   return (
-      <ScrollTrigger onEnter={handleAnimation}>
-    <div className="footer" id="contact">
-      <h4 data-ix="slowfade-scroll-bigs" className={isVisible ? " slide-top-text" : ""}>Contact</h4>
-      <div className={isVisible ? "container  slide-top-text" : "container"}>
-        <form action="enviar.php" method="post" onSubmit={handleSubmit}>
-          <ul className="flex-outer">
-            <li>
-              <label htmlFor="from_name">Name</label>
-              <input
-                type="text"
-                name="from_name"
-                id="from_name"
-                placeholder="Your name"
-                className="rect"
-                required
-              />
-            </li>
-            <li>
-              <label htmlFor="from_mail">Mail</label>
-              <input
-                type="email"
-                name="from_mail"
-                id="from_mail"
-                placeholder="Your mail"
-                className="rect"
-                required
-              />
-            </li>
-            <li>
-              <label htmlFor="from_phone">Phone</label>
-              <input
-                type="text"
-                name="from_phone"
-                id="from_phone"
-                placeholder="Your phone"
-                className="rect"
-                required
-              />
-            </li>
-            <li>
-              <label htmlFor="message">Message</label>
-              <textarea
-                rows="6"
-                name="message"
-                id="message"
-                className="rect"
-                required
-              ></textarea>
-            </li>
-            <li className="center">
-              <button type="submit">Send</button>
-            </li>
-          </ul>
-        </form>
+    <ScrollTrigger onEnter={handleAnimation}>
+      <div className="footer" id="contact">
+        <h4
+          data-ix="slowfade-scroll-bigs"
+          className={isVisible ? " slide-top-text" : ""}
+        >
+          {CONTENT_TEXT[data.language][0]}
+        </h4>
+        <div className={isVisible ? "container  slide-top-text" : "container"}>
+          <form action="enviar.php" method="post" onSubmit={handleSubmit}>
+            <ul className="flex-outer">
+              <li>
+                <label htmlFor="from_name">{CONTENT_TEXT[data.language][1]}</label>
+                <input
+                  type="text"
+                  name="from_name"
+                  id="from_name"
+                  placeholder={CONTENT_TEXT[data.language][6]}
+                  className="rect"
+                  required
+                />
+              </li>
+              <li>
+                <label htmlFor="from_mail">{CONTENT_TEXT[data.language][2]}</label>
+                <input
+                  type="email"
+                  name="from_mail"
+                  id="from_mail"
+                  placeholder={CONTENT_TEXT[data.language][7]}
+                  className="rect"
+                  required
+                />
+              </li>
+              <li>
+                <label htmlFor="from_phone">{CONTENT_TEXT[data.language][3]}</label>
+                <input
+                  type="text"
+                  name="from_phone"
+                  id="from_phone"
+                  placeholder={CONTENT_TEXT[data.language][8]}
+                  className="rect"
+                  required
+                />
+              </li>
+              <li>
+                <label htmlFor="message">{CONTENT_TEXT[data.language][4]}</label>
+                <textarea
+                  rows="6"
+                  name="message"
+                  id="message"
+                  className="rect"
+                  required
+                ></textarea>
+              </li>
+              <li className="center">
+                <button type="submit">{CONTENT_TEXT[data.language][5]}</button>
+              </li>
+            </ul>
+          </form>
+        </div>
+        <div className="contactInfo">
+          <a href={`tel:${phone}`}>
+            <AiFillPhone />
+            {formattedPhoneNumber}
+          </a>
+          <a href={`mailto:${mail}`}>
+            <AiFillMail />
+            {mail}
+          </a>
+          <a href={linkedIn.src} target="blank">
+            <AiFillLinkedin />
+            {linkedIn.name}
+          </a>
+        </div>
       </div>
-      <div className="contactInfo">
-        <a href={`tel:${phone}`}><AiFillPhone/>{formattedPhoneNumber}</a>
-        <a href={`mailto:${mail}`}><AiFillMail/>{mail}</a>
-        <a href={linkedIn.src} target="blank"><AiFillLinkedin/>{linkedIn.name}</a>
-      </div>
-    </div>
-      </ScrollTrigger>
+    </ScrollTrigger>
   );
 };

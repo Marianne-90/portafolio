@@ -46,7 +46,7 @@ export const dataEs = {
 
   skillsData: [
     {
-      name: "Habilidades Específicas de Desarrollo",
+      name: "Desarrollo Web",
       skills: [
         "Programación Orientada a Objetos (OOP) - Clases y objetos para crear código modular y mantenible.",
         "JSON (JavaScript Object Notation) - Capacidad para manejar y manipular datos en formato JSON, comúnmente utilizado para el intercambio de datos entre aplicaciones.",
@@ -63,7 +63,7 @@ export const dataEs = {
     },
 
     {
-      name: "Habilidades Técnicas",
+      name: "Técnicas",
       skills: [
         "Plataformas de Comercio Electrónico",
         "SEO y DA",
@@ -74,7 +74,7 @@ export const dataEs = {
       ],
     },
     {
-      name: "Habilidades Interpersonales",
+      name: "Interpersonales",
       skills: [
         "Adaptabilidad",
         "Colaboración y Trabajo en Equipo",

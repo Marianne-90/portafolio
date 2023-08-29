@@ -69,7 +69,7 @@ nav button{
   border: none;
   padding: 5px 20px;
   border-radius: 5px;
-  background: #829725;
+  background-color: #4d90fc;
   text-transform: uppercase;
   font-weight: bold;
   color: white;
@@ -1351,6 +1351,8 @@ input {
   text-decoration: none;
 }
 
+
+
 @media screen and (max-width: 950px) {
   .portafolio-container {
     flex-flow: column wrap;
@@ -1565,10 +1567,18 @@ input {
   margin-top: 10px;
 }
 
+.gameContainer .controladores .panel .playerScore .counter span{
+  text-align: center;
+  line-height: 15px;
+}
+.gameContainer .controladores .panel .playerScore .counter span:nth-child(2){
+  margin: 0 10px;
+}
+
 
 .gameContainer .controladores .panel .playerScore .play {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 20px;
   justify-content: space-between;
   align-content: flex-start;
@@ -1577,12 +1587,24 @@ input {
   margin: 5px;
 }
 
+.gameContainer .controladores .panel .playerScore .play .fruit{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .gameContainer .controladores .panel .playerScore .play .fruit span {
   font-family: "Press Start 2P", cursive;
   color: white;
   font-size: 0.7rem;
   margin-left: 5px;
 }
+
+.gameContainer .controladores .panel .playerScore .play .fruit span img{
+  width: 20px;
+}
+
+
 
 
 .gameContainer .controladores .panel button {

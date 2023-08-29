@@ -193,7 +193,9 @@ export const Park = () => {
     //*? GENERADOR DE ENEMIGOS
 
     const enemyTimer = setInterval(() => {
-      speeder += 100;
+      if (speeder > 14000) {
+        speeder += 100;
+      }
       enemyGenerator(canvasWidth);
     }, Math.floor(Math.random() * 15000 - speeder * 2) + 10000 - speeder * 2);
 

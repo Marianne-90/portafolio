@@ -1,10 +1,10 @@
 import fresa from "../img/fresa.ico";
 // import { data } from "../data/data.js";
 import { DocumentPDF } from "./DocumentPDF";
-
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useContext } from "react";
 import { MainContext } from "../context/MainContext";
+import { DocumentoPDF } from "./DocumentoPDF";
 
 export const Home = () => {
   const { data } = useContext(MainContext);
@@ -17,7 +17,7 @@ export const Home = () => {
         <section className="photo" id="home">
           <div className="photo-text">
             <h4 id="portafolio" className="slide-top-text">
-              <small> My Portafolio </small>
+              <small>{data.language == "eng"? "My Portafolio":"Mi Portafolio"}  </small>
             </h4>
             <h4 id="name" className="slide-right">
               {home.name}
@@ -33,10 +33,10 @@ export const Home = () => {
                 <button>Download Resume PDF</button>
               </PDFDownloadLink>:
               <PDFDownloadLink
-                document={<DocumentPDF />}
+                document={<DocumentoPDF />}
                 fileName="Marianne-Garrido.pdf"
               >
-                <button>Descargar CV PDF</button>
+                <button>Descargar CV</button>
               </PDFDownloadLink>
               }
             </div>

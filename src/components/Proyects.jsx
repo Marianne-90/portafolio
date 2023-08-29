@@ -16,7 +16,11 @@ export const Proyects = () => {
   return (
     <section id="proyects">
       <div className="grand-title">
-        <h4 data-ix="slowfade-scroll-bigs">SOME OF MY PROYECTS</h4>
+        <h4 data-ix="slowfade-scroll-bigs">
+          {data.language == "eng"
+            ? "SOME OF MY PROYECTS"
+            : "ALGUNOS DE MIS PROYECTOS"}
+        </h4>
       </div>
 
       <section className="portafolio" id="trabajo">
@@ -38,7 +42,7 @@ export const Proyects = () => {
                   <h5>{proyect.title}</h5>
                   <p>{proyect.description}</p>
                   <a href={proyect.url} target="blank">
-                    View Proyect
+                    {data.language == "eng" ? " View Proyect" : "Ver Proyecto"}
                   </a>
                 </section>
               </section>
@@ -51,7 +55,8 @@ export const Proyects = () => {
         id="github-button"
         target="blank"
       >
-        <AiFillGithub /> Visit my GitHub
+        <AiFillGithub />
+        {data.language == "eng" ? " Visit my GitHub" : "Visita mi GitHub"}
       </a>
     </section>
   );

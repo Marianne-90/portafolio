@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import { BUNNY_SPRITE, MAP } from "./tools/sprites";
 import { MainContext } from "./context/MainContext";
 
-export const Buttons = () => {
+export const Buttons = ({ len }) => {
   const moveLeftButtonRef = useRef(null);
   const moveRightButtonRef = useRef(null);
 
@@ -40,30 +40,29 @@ export const Buttons = () => {
 
   const handleJump = () => {
     if (BUNNY_SPRITE.impulse !== 0) return;
-    if(temporalBlockMove.current.left && temporalBlockMove.current.right) return;
+    if (temporalBlockMove.current.left && temporalBlockMove.current.right)
+      return;
     setKeyPressed("jump");
   };
 
   const handleMoveLeftTouchStart = () => {
-      return setInterval(() => {
-        if (
-          !temporalBlockMove.current.left
-        ) {
-          setKeyPressed("left");
-          temporalXposition.current += 5;
-          setXPosition(temporalXposition.current);
-        }
-      }, 50);
+    return setInterval(() => {
+      if (!temporalBlockMove.current.left) {
+        setKeyPressed("left");
+        temporalXposition.current += 5;
+        setXPosition(temporalXposition.current);
+      }
+    }, 50);
   };
 
   const handleMoveRightTouchStart = () => {
-      return setInterval(() => {
-        if (!temporalBlockMove.current.right) {
-          setKeyPressed("rigth");
-          temporalXposition.current -= 5;
-          setXPosition(temporalXposition.current);
-        }
-      }, 50);
+    return setInterval(() => {
+      if (!temporalBlockMove.current.right) {
+        setKeyPressed("rigth");
+        temporalXposition.current -= 5;
+        setXPosition(temporalXposition.current);
+      }
+    }, 50);
   };
 
   useEffect(() => {
@@ -188,10 +187,14 @@ export const Buttons = () => {
   return (
     <>
       <div className="leftRight">
-        <button ref={moveLeftButtonRef}>Izquierda</button>
-        <button ref={moveRightButtonRef}>Derecha</button>
+        <button ref={moveLeftButtonRef}>
+          {len === "eng" ? "Left" : "Izquierda"}
+        </button>
+        <button ref={moveRightButtonRef}>
+          {len === "eng" ? "Right" : "Derecha"}
+        </button>
       </div>
-      <button onClick={handleJump}>Saltar</button>
+      <button onClick={handleJump}>{len === "eng" ? "Jump" : "Saltar"}</button>
     </>
   );
 };

@@ -22,7 +22,7 @@ export const Education = () => {
     <section id="education">
       <ScrollTrigger onEnter={handleAnimation}>
         <div className="grand-title">
-          <h4 className={isVisible ? "slide-left" : ""}>EDUCATION</h4>
+          <h4 className={isVisible ? "slide-left" : ""}> {data.language == "eng"? "EDUCATION":"EDUCACIÓN"} </h4>
         </div>
         <div
           id="education-container"
@@ -47,7 +47,7 @@ export const Education = () => {
           </div>
         </div>
       </ScrollTrigger>
-      <h4 id="relevant-certification">RELEVANT CERTIFICATIONS</h4>
+      <h4 id="relevant-certification">{data.language == "eng"? "RELEVANT CERTIFICATIONS":"CERTIFICACIONES RELEVANTES"} </h4>
       <ScrollTrigger onEnter={handleOtherAnimation}>
         <div className="text">
           {certifications.map((certificate, index) => (

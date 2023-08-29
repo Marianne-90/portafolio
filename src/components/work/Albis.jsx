@@ -13,7 +13,7 @@ import zillpub1 from "../../img/jobs/albis/zillpub1.gif";
 
 import { AiFillCloud, AiFillTrophy } from "react-icons/ai";
 
-export const Albis = () => {
+export const Albis = ({ len }) => {
   return (
     <div className="Albis">
       <i id="cloud">
@@ -21,8 +21,9 @@ export const Albis = () => {
       </i>
       <section className="stores">
         <p>
-          I registered several official brands on Amazon and created their
-          respective ecommerce on Amazon.
+          {len === "eng"
+            ? "I registered several official brands on Amazon and created their respective ecommerce on Amazon."
+            : "Registré varias marcas oficiales en Amazon y creé sus respectivos comercios electrónicos en Amazon"}
         </p>
         <div className="containerS">
           <a
@@ -83,9 +84,9 @@ export const Albis = () => {
                 <AiFillTrophy size={50} />
               </i>
               <br />
-              As a dedicated advocate of perpetual improvement and cutting-edge
-              innovation, my unwavering commitment to excellence is reflected in
-              the tangible results achieved within the realm of e-commerce.
+              {len === "eng"
+                ? " As a dedicated advocate of perpetual improvement and cutting-edge innovation, my unwavering commitment to excellence is reflected in the tangible results achieved within the realm of e-commerce."
+                : "Como un ferviente defensor de la mejora constante y la innovación de vanguardia, mi compromiso inquebrantable con la excelencia se refleja en los resultados tangibles logrados en el ámbito del comercio electrónico."}
             </p>
           </div>
         </div>
@@ -95,39 +96,39 @@ export const Albis = () => {
       </section>
       <section className="mkt">
         <h2>
-          I also played a key role in assisting with the marketing strategy at
-          the Zwilling Store.!
+          {len === "eng"
+            ? "I also played a key role in assisting with the marketing strategy at the Zwilling Store.!"
+            : "También desempeñé un papel clave en la asistencia con la estrategia de marketing en la Tienda Zwilling."}
         </h2>
         <div className="inner-content">
-          <div className="boxy">
-          </div>
+          <div className="boxy"></div>
           <div className="boxy">
             <div id="slider">
               <figure>
                 <ul>
                   <li>
                     <div className="img">
-                        <img src={zilldesc}/>
+                      <img src={zilldesc} />
                     </div>
                   </li>
                   <li>
-                  <div className="img">
-                        <img src={zilldesc1}/>
+                    <div className="img">
+                      <img src={zilldesc1} />
                     </div>
                   </li>
                   <li>
-                  <div className="img">
-                        <img src={zilldesc2}/>
+                    <div className="img">
+                      <img src={zilldesc2} />
                     </div>
                   </li>
                   <li>
-                  <div className="img">
-                        <img src={zilldesc3}/>
+                    <div className="img">
+                      <img src={zilldesc3} />
                     </div>
                   </li>
                   <li>
-                  <div className="img">
-                        <img src={zillpub1}/>
+                    <div className="img">
+                      <img src={zillpub1} />
                     </div>
                   </li>
                 </ul>

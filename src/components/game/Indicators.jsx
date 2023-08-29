@@ -4,8 +4,8 @@ import { useRef, useEffect, useContext, useState } from "react";
 import { MainContext } from "./context/MainContext";
 import { Pops } from "./Pops";
 
-export const Indicators = () => {
-  const { controllers, bunny } = gameData;
+export const Indicators = ({ len }) => {
+  const { controllers } = gameData;
 
   const [isLifeLoaded, setIsLifeLoaded] = useState(false);
   const [isBunnyDead, setIsBunnyDead] = useState(false);
@@ -104,6 +104,16 @@ export const Indicators = () => {
     return total;
   };
 
+  const CONTENT_LIST = {
+    eng: ["MR. CREAMY IS DEAD T.T", "PLAY ", "HIGHEST SCORE!!", "Restart"],
+    esp: [
+      "SR. CREAMY A MUERTO T.T",
+      "JUEGO ",
+      "MEJOR PUNTUACIÓN",
+      "Reiniciar",
+    ],
+  };
+
   const handleScore = (item, index) => {
     let playerScore = [];
     let claves = Object.keys(item);
@@ -112,7 +122,9 @@ export const Indicators = () => {
       let clave = claves[i];
       playerScore.push(
         <div key={`${clave}${index}`} className="fruit">
-          <span>{clave}: </span>
+          <span>
+            <img src={controllers.fruit[clave]} />
+          </span>
           <span>{item[clave]}</span>
         </div>
       );
@@ -125,7 +137,7 @@ export const Indicators = () => {
       <div className="comida">{bunnyFood()}</div>
       <div className="vida">
         {bunnyLife()}
-        {isBunnyDead && <span>MR. CREAMY IS DEAD T.T</span>}
+        {isBunnyDead && <span>{CONTENT_LIST[len][0]}</span>}
       </div>
       <div className={display ? "panel opacity" : "panelNoDisplay"}>
         <div className="img">
@@ -139,8 +151,13 @@ export const Indicators = () => {
               return (
                 <div key={index}>
                   <div className="counter">
-                    <span>PLAY {index + 1}</span>{" "}
-                    {higuerScore > 0 && higuerScore === localTotal && <span>HIGHEST SCORE!!</span>}
+                    <span>
+                      {CONTENT_LIST[len][1]}
+                      {index + 1}
+                    </span>
+                    {higuerScore > 0 && higuerScore === localTotal && (
+                      <span>{CONTENT_LIST[len][2]}</span>
+                    )}
                     <span>TOTAL: {localTotal}</span>
                   </div>
                   <div className="play">{handleScore(item, index)}</div>
@@ -148,9 +165,9 @@ export const Indicators = () => {
               );
             })}
         </div>
-        <button onClick={handleRestart}>Restart</button>
+        <button onClick={handleRestart}>{CONTENT_LIST[len][3]}</button>
       </div>
-      <Pops />
+      <Pops len={len} />
     </div>
   );
 };

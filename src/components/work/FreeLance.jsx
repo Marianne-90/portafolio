@@ -21,7 +21,7 @@ import { CiFaceSmile } from "react-icons/ci";
 
 import { useState } from "react";
 
-export const FreeLancer = () => {
+export const FreeLancer = ({ len }) => {
   const [imagenModalVisible, setImagenModalVisible] = useState(false);
   const [imagenEnModal, setImagenEnModal] = useState();
 
@@ -35,19 +35,35 @@ export const FreeLancer = () => {
     setImagenEnModal("");
   };
 
+  const CONTENT_DATA = {
+    eng: [
+      "This is some of the work I made as a freelance",
+      "I was involved in the opening campaign of Colegio Le Bret, where I was responsible for overseeing the entire campaign, including designing and creating billboards, flyers, digital marketing initiatives, banners, and various other promotional materials.",
+      "I was responsible for developing the corporate color scheme, designing the logo, creating the business card, implementing social media campaigns, and designing flyers.",
+      "I was involved in creating print advertising campaigns for positioning purposes for Il Salentino, a pizzeria.",
+      "I was responsible for developing the brand identity manual, designing the logo, creating the business card, and designing flyers to promote the opening of Líder, a butcher shop.",
+      "I was responsible of creating the brand identity manual, designing the logo, establishing the corporate colors, presentation cards and developing a design proposal for social media campaigns for Adalo.",
+      "View the Identity Manual",
+    ],
+    esp: [
+      "Estos son algunos de los trabajos que realicé como freelancer.",
+      "Participé en la campaña de apertura del Colegio Le Bret, donde fui responsable de supervisar toda la campaña, incluyendo el diseño y creación de vallas publicitarias, folletos, iniciativas de marketing digital, banners y diversos materiales promocionales.",
+      "Fui responsable de desarrollar la paleta de colores corporativos, diseñar el logotipo, crear la tarjeta de presentación, implementar campañas en redes sociales y diseñar folletos.",
+      "Participé en la creación de campañas de publicidad impresa con fines de posicionamiento para Il Salentino.",
+      "Fui responsable de desarrollar el manual de identidad de marca, diseñar el logotipo, crear la tarjeta de presentación y diseñar folletos para promocionar la apertura de carnicería Líder.",
+      "Fui responsable de crear el manual de identidad de marca, diseñar el logotipo, establecer los colores corporativos, tarjetas de presentación y desarrollar una propuesta de diseño para campañas en redes sociales para Adalo.",
+      "Ver el Manual de Identidad",
+    ],
+  };
+
   return (
     <section className="freelance">
       <h2 id="title">
-        This is some of the work I made as a freelance <CiFaceSmile size={22} />
+        {CONTENT_DATA[len][0]} <CiFaceSmile size={22} />
       </h2>
       <section className="colegio">
         <h2 id="mainTitle">Colegio Le Bret</h2>
-        <p id="mainDescription">
-          I was involved in the opening campaign of Colegio Le Bret, where I was
-          responsible for overseeing the entire campaign, including designing
-          and creating billboards, flyers, digital marketing initiatives,
-          banners, and various other promotional materials.
-        </p>
+        <p id="mainDescription">{CONTENT_DATA[len][1]}</p>
         {imagenModalVisible && (
           <div id="ventanaModal" onClick={cerrarImagen}>
             <img
@@ -98,11 +114,7 @@ export const FreeLancer = () => {
       </section>
       <section className="ciencia">
         <h2 id="mainTitle">Ciencia Para Niños</h2>
-        <p id="mainDescription">
-          I was responsible for developing the corporate color scheme, designing
-          the logo, creating the business card, implementing social media
-          campaigns, and designing flyers.
-        </p>
+        <p id="mainDescription">{CONTENT_DATA[len][2]}</p>
         <div className="logo">
           <img
             src={logoc}
@@ -129,10 +141,7 @@ export const FreeLancer = () => {
       </section>
       <section className="pizza">
         <h2 id="mainTitle">Il Salentino</h2>
-        <p id="mainDescription">
-          I was involved in creating print advertising campaigns for positioning
-          purposes for Il Salentino, a pizzeria.
-        </p>
+        <p id="mainDescription">{CONTENT_DATA[len][3]}</p>
         <div className="gallery">
           <div className="img">
             <img
@@ -159,11 +168,7 @@ export const FreeLancer = () => {
       </section>
       <section className="carni">
         <h2 id="mainTitle">Carnicería Líder</h2>
-        <p id="mainDescription">
-          I was responsible for developing the brand identity manual, designing
-          the logo, creating the business card, and designing flyers to promote
-          the opening of Líder, a butcher shop.
-        </p>
+        <p id="mainDescription">{CONTENT_DATA[len][4]}</p>
         <div className="gallery">
           <div className="img">
             <img
@@ -182,18 +187,14 @@ export const FreeLancer = () => {
         </div>
         <a href={liderManual} id="download" target="blank">
           {" "}
-          View the Identity Manual
+          {CONTENT_DATA[len][6]}
         </a>
       </section>
       <section className="adalo">
         <h2 id="mainTitle">Adalo</h2>
-        <p id="mainDescription">
-          I was responsible of creating the brand identity manual, designing the
-          logo, establishing the corporate colors, presentation cards and developing a design
-          proposal for social media campaigns for Adalo, a company.
-        </p>
+        <p id="mainDescription">{CONTENT_DATA[len][5]}</p>
         <div className="galery">
-        <div className="img">
+          <div className="img">
             <img
               src={adalo1}
               alt="Adalo"
@@ -216,8 +217,7 @@ export const FreeLancer = () => {
           </div>
         </div>
         <a href={AdaloManual} id="download" target="blank">
-          {" "}
-          View the Identity Manual
+          {CONTENT_DATA[len][6]}
         </a>
       </section>
     </section>

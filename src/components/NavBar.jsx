@@ -54,7 +54,7 @@ if(data.language === "eng") {
         <a href="#education">{data.language === "eng"? "EDUCATION": "EDUCACION"}</a>
         <a href="#work">{data.language === "eng"? "WORK EXPERIENCE": "EXPERIENCIA"}</a>
         <a href="#contact">{data.language === "eng"? "CONTACT": "CONTACTO"}</a>
-        <button onClick={handleLenguaje}>{data.language}</button>
+        <button onClick={handleLenguaje}>{data.language == "eng"? "esp":"eng"}</button>
       </div>
     </nav>
   );

@@ -57,27 +57,32 @@ export const gameData = {
           },
           width: 100,
           height: 40,
-          message: "Do you what to go home? ",
+          message: {
+            eng: "Do you what to go home? ",
+            esp: "¿Quieres volver a casa?",
+          },
           isActive: false,
         },
       ],
-      obstacles: [ {
-        name: "right limit",
-        position: {
-          x: 0,
-          y: 0,
+      obstacles: [
+        {
+          name: "right limit",
+          position: {
+            x: 0,
+            y: 0,
+          },
+          initialPosition: {
+            x: 500,
+            y: 0,
+          },
+          width: 30,
+          height: 300,
+          collition: {
+            left: false,
+            right: false,
+          },
         },
-        initialPosition: {
-          x: 500,
-          y: 0,
-        },
-        width: 30,
-        height: 300,
-        collition: {
-          left: false,
-          right: false,
-        },
-      },],
+      ],
     },
     frames: [
       {
@@ -248,7 +253,10 @@ export const gameData = {
           },
           width: 30,
           height: 40,
-          message: "Do you what to go to the park? ",
+          message: {
+            eng: "Do you what to go to the park?",
+            esp: "¿Quieres ir al parque?",
+          },
           isActive: false,
         },
         {
@@ -263,7 +271,10 @@ export const gameData = {
           },
           width: 20,
           height: 40,
-          message: "How about a little programming?",
+          message: {
+            eng: "How about a little programming?",
+            esp: "Que tal si programamos un poco",
+          },
           isActive: false,
         },
         {
@@ -278,7 +289,7 @@ export const gameData = {
           },
           width: 20,
           height: 40,
-          message: "Fancy a book?",
+          message: { eng: "Fancy a book?", esp: "Gustas un Libro" },
           isActive: false,
         },
         {
@@ -293,7 +304,10 @@ export const gameData = {
           },
           width: 20,
           height: 40,
-          message: "How about getting some beauty sleep?",
+          message: {
+            eng: "How about getting some beauty sleep?",
+            esp: "Sería un momento fabuloso para un sueñito",
+          },
           isActive: false,
         },
       ],
@@ -322,7 +336,7 @@ export const gameData = {
             y: 0,
           },
           initialPosition: {
-            x: 940,  //*! ancho de la imagen
+            x: 940, //*! ancho de la imagen
             y: 0,
           },
           width: 30,
@@ -332,7 +346,6 @@ export const gameData = {
             right: false,
           },
         },
-        
       ],
     },
     frames: [
@@ -498,4 +511,3 @@ export const gameData = {
 
 gameData.background.general.framesData.framesTotal =
   gameData.background.frames.length;
-

@@ -3,7 +3,7 @@ import { MainContext } from "./context/MainContext";
 import { MAP, BUNNY_SPRITE } from "./tools/sprites";
 import { gameData } from "../../data/gameData";
 
-export const Pops = () => {
+export const Pops = ({ len }) => {
   const {
     setbunnyScenario,
     popElement,
@@ -49,10 +49,7 @@ export const Pops = () => {
     ],
     programate: [() => setKeyPressed("program")],
     read: [() => setKeyPressed("read")],
-    sleep: [
-      () => (BUNNY_SPRITE.base = 95),
-      () => setKeyPressed("sleep"),
-    ],
+    sleep: [() => (BUNNY_SPRITE.base = 95), () => setKeyPressed("sleep")],
   };
 
   useEffect(() => {
@@ -83,14 +80,14 @@ export const Pops = () => {
     return (
       <div className="pop">
         <div className="popElement">
-          <p>{popElement.message}</p>
+          <p>{popElement.message[len]}</p>
           <div className="buttons">
             <button
               onClick={() => {
                 handleAction();
               }}
             >
-              Yes
+              {len=="eng"?"YES":"SI"}
             </button>
           </div>
         </div>

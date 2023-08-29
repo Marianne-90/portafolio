@@ -18,12 +18,14 @@ export const Work = () => {
     <section id="work">
       <BunnyAnimation width={200} height={100} data={programingBunny} speed={20}/>
       <div className="grand-title">
-        <h4 data-ix="slowfade-scroll-bigs">WORK EXPERIENCE</h4>
+        <h4 data-ix="slowfade-scroll-bigs"> {data.language == "eng"
+            ? "WORK EXPERIENCE"
+            : "EXPERIENCIA LABORAL"}</h4>
       </div>
       <div className="josbContainer">
         <div className="box"></div>
         {jobs.map((job) => (
-          <WorkMap {...job} key={job.company}/>
+          <WorkMap {...job} key={job.company} />
         ))}
       </div>
     </section>

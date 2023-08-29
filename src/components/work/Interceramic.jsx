@@ -13,7 +13,7 @@ import mail5 from "../../img/jobs/inter/mail5.jpeg";
 
 const images = [mail, mail1, mail2, mail3, mail4, mail5];
 
-export const Interceramic = () => {
+export const Interceramic = ({len}) => {
   const [imagenModalVisible, setImagenModalVisible] = useState(false);
   const [imagenEnModal, setImagenEnModal] = useState();
 
@@ -34,8 +34,9 @@ export const Interceramic = () => {
       </i>
       <div className="radio">
         <h2>
-          During a radio interview with the renowned radio host Pau Chinos, we
-          discussed the latest trends in Interceramic.
+          {len === "eng"
+            ? "During a radio interview with the renowned radio host Pau Chinos, we discussed the latest trends in Interceramic."
+            : "Durante una entrevista de radio con la reconocida presentadora de radio Pau Chinos, discutimos las últimas tendencias en Interceramic."}
         </h2>
         <div className="img">
           <img src={chinos} alt="pau chinos" />
@@ -44,9 +45,9 @@ export const Interceramic = () => {
       <div className="google">
         <div className="text">
           <p>
-            Upon completion of the project aimed at increasing Google reviews
-            across all branches, we successfully achieved the objective of
-            attaining a rating of 4.5 or higher for each one.
+            {len === "eng"
+              ? "Upon completion of the project aimed at increasing Google reviews across all branches, we successfully achieved the objective of attaining a rating of 4.5 or higher for each one."
+              : "Al completar el proyecto destinado a aumentar las reseñas de Google en todas las sucursales, logramos exitosamente el objetivo de alcanzar una calificación de 4.5 o superior para cada una."}
           </p>
         </div>
         <div className="img">
@@ -55,8 +56,9 @@ export const Interceramic = () => {
       </div>
       <div className="galery">
         <p>
-          Some of the numerous graphic materials I utilized for email campaigns,
-          SMS, social media, and Google Ads.
+          {len === "eng"
+            ? "Some of the numerous graphic materials I utilized for email campaigns, SMS, social media, and Google Ads."
+            : "Algunos de los numerosos materiales gráficos que utilicé para campañas de correo electrónico, mensajes de texto (SMS), redes sociales y Google Ads."}
         </p>
         <div className="imgContent">
           {imagenModalVisible && (
