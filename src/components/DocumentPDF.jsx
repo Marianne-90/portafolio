@@ -311,8 +311,8 @@ export const DocumentPDF = () => {
             src={qr}
             style={{width:'200px'}}
           />
-          <Link href="https://portafolio.strudelrestaurante.com/" style={styles.linkqr}>
-          portafolio.strudelrestaurante.com
+          <Link href="https://portafolio-marianne.netlify.app/" style={styles.linkqr}>
+          portafolio-marianne.netlify.app
           </Link>
         </View>
       </Page>

@@ -314,10 +314,10 @@ export const DocumentoPDF = () => {
           <Text style={styles.mainSubTitle}>VISITA MI PORTAFOLIO</Text>
           <Image src={qr} style={{ width: "200px" }} />
           <Link
-            href="https://portafolio.strudelrestaurante.com/"
+            href="https://portafolio-marianne.netlify.app/"
             style={styles.linkqr}
           >
-            portafolio.strudelrestaurante.com
+            portafolio-marianne.netlify.app
           </Link>
         </View>
       </Page>
