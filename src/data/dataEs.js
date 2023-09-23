@@ -1,5 +1,5 @@
-import journalApp from "../img/proyects/journalApp.png";
-import gifApp from "../img/proyects/giftApp.jpg";
+import journalApp from "../img/proyects/journalapp.png";
+import gifApp from "../img/proyects/giftapp.jpg";
 import strudelHome from "../img/proyects/strudelHome.jpg";
 import strudelAdmin from "../img/proyects/strudelAdmin.jpg";
 import pythonFinal from "../img/proyects/pythonFinal.jpg";
