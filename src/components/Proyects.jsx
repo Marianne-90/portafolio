@@ -18,7 +18,7 @@ export const Proyects = () => {
       <div className="grand-title">
         <h4 data-ix="slowfade-scroll-bigs">
           {data.language == "eng"
-            ? "SOME OF MY PROYECTS"
+            ? "SOME OF MY PROJECTS"
             : "ALGUNOS DE MIS PROYECTOS"}
         </h4>
       </div>
