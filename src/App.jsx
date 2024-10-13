@@ -45,8 +45,8 @@ function App() {
           <>
             <Education />
             <Skills />
-            <Proyects />
             <Work />
+            <Proyects />
             <Game />
             <Contact />
           </>

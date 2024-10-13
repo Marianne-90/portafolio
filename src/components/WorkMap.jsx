@@ -10,6 +10,18 @@ export const WorkMap = ({ company, year, charge, description }) => {
     setIsVisible(true);
   };
 
+  function convertirNegritas(texto) {
+    // Reemplaza el texto entre ** por <strong>
+    return texto.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+  }
+
+  function TextoConNegritas({ texto }) {
+    // Convierte el texto con negritas y luego lo inserta de manera segura como HTML
+    const textoFormateado = convertirNegritas(texto);
+
+    return <div dangerouslySetInnerHTML={{ __html: textoFormateado }} />;
+  }
+
   return (
     <ScrollTrigger onEnter={handleAnimation}>
       <div className="job">
@@ -36,7 +48,7 @@ export const WorkMap = ({ company, year, charge, description }) => {
                 <i>
                   <AiOutlineBulb size={15} />
                 </i>
-                {des}
+                <TextoConNegritas texto={des} />
               </li>
             ))}
           </ul>
