@@ -11,6 +11,7 @@ import {
 
 import qr from "../img/bunnyqr.png";
 import { dataEs } from "../data/dataEs.js";
+
 const styles = StyleSheet.create({
   page: {
     padding: 30,

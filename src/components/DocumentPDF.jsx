@@ -11,7 +11,7 @@ import {
 
 import { data } from "../data/data.js";
 
-import qr from "../img/bunnyqr.png"
+import qr from "../img/bunnyqr.png";
 const styles = StyleSheet.create({
   page: {
     padding: 30,
@@ -135,6 +135,22 @@ Font.register({
   src: `https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPHA.ttf`,
 });
 
+function formatearNegritas(texto) {
+  const partes = texto.split(/\*\*(.*?)\*\*/g); // Divide el string por las partes que están entre **
+
+  return partes.map((parte, index) =>
+    index % 2 === 1 ? (
+      // Si es una parte impar (entre los asteriscos), la formateamos en negritas
+      <Text key={index} style={{ fontFamily: "Lato Bold" }}>
+        {parte}
+      </Text>
+    ) : (
+      // Si es una parte par, es texto normal
+      <Text key={index}>{parte}</Text>
+    )
+  );
+}
+
 export const DocumentPDF = () => {
   const { home, education, skillsData, proyects, jobs, contact } = data;
   const { name, description } = home;
@@ -234,19 +250,25 @@ export const DocumentPDF = () => {
                   <Text style={[styles.subtitle, { fontFamily: "Lato Bold" }]}>
                     {item.name}
                   </Text>
-                  {item.skills.map((item, index) => {
-                    return (
-                      <Text
-                        key={index}
-                        style={[
-                          styles.text,
-                          { maxWidth: "33.33%", padding: "2px" },
-                        ]}
-                      >
-                        - {shortSkills(item)}
-                      </Text>
-                    );
-                  })}
+                  <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+                    {item.skills.map((item, index) => {
+                      return (
+                        <Text
+                          key={index}
+                          style={[
+                            styles.text,
+                            {
+                              width: "100%", // Aseguramos que ocupe el 100% y permita el wrap
+                              padding: "2px",
+                              lineHeight: 1.2, // Ajusta la altura de la línea si es necesario
+                            },
+                          ]}
+                        >
+                          - {shortSkills(item)}
+                        </Text>
+                      );
+                    })}
+                  </View>
                 </View>
               );
             })}
@@ -270,7 +292,21 @@ export const DocumentPDF = () => {
             {certifications.map((item, index) => (
               <View key={index} style={[styles.blockBorder, { flexGrow: 4 }]}>
                 <Text style={styles.subtitle}>{item.title}</Text>
-                <Text style={styles.textItalic}>{item.subtitle}</Text>
+                <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+                  <Text
+                    style={[
+                      styles.textItalic,
+                      {
+                        fontSize: "8px",
+                        padding: "2px",
+                        lineHeight: 1.2, // Ajusta la altura de la línea si es necesario
+                        flexGrow: 1, // Permite que el texto crezca y se ajuste
+                      },
+                    ]}
+                  >
+                    {item.subtitle}
+                  </Text>
+                </View>
               </View>
             ))}
           </View>
@@ -285,7 +321,17 @@ export const DocumentPDF = () => {
             WORK EXPERIENCE
           </Text>
           {jobs.map((item, index) => (
-            <View key={index} style={{ marginBottom: "5px" }}>
+            <View
+              key={index}
+              style={[
+                {
+                  marginBottom: "10px",
+                  paddingBottom: "10px",
+                  borderBottomWidth: 1,
+                  borderBottomStyle: "solid",
+                },
+              ]}
+            >
               <Text>
                 <Text style={[styles.subtitle, { fontFamily: "Lato Bold" }]}>
                   {item.year}
@@ -298,21 +344,26 @@ export const DocumentPDF = () => {
               {item.description.map((item, index) => {
                 return (
                   <Text style={[styles.text, { marginTop: "3px" }]} key={index}>
-                    - {item}
+                    - {formatearNegritas(item)}
                   </Text>
                 );
               })}
             </View>
           ))}
         </View>
-        <View style={{alignItems:'center', justifyContent:'center', marginTop:'100px'}}>
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Text style={styles.mainSubTitle}>Visit my portafolio</Text>
-          <Image
-            src={qr}
-            style={{width:'200px'}}
-          />
-          <Link href="https://portafolio-marianne.netlify.app/" style={styles.linkqr}>
-          portafolio-marianne.netlify.app
+          <Image src={qr} style={{ width: "150px" }} />
+          <Link
+            href="https://portafolio-marianne.netlify.app/"
+            style={styles.linkqr}
+          >
+            portafolio-marianne.netlify.app
           </Link>
         </View>
       </Page>
