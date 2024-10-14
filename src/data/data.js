@@ -142,13 +142,7 @@ export const data = {
       description:
         "A compilation of the different hooks offered by React.js and how they work with examples and exercises",
       url: "https://github.com/Marianne-90/Hooks-App",
-    },
-    {
-      title: "CRUD using classes and routing",
-      image: crudPhp,
-      description: "A simple PHP application using classes and routing",
-      url: "https://github.com/Marianne-90/api-usando-clases-y-enrutamiento",
-    },
+    }
   ],
   jobs: [
     {

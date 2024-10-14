@@ -142,13 +142,6 @@ export const dataEs = {
         "Una compilación de los diferentes hooks ofrecidos por React.js y cómo funcionan con ejemplos y ejercicios.",
       url: "https://github.com/Marianne-90/Hooks-App",
     },
-    {
-      title: "CRUD usando Clases y Enrutamiento",
-      image: crudPhp,
-      description:
-        "Una aplicación PHP simple que utiliza clases y enrutamiento.",
-      url: "https://github.com/Marianne-90/api-usando-clases-y-enrutamiento",
-    },
   ],
   jobs: [
     {
