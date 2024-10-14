@@ -10,6 +10,7 @@ import {
 } from "@react-pdf/renderer";
 
 import qr from "../img/bunnyqr.png";
+import pp from "../img/foto_formal.png";
 import { dataEs } from "../data/dataEs.js";
 
 const styles = StyleSheet.create({
@@ -30,7 +31,6 @@ const styles = StyleSheet.create({
   detailColumn: {
     flexDirection: "column",
     flexGrow: 9,
-    textTransform: "uppercase",
   },
   linkColumn: {
     flexDirection: "column",
@@ -113,6 +113,16 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderRightStyle: "solid",
   },
+  blockNotBorder: {
+    marginRight: "5px",
+    paddingRight: "5px",
+  },
+  // Estilos para la imagen circular
+  profileImage: {
+    width: 70,
+    height: 70,
+    borderRadius: "50%",
+  },
 });
 
 Font.register({
@@ -180,20 +190,35 @@ export const DocumentoPDF = () => {
     >
       <Page size="A4" style={styles.page}>
         <View style={styles.containerBottomBorder}>
+          <Image src={pp} style={styles.profileImage} />
           <View style={styles.detailColumn}>
-            <Text style={styles.name}>{name}</Text>
-            <Text style={styles.subtitle}>{contact.role}</Text>
-          </View>
-          <View style={styles.linkColumn}>
-            <Text style={styles.link}>
-              <Link href={`mailto:${contact.mail}`} style={styles.link}>
-                {contact.mail}
-              </Link>
-              {"   "}
-              <Link href={`tel:${contact.phone}`} style={styles.link}>
-                {formattedPhoneNumber}
-              </Link>
-            </Text>
+            <View style={styles.linkColumn}>
+              <Text
+                style={[
+                  styles.name,
+                  { alignSelf: "flex-end", justifySelf: "flex-end" },
+                ]}
+              >
+                {name}
+              </Text>
+              <Text
+                style={[
+                  styles.subtitle,
+                  { alignSelf: "flex-end", justifySelf: "flex-end" },
+                ]}
+              >
+                {contact.role}
+              </Text>
+              <Text style={styles.link}>
+                <Link href={`mailto:${contact.mail}`} style={styles.link}>
+                  {contact.mail}
+                </Link>
+                {"   "}
+                <Link href={`tel:${contact.phone}`} style={styles.link}>
+                  {formattedPhoneNumber}
+                </Link>
+              </Text>
+            </View>
           </View>
         </View>
 
@@ -279,18 +304,9 @@ export const DocumentoPDF = () => {
           <Text style={[styles.mainSubTitle, { marginBottom: "5px" }]}>
             CERTIFICACIONES
           </Text>
-          <View
-            style={[
-              styles.container,
-              {
-                borderLeftWidth: 1,
-                borderLeftStyle: "solid",
-                paddingLeft: "5px",
-              },
-            ]}
-          >
+          <View style={[styles.container]}>
             {certifications.map((item, index) => (
-              <View key={index} style={[styles.blockBorder, { flexGrow: 4 }]}>
+              <View key={index} style={[styles.blockNotBorder]}>
                 <Text style={styles.subtitle}>{item.title}</Text>
                 <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                   <Text
@@ -321,7 +337,17 @@ export const DocumentoPDF = () => {
             EXPERIENCIA LABORAL
           </Text>
           {jobs.map((item, index) => (
-            <View key={index} style={{ marginBottom: "5px" }}>
+            <View
+              key={index}
+              style={[
+                {
+                  marginBottom: "10px",
+                  paddingBottom: "10px",
+                  borderBottomWidth: 1,
+                  borderBottomStyle: "solid",
+                },
+              ]}
+            >
               <Text>
                 <Text style={[styles.subtitle, { fontFamily: "Lato Bold" }]}>
                   {item.year}
@@ -345,11 +371,10 @@ export const DocumentoPDF = () => {
           style={{
             alignItems: "center",
             justifyContent: "center",
-            marginTop: "100px",
           }}
         >
           <Text style={styles.mainSubTitle}>VISITA MI PORTAFOLIO</Text>
-          <Image src={qr} style={{ width: "200px" }} />
+          <Image src={qr} style={{ width: "150px" }} />
           <Link
             href="https://portafolio-marianne.netlify.app/"
             style={styles.linkqr}

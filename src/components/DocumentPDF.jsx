@@ -12,6 +12,8 @@ import {
 import { data } from "../data/data.js";
 
 import qr from "../img/bunnyqr.png";
+import pp from "../img/foto_formal.png";
+
 const styles = StyleSheet.create({
   page: {
     padding: 30,
@@ -30,7 +32,6 @@ const styles = StyleSheet.create({
   detailColumn: {
     flexDirection: "column",
     flexGrow: 9,
-    textTransform: "uppercase",
   },
   linkColumn: {
     flexDirection: "column",
@@ -113,6 +114,16 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderRightStyle: "solid",
   },
+  blockNotBorder: {
+    marginRight: "5px",
+    paddingRight: "5px",
+  },
+  // Estilos para la imagen circular
+  profileImage: {
+    width: 70,
+    height: 70,
+    borderRadius: "50%",
+  },
 });
 
 Font.register({
@@ -180,20 +191,35 @@ export const DocumentPDF = () => {
     >
       <Page size="A4" style={styles.page}>
         <View style={styles.containerBottomBorder}>
+          <Image src={pp} style={styles.profileImage} />
           <View style={styles.detailColumn}>
-            <Text style={styles.name}>{name}</Text>
-            <Text style={styles.subtitle}>{contact.role}</Text>
-          </View>
-          <View style={styles.linkColumn}>
-            <Text style={styles.link}>
-              <Link href={`mailto:${contact.mail}`} style={styles.link}>
-                {contact.mail}
-              </Link>
-              {"   "}
-              <Link href={`tel:${contact.phone}`} style={styles.link}>
-                {formattedPhoneNumber}
-              </Link>
-            </Text>
+            <View style={styles.linkColumn}>
+              <Text
+                style={[
+                  styles.name,
+                  { alignSelf: "flex-end", justifySelf: "flex-end" },
+                ]}
+              >
+                {name}
+              </Text>
+              <Text
+                style={[
+                  styles.subtitle,
+                  { alignSelf: "flex-end", justifySelf: "flex-end" },
+                ]}
+              >
+                {contact.role}
+              </Text>
+              <Text style={styles.link}>
+                <Link href={`mailto:${contact.mail}`} style={styles.link}>
+                  {contact.mail}
+                </Link>
+                {"   "}
+                <Link href={`tel:${contact.phone}`} style={styles.link}>
+                  {formattedPhoneNumber}
+                </Link>
+              </Text>
+            </View>
           </View>
         </View>
 
@@ -283,14 +309,15 @@ export const DocumentPDF = () => {
             style={[
               styles.container,
               {
-                borderLeftWidth: 1,
-                borderLeftStyle: "solid",
                 paddingLeft: "5px",
               },
             ]}
           >
             {certifications.map((item, index) => (
-              <View key={index} style={[styles.blockBorder, { flexGrow: 4 }]}>
+              <View
+                key={index}
+                style={[styles.blockNotBorder, { flexGrow: 4 }]}
+              >
                 <Text style={styles.subtitle}>{item.title}</Text>
                 <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                   <Text
