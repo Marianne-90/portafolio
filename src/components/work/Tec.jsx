@@ -3,6 +3,7 @@ import togaf from "../../img/jobs/tec/Togaf.png";
 import diagramas from "../../img/jobs/tec/Diagramas.png";
 import panel from "../../img/jobs/tec/panel.png";
 import video from "../../img/jobs/tec/video.mp4";
+
 export const Tec = ({ len }) => {
   return (
     <div className="Tec">
