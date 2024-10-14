@@ -153,7 +153,7 @@ export const dataEs = {
   jobs: [
     {
       year: "2023-hoy",
-      company: "TEC360 CLOUD",
+      company: "TEC360 Cloud",
       charge: "Consultor y Customer Success",
       description: [
         "**Guía a través de la implementación exitosa** y la optimización continua de LeanIX. así como desarrollar y ejecutar planes integrales de Jumpstart y Onboarding.",

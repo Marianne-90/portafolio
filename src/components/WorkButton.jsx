@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Albis, Faurecia, FreeLancer, Interceramic } from "./work/index";
+import { Albis, Faurecia, FreeLancer, Interceramic, Tec } from "./work/index";
 import { AiFillCloud } from "react-icons/ai";
 import { MainContext } from "../context/MainContext";
 import { useContext } from "react";
@@ -10,6 +10,8 @@ export const WorkButton = ({ job }) => {
 
   const jobComponent = () => {
     switch (job) {
+      case "TEC360 Cloud":
+        return <Tec len={data.language}/>;
       case "Representaciones Albis":
         return <Albis len={data.language}/>;
       case "Interceramic":

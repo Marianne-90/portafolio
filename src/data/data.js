@@ -153,7 +153,7 @@ export const data = {
   jobs: [
     {
       year: "2023-today",
-      company: "TEC360 CLOUD",
+      company: "TEC360 Cloud",
       charge: "Consultant and Customer Success",
       description: [
         "**Guiding** clients through the successful implementation and continuous optimization of LeanIX I am dedicated to developing and executing comprehensive Jumpstart and Onboarding plans.",
