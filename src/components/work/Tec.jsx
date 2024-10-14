@@ -2,7 +2,6 @@ import { AiFillCloud, AiFillTrophy } from "react-icons/ai";
 import togaf from "../../img/jobs/tec/Togaf.png";
 import diagramas from "../../img/jobs/tec/Diagramas.png";
 import panel from "../../img/jobs/tec/panel.png";
-import video from "../../img/jobs/tec/video.mp4";
 
 export const Tec = ({ len }) => {
   return (
@@ -60,14 +59,14 @@ export const Tec = ({ len }) => {
             : "Creación de diversos materiales didácticos como videos y manuales para apoyar las capacitaciones y change management dentro de las organizaciones."}
         </p>
         <div className="img">
-          <video
-            src={video}
-            controls // Muestra controles de reproducción
-            width="100%" // Ajusta el ancho del video al 100% del contenedor
-            height="auto" // Mantiene la relación de aspecto
-          >
-            Your browser does not support the video tag.
-          </video>
+          <iframe
+            src="https://www.youtube.com/embed/50exqdiFu48"
+            title="Aplicación"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
         </div>
         <div className="containerS"></div>
       </section>
