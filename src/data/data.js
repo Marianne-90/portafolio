@@ -205,7 +205,7 @@ export const data = {
     },
   ],
   contact: {
-    phone: "+38678667978",
+    phone: "+34678667978",
     mail: "marianne.garridom@gmail.com",
     portafolio: "https://portafolio-marianne.netlify.app/",
     role: "Enterprise Architect / Customer Success / LeanIX",
